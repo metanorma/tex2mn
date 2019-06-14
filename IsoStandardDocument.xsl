@@ -22,6 +22,9 @@
     </xsl:copy>
   </xsl:template> 
 
+  <!-- erase tags (present in headings) -->
+  <xsl:template match="ltx:tags"/>
+
   <!-- unwrap children of paras (which should be a single p) -->
   <xsl:template match="ltx:para">
     <xsl:apply-templates select="*"/>
@@ -32,7 +35,7 @@
     <p><xsl:apply-templates select="node()"/></p>
   </xsl:template>
 
-  <!-- get text of titles (discards numbering tags)  -->
+  <!-- get text of titles -->
   <xsl:template match="ltx:title">
     <title><xsl:apply-templates select="text()"/></title>
   </xsl:template>
@@ -40,21 +43,21 @@
   <xsl:template match="ltx:section">
     <clause>
       <xsl:copy-of select="@obligation"/>
-      <xsl:apply-templates select="ltx:title|ltx:para"/>
+      <xsl:apply-templates/>
     </clause>
   </xsl:template>
 
   <xsl:template match="ltx:section[ltx:title/text()='Foreword' or @heading='foreword' or @foreword]">
     <foreword>
       <xsl:attribute name="obligation">informative</xsl:attribute>
-      <xsl:apply-templates select="ltx:title|ltx:para"/>
+      <xsl:apply-templates/>
     </foreword>
   </xsl:template>
 
   <xsl:template match="ltx:section[ltx:title/text()='Introduction' or @heading='introduction' or @introduction]">
     <introduction>
       <xsl:attribute name="obligation">informative</xsl:attribute>
-      <xsl:apply-templates select="ltx:title|ltx:para"/>
+      <xsl:apply-templates/>
     </introduction>
   </xsl:template>
 
