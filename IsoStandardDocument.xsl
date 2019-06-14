@@ -63,6 +63,13 @@
     </introduction>
   </xsl:template>
 
+  <xsl:template match="ltx:section[ltx:title/text()='Terms and definitions' or @heading='terms and definitions' or @terms-and-definitions]">
+    <terms>
+      <xsl:attribute name="obligation">normative</xsl:attribute>
+      <xsl:apply-templates/>
+    </terms>
+  </xsl:template>
+
   <xsl:template match="ltx:document">
     <iso-standard>
       <!-- all sections preceding and excluding the first numbered one are grouped in the preface -->
