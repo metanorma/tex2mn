@@ -7,7 +7,10 @@ main--iso.xml: main--tex.xml
 		--novalidate
 
 main--tex.xml: main.tex
-	latexml main.tex --output=main--tex.xml
+	latexml \
+		main.tex \
+		--output=main--tex.xml \
+		--nocomments
 
 main.pdf: main.tex
 	latexmk -pdf main.tex
