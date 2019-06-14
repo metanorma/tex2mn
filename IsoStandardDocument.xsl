@@ -10,6 +10,11 @@
   method = "xml"
   encoding = "UTF-8"/>
 
+  <!-- remove latexml processing instructions -->
+  <xsl:template match="/processing-instruction('latexml')">
+    <xsl:apply-templates select="*"/>
+  </xsl:template> 
+
   <!-- identity -->
   <xsl:template match="@*|node()">
     <xsl:copy>
