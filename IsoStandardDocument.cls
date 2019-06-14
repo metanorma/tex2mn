@@ -7,5 +7,5 @@
 \RequirePackage{xparse}
 \RequirePackage{lxRDFa}
 
-\NewDocumentCommand{\Section}{om}
-  {\section{#2}\lxRDFa[.]{#1}}
+% \NewDocumentCommand{\Section}{som}
+%   {\IfBooleanTF{#1}{\section*{#3}}{\section{#3}}\lxRDFa[.]{#2}}
