@@ -40,6 +40,7 @@
   <!-- get text of titles -->
   <xsl:template match="ltx:title">
     <xsl:if test="text()">
+      <!-- TODO: remove title from terms -->
       <title><xsl:apply-templates select="text()"/></title>
     </xsl:if>
   </xsl:template>
@@ -47,9 +48,16 @@
   <xsl:template match="ltx:section|ltx:subsection">
     <clause>
       <xsl:copy-of select="@obligation"/>
+      <preferred><xsl:value-of select="ltx:title/text()"/></preferred>
       <xsl:for-each select="str:tokenize(@alternate, ',')">
         <alternate><xsl:value-of select="."/></alternate>
       </xsl:for-each>
+      <xsl:for-each select="str:tokenize(@deprecated, ',')">
+        <deprecated><xsl:value-of select="."/></deprecated>
+      </xsl:for-each>
+      <xsl:if test="@domain">
+        <domain><xsl:value-of select="@domain"/></domain>
+      </xsl:if>
       <xsl:apply-templates/>
     </clause>
   </xsl:template>
