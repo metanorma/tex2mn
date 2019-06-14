@@ -43,7 +43,7 @@
     </clause>
   </xsl:template>
 
-  <xsl:template match="ltx:section[@foreword]">
+  <xsl:template match="ltx:section[ltx:title/text()='Foreword' or @heading='foreword' or @foreword]">
     <foreword>
       <xsl:apply-templates select="ltx:title|ltx:para"/>
     </foreword>
