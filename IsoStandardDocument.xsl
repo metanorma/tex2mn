@@ -40,7 +40,7 @@
     <title><xsl:apply-templates select="text()"/></title>
   </xsl:template>
 
-  <xsl:template match="ltx:section">
+  <xsl:template match="ltx:section|ltx:subsection">
     <clause>
       <xsl:copy-of select="@obligation"/>
       <xsl:apply-templates/>
