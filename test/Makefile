@@ -5,6 +5,9 @@ main--iso.xml: main--tex.xml
 		--destination=main--iso.xml \
 		--nodefaultresources \
 		--novalidate
+	xmllint \
+		--output main--iso.xml \
+		--format main--iso.xml
 
 main--tex.xml: main.tex
 	latexml \
