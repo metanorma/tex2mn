@@ -38,9 +38,9 @@
   </xsl:template>
 
   <xsl:template match="ltx:section">
-    <section>
+    <clause>
       <xsl:apply-templates select="ltx:title|ltx:para"/>
-    </section>
+    </clause>
   </xsl:template>
 
   <xsl:template match="ltx:section[@foreword]">
@@ -58,12 +58,12 @@
         </xsl:for-each>
       </preface>
       <!-- all sections following and including the first numbered one are grouped as clauses -->
-      <clauses>
+      <sections>
         <!-- NOTE: unnumbered sections following the first numbered one are just suppressed -->
         <xsl:for-each select="ltx:section[@inlist]">
           <xsl:apply-templates select="."/>
         </xsl:for-each>
-      </clauses>
+      </sections>
     </iso-standard>
   </xsl:template>
 
