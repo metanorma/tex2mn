@@ -4,7 +4,9 @@
   xmlns = "http://riboseinc.com/isoxml"
   xmlns:xsl = "http://www.w3.org/1999/XSL/Transform"
   xmlns:ltx = "http://dlmf.nist.gov/LaTeXML"
-  exclude-result-prefixes = "ltx">
+  xmlns:str = "http://exslt.org/strings"
+  extension-element-prefixes = "str"
+  exclude-result-prefixes = "ltx str">
 
 <xsl:output
   method = "xml"
@@ -45,6 +47,9 @@
   <xsl:template match="ltx:section|ltx:subsection">
     <clause>
       <xsl:copy-of select="@obligation"/>
+      <xsl:for-each select="str:tokenize(@alternate, ',')">
+        <alternate><xsl:value-of select="."/></alternate>
+      </xsl:for-each>
       <xsl:apply-templates/>
     </clause>
   </xsl:template>
