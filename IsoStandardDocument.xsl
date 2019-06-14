@@ -51,6 +51,13 @@
     </foreword>
   </xsl:template>
 
+  <xsl:template match="ltx:section[ltx:title/text()='Introduction' or @heading='introduction' or @introduction]">
+    <introduction>
+      <xsl:attribute name="obligation">informative</xsl:attribute>
+      <xsl:apply-templates select="ltx:title|ltx:para"/>
+    </introduction>
+  </xsl:template>
+
   <xsl:template match="ltx:document">
     <iso-standard>
       <!-- all sections preceding and excluding the first numbered one are grouped in the preface -->
