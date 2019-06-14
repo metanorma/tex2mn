@@ -39,12 +39,14 @@
 
   <xsl:template match="ltx:section">
     <clause>
+      <xsl:copy-of select="@obligation"/>
       <xsl:apply-templates select="ltx:title|ltx:para"/>
     </clause>
   </xsl:template>
 
   <xsl:template match="ltx:section[ltx:title/text()='Foreword' or @heading='foreword' or @foreword]">
     <foreword>
+      <xsl:attribute name="obligation">informative</xsl:attribute>
       <xsl:apply-templates select="ltx:title|ltx:para"/>
     </foreword>
   </xsl:template>
