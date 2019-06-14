@@ -22,6 +22,16 @@
     <xsl:apply-templates select="*"/>
   </xsl:template>
 
+  <!-- insert content of ps -->
+  <xsl:template match="ltx:p">
+    <p><xsl:apply-templates select="node()"/></p>
+  </xsl:template>
+
+  <!-- get text of titles (discards numbering tags)  -->
+  <xsl:template match="ltx:title">
+    <title><xsl:apply-templates select="text()"/></title>
+  </xsl:template>
+
   <xsl:template match="ltx:section">
     <section>
       <xsl:apply-templates select="ltx:title|ltx:para"/>
