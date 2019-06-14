@@ -69,6 +69,13 @@
     </foreword>
   </xsl:template>
 
+  <xsl:template match="ltx:section[ltx:title/text()='Abstract' or @heading='abstract' or @abstract]">
+    <abstract>
+      <xsl:attribute name="obligation">informative</xsl:attribute>
+      <xsl:apply-templates/>
+    </abstract>
+  </xsl:template>
+
   <xsl:template match="ltx:section[ltx:title/text()='Introduction' or @heading='introduction' or @introduction]">
     <introduction>
       <xsl:attribute name="obligation">informative</xsl:attribute>
@@ -76,11 +83,18 @@
     </introduction>
   </xsl:template>
 
-  <xsl:template match="ltx:section[ltx:title/text()='Terms and definitions' or @heading='terms and definitions' or @terms-and-definitions]">
+  <xsl:template match="ltx:section[ltx:title/text()='Terms and definitions' or @heading='terms and definitions' or @termsanddefinitions]">
     <terms>
       <xsl:attribute name="obligation">normative</xsl:attribute>
       <xsl:apply-templates/>
     </terms>
+  </xsl:template>
+
+  <xsl:template match="ltx:section[ltx:title/text()='Normative references' or @heading='normative references' or @normativereferences]">
+    <references>
+      <xsl:attribute name="obligation">informative</xsl:attribute>
+      <xsl:apply-templates/>
+    </references>
   </xsl:template>
 
   <xsl:template match="ltx:document">
