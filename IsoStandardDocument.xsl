@@ -37,7 +37,9 @@
 
   <!-- get text of titles -->
   <xsl:template match="ltx:title">
-    <title><xsl:apply-templates select="text()"/></title>
+    <xsl:if test="text()">
+      <title><xsl:apply-templates select="text()"/></title>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="ltx:section|ltx:subsection">
