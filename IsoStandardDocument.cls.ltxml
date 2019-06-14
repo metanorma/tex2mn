@@ -1,0 +1,11 @@
+use LaTeXML::Package;
+use strict;
+use warnings;
+
+LoadClass('article');
+
+RequirePackage('lxRDFa');
+
+DefMacro('\Section[]{}', '\section{#2}\lxRDFa[.]{#1}');
+
+1;
