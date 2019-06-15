@@ -21,6 +21,7 @@ main.pdf: main.tex
 clear:
 	rm -f main--tex.xml
 	rm -f main--iso.xml
+	rm -f main--iso.adoc
 	latexmk -c main.tex
 
 clobber: clear
@@ -28,7 +29,4 @@ clobber: clear
 	latexmk -C main.tex
 
 watch:
-	ls ../Iso* Makefile main.tex | entr make clobber main--iso.xml
-
-# meta:
-# 	docker run -v "$(pwd)":/metanorma/ -w /metanorma ribose/metanorma "metanorma -t iso -x html,doc,xml meta.adoc"
+	ls ../Iso* Iso* Makefile main.tex | entr make clobber main--iso.adoc
