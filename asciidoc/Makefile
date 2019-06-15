@@ -27,4 +27,4 @@ clobber: clear
 	latexmk -C main.tex
 
 watch:
-	ls ../Iso* Makefile main.tex | entr make clobber main--iso.adoc
+	ls ../Iso* Iso* Makefile main.tex | entr make clobber main--iso.adoc

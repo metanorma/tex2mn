@@ -11,14 +11,10 @@
 
   <xsl:strip-space elements="*" />
 
-  <xsl:template match="/processing-instruction('latexml')"/>
-
   <xsl:template match="ltx:tags|ltx:title"/>
 
-  <!-- <xsl:strip-space elements="*"/> -->
-
   <xsl:template match="@*|node()">
-<xsl:copy><xsl:apply-templates select="@*|node()"/></xsl:copy>
+    <xsl:copy><xsl:apply-templates select="@*|node()"/></xsl:copy>
   </xsl:template> 
 
   <xsl:template match="ltx:para">
@@ -42,7 +38,7 @@
     <xsl:param name="depth"/>
     <xsl:choose>
       <xsl:when test="ltx:title/text()!=''">
-        <xsl:value-of select="concat($depth, ltx:title/text())"/>
+        <xsl:value-of select="concat($depth, ' ', ltx:title/text())"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="concat($depth, ' {blank}')"/>
@@ -50,13 +46,35 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template name="heading-attributes">
+    <xsl:if test="@adoc">
+      <xsl:value-of select="concat('[', @adoc, ']')"/>
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="term-extras">
+    <xsl:for-each select="tokenize(@alternate, ',')">
+      <xsl:value-of select="concat('alternate:[', ., ']')"/>
+      <xsl:call-template name="newline"/>
+    </xsl:for-each>
+    <xsl:for-each select="tokenize(@deprecated, ',')">
+      <xsl:value-of select="concat('deprecated:[', ., ']')"/>
+      <xsl:call-template name="newline"/>
+    </xsl:for-each>
+    <xsl:if test="@domain">
+      <xsl:value-of select="concat('domain:[', @domain, ']')"/>
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template name="newline">
     <xsl:text>&#xA;</xsl:text>
   </xsl:template>
 
-
   <xsl:template match="ltx:section">
     <xsl:call-template name="newline"/>
+    <xsl:call-template name="heading-attributes"/>
     <xsl:call-template name="heading">
       <xsl:with-param name="depth" select="'=='" />
     </xsl:call-template>
@@ -67,84 +85,14 @@
 
   <xsl:template match="ltx:subsection">
     <xsl:call-template name="newline"/>
+    <xsl:call-template name="heading-attributes"/>
     <xsl:call-template name="heading">
       <xsl:with-param name="depth" select="'==='" />
     </xsl:call-template>
     <xsl:call-template name="newline"/>
+    <xsl:call-template name="term-extras"/>
     <xsl:apply-templates/>
     <xsl:call-template name="newline"/>
   </xsl:template>
-
-  <xsl:template match="ltx:document">
-    <deleteme/>
-    <xsl:apply-templates select="*"/>
-  </xsl:template>
-
-  <!--
-
-
-
-  <xsl:template match="ltx:title">
-    <xsl:if test="text()">
-      <title><xsl:apply-templates select="text()"/></title>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template match="ltx:section|ltx:subsection">
-    <clause>
-      <xsl:copy-of select="@obligation"/>
-      <preferred><xsl:value-of select="ltx:title/text()"/></preferred>
-      <xsl:for-each select="str:tokenize(@alternate, ',')">
-        <alternate><xsl:value-of select="."/></alternate>
-      </xsl:for-each>
-      <xsl:for-each select="str:tokenize(@deprecated, ',')">
-        <deprecated><xsl:value-of select="."/></deprecated>
-      </xsl:for-each>
-      <xsl:if test="@domain">
-        <domain><xsl:value-of select="@domain"/></domain>
-      </xsl:if>
-      <xsl:apply-templates/>
-    </clause>
-  </xsl:template>
-
-
-  <xsl:template match="ltx:section[ltx:title/text()='Abstract' or @heading='abstract' or @abstract]">
-    <abstract>
-      <xsl:attribute name="obligation">informative</xsl:attribute>
-      <xsl:apply-templates/>
-    </abstract>
-  </xsl:template>
-
-  <xsl:template match="ltx:section[ltx:title/text()='Introduction' or @heading='introduction' or @introduction]">
-    <introduction>
-      <xsl:attribute name="obligation">informative</xsl:attribute>
-      <xsl:apply-templates/>
-    </introduction>
-  </xsl:template>
-
-  <xsl:template match="ltx:section[ltx:title/text()='Terms and definitions' or @heading='terms and definitions' or @termsanddefinitions]">
-    <terms>
-      <xsl:attribute name="obligation">normative</xsl:attribute>
-      <xsl:apply-templates/>
-    </terms>
-  </xsl:template>
-
-  <xsl:template match="ltx:section[ltx:title/text()='Normative references' or @heading='normative references' or @normativereferences]">
-    <references>
-      <xsl:attribute name="obligation">informative</xsl:attribute>
-      <xsl:apply-templates/>
-    </references>
-  </xsl:template>
-
-  <xsl:template match="ltx:document">
-    <xsl:for-each select="(ltx:section[@inlist])[1]/preceding-sibling::ltx:section">
-      <xsl:apply-templates select="."/>
-    </xsl:for-each>
-    <sections>
-      <xsl:for-each select="ltx:section[@inlist]">
-        <xsl:apply-templates select="."/>
-      </xsl:for-each>
-    </sections>
-  </xsl:template> -->
 
 </xsl:stylesheet>
