@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{IsoStandardDocument}
-   [2019/06/14 IsoStandardDocument]
+\ProvidesClass{Metanorma}
+   [2019/07/07 Metanorma]
 
 \LoadClass{article}
 
