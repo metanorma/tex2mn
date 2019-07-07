@@ -1,25 +1,24 @@
 # metanorma:
-# 	docker run -v "$(pwd)":/metanorma/ -w /metanorma ribose/metanorma "metanorma -t iso -x html,doc,xml main--iso.adoc"
+# 	docker run -v "$(pwd)":/metanorma/ -w /metanorma ribose/metanorma "metanorma -t iso -x html,doc,xml main.adoc"
 
-main--iso.adoc: main--tex.xml
+main.adoc: main.xml
 	saxon \
-		-s:main--tex.xml \
-		-xsl:IsoStandardDocument.xsl \
-		-o:main--iso.adoc
+		-s:main.xml \
+		-xsl:Metanorma.xsl \
+		-o:main.adoc
 
-main--tex.xml: main.tex
+main.xml: main.tex
 	latexml \
 		main.tex \
-		--output=main--tex.xml \
+		--output=main.xml \
 		--nocomments
 
 main.pdf: main.tex
 	latexmk -pdf main.tex
 
 clear:
-	rm -f main--tex.xml
-	rm -f main--iso.xml
-	rm -f main--iso.adoc
+	rm -f main.xml
+	rm -f main.adoc
 	latexmk -c main.tex
 
 clobber: clear
@@ -27,4 +26,4 @@ clobber: clear
 	latexmk -C main.tex
 
 watch:
-	ls ../Iso* Iso* Makefile main.tex | entr make clobber main--iso.adoc
+	ls ../Metanorma* Makefile main.tex | entr make clobber main.adoc
