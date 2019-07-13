@@ -17,16 +17,6 @@
     <xsl:copy><xsl:apply-templates select="@*|node()"/></xsl:copy>
   </xsl:template> 
 
-  <xsl:template match="ltx:para">
-    <xsl:text>&#xA;</xsl:text>
-    <xsl:apply-templates select="*"/>
-    <xsl:text>&#xA;</xsl:text>
-  </xsl:template>
-
-  <xsl:template match="//ltx:p">
-    <xsl:apply-templates select="node()"/>
-  </xsl:template>
-
   <xsl:template match="ltx:section[ltx:title/text()='Foreword' or @heading='foreword' or @foreword]">
     <xsl:text>[[Foreword]]&#xA;</xsl:text>
     <xsl:value-of select="concat('.', ltx:title/text())"/>
@@ -122,5 +112,23 @@
   <xsl:template match="ltx:text[@font='italic']">__<xsl:apply-templates/>__</xsl:template>
   <xsl:template match="ltx:text[@font='smallcaps']">[smallcap]#<xsl:apply-templates/>#</xsl:template>
   <xsl:template match="ltx:text[@font='strikethrough']">[strike]#<xsl:apply-templates/>#</xsl:template>
+
+  <!--
+    Paragraphs and their alignment
+  -->
+
+  <xsl:template name="paragraph-alignment">
+    <xsl:if test="../@align"> <!-- NOTE: parent is expected to be ltx:para -->
+      <xsl:value-of select="concat('[align=', ../@align, ']')"/>
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="//ltx:para/ltx:p">
+    <xsl:call-template name="newline"/>
+    <xsl:call-template name="paragraph-alignment"/>
+    <xsl:apply-templates/>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
 
 </xsl:stylesheet>
