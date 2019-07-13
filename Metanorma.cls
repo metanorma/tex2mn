@@ -7,5 +7,5 @@
 \RequirePackage{xparse}
 \RequirePackage{lxRDFa}
 
-% \NewDocumentCommand{\Section}{som}
-%   {\IfBooleanTF{#1}{\section*{#3}}{\section{#3}}\lxRDFa[.]{#2}}
+\NewDocumentCommand{\mn}{m}
+  {\lxRDFa[.]{asciidoc-attributes={#1}}}

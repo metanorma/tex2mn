@@ -6,6 +6,6 @@ LoadClass('article');
 
 RequirePackage('lxRDFa');
 
-# DefMacro('\Section OptionalMatch:* []{}', '\section{#2}\lxRDFa[.]{#3}');
+DefMacro('\mn{}', '\lxRDFa[.]{asciidoc-attributes={#1}}');
 
 1;

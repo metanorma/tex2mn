@@ -34,25 +34,6 @@
     <xsl:text>&#xA;</xsl:text>
   </xsl:template>
 
-  <xsl:template name="heading">
-    <xsl:param name="depth"/>
-    <xsl:choose>
-      <xsl:when test="ltx:title/text()!=''">
-        <xsl:value-of select="concat($depth, ' ', ltx:title/text())"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="concat($depth, ' {blank}')"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
-  <xsl:template name="heading-attributes">
-    <xsl:if test="@adoc">
-      <xsl:value-of select="concat('[', @adoc, ']')"/>
-      <xsl:call-template name="newline"/>
-    </xsl:if>
-  </xsl:template>
-
   <xsl:template name="term-extras">
     <xsl:for-each select="tokenize(@alternate, ',')">
       <xsl:value-of select="concat('alternate:[', ., ']')"/>
@@ -72,27 +53,65 @@
     <xsl:text>&#xA;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="ltx:section">
+  <!--
+    Sectioning
+  -->
+
+  <xsl:template name="heading">
+    <xsl:param name="depth"/>
+
     <xsl:call-template name="newline"/>
     <xsl:call-template name="heading-attributes"/>
-    <xsl:call-template name="heading">
-      <xsl:with-param name="depth" select="'=='" />
-    </xsl:call-template>
+
+    <xsl:choose>
+      <xsl:when test="ltx:title/text()!=''">
+        <xsl:value-of select="concat($depth, ' ', ltx:title/text())"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat($depth, ' ', '{blank}')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+
     <xsl:call-template name="newline"/>
     <xsl:apply-templates/>
     <xsl:call-template name="newline"/>
   </xsl:template>
 
+  <xsl:template name="heading-attributes">
+    <xsl:if test="@asciidoc-attributes">
+      <xsl:value-of select="concat('[', @asciidoc-attributes, ']')"/>
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="ltx:section">
+    <xsl:call-template name="heading">
+      <xsl:with-param name="depth" select="'=='" />
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template match="ltx:subsection">
-    <xsl:call-template name="newline"/>
-    <xsl:call-template name="heading-attributes"/>
     <xsl:call-template name="heading">
       <xsl:with-param name="depth" select="'==='" />
     </xsl:call-template>
-    <xsl:call-template name="newline"/>
-    <xsl:call-template name="term-extras"/>
-    <xsl:apply-templates/>
-    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:subsubsection">
+    <xsl:call-template name="heading">
+      <xsl:with-param name="depth" select="'===='" />
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="ltx:paragraph">
+    <xsl:call-template name="heading">
+      <xsl:with-param name="depth" select="'====='" />
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="ltx:subparagraph">
+    <xsl:call-template name="heading">
+      <xsl:with-param name="depth" select="'======'" />
+    </xsl:call-template>
   </xsl:template>
 
 </xsl:stylesheet>

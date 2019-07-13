@@ -22,6 +22,7 @@ clear:
 	latexmk -c main.tex
 
 clobber: clear
+	rm -f main.adoc
 	rm -f main.pdf
 	latexmk -C main.tex
 

@@ -266,9 +266,6 @@ TSWLatexianTemp*
 # output PDFs
 *.pdf
 
-# output XMLs
-main--tex.xml
-main--iso.xml
-
-# output Asciidoc
-main--iso.adoc
+# other outputs
+main.xml
+main.adoc
