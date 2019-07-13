@@ -6,6 +6,10 @@ LoadClass('article');
 
 RequirePackage('lxRDFa');
 
-DefMacro('\mn{}', '\lxRDFa[.]{asciidoc-attributes={#1}}');
+DefMacro('\mn{}',
+  '\lxRDFa[.]{asciidoc-attributes={#1}}');
+
+DefMacro('\textst{}',
+  "<ltx:text font='strikethrough'>#1</ltx:text>");
 
 1;
