@@ -111,7 +111,7 @@
   <xsl:template match="ltx:text[@font='bold']">**<xsl:apply-templates/>**</xsl:template>
   <xsl:template match="ltx:text[@font='italic']">__<xsl:apply-templates/>__</xsl:template>
   <xsl:template match="ltx:text[@font='smallcaps']">[smallcap]#<xsl:apply-templates/>#</xsl:template>
-  <xsl:template match="ltx:text[@font='strikethrough']">[strike]#<xsl:apply-templates/>#</xsl:template>
+  <xsl:template match="ltx:text[@class='strikethrough']">[strike]#<xsl:apply-templates/>#</xsl:template>
 
   <!--
     Paragraphs and their alignment
