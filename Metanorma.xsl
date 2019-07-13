@@ -131,4 +131,31 @@
     <xsl:call-template name="newline"/>
   </xsl:template>
 
+  <!--
+    Quotes
+  -->
+
+  <xsl:template name="quote-attributes">
+    <xsl:choose>
+      <xsl:when test="@asciidoc-attributes">
+        <xsl:value-of select="concat('[quote,', @asciidoc-attributes, ']')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:text>[quote]</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="quote-delimiter">
+    <xsl:text>&#xa;-----&#xa;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="ltx:quote">
+    <xsl:call-template name="newline"/>
+    <xsl:call-template name="quote-attributes"/>
+    <xsl:call-template name="quote-delimiter"/>
+    <xsl:apply-templates/>
+    <xsl:call-template name="quote-delimiter"/>
+  </xsl:template>
+
 </xsl:stylesheet>
