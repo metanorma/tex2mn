@@ -124,8 +124,19 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="//ltx:para/ltx:p">
+  <xsl:template match="ltx:para">
     <xsl:call-template name="newline"/>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="//ltx:para/ltx:p[preceding-sibling::ltx:p]">
+    <xsl:call-template name="newline"/>
+    <xsl:call-template name="paragraph-alignment"/>
+    <xsl:apply-templates/>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <xsl:template match="//ltx:para/ltx:p[not(preceding-sibling::ltx:p)]">
     <xsl:call-template name="paragraph-alignment"/>
     <xsl:apply-templates/>
     <xsl:call-template name="newline"/>
@@ -138,16 +149,16 @@
   <xsl:template name="quote-attributes">
     <xsl:choose>
       <xsl:when test="@asciidoc-attributes">
-        <xsl:value-of select="concat('[quote,', @asciidoc-attributes, ']')"/>
+        <xsl:value-of select="concat('[quote,', @asciidoc-attributes, ']&#xa;')"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:text>[quote]</xsl:text>
+        <xsl:text>[quote]&#xa;</xsl:text>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template name="quote-delimiter">
-    <xsl:text>&#xa;-----&#xa;</xsl:text>
+    <xsl:text>-----&#xa;</xsl:text>
   </xsl:template>
 
   <xsl:template match="ltx:quote">
@@ -155,7 +166,32 @@
     <xsl:call-template name="quote-attributes"/>
     <xsl:call-template name="quote-delimiter"/>
     <xsl:apply-templates/>
+    <xsl:call-template name="newline"/>
     <xsl:call-template name="quote-delimiter"/>
   </xsl:template>
+
+  <!--
+    Admonitions
+  -->
+
+  <xsl:template name="admonition-delimiter">
+    <xsl:text>====&#xa;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="//ltx:para[starts-with(@class, 'admonition--')]">
+    <xsl:call-template name="newline"/>
+    <xsl:value-of select="concat('[', translate(substring(@class, 13), $lowercase, $uppercase), ']&#xa;')"/>
+    <xsl:call-template name="admonition-delimiter"/>
+    <xsl:apply-templates/>
+    <xsl:call-template name="admonition-delimiter"/>
+  </xsl:template>
+
+  <!--
+    Utilities
+  -->
+
+  <!-- XSL 2.0 has upper-case() but we must use translate() with XSL 1.0  -->
+  <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
+  <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
 
 </xsl:stylesheet>
