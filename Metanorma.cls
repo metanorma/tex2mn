@@ -17,3 +17,16 @@
 
 % We decouple the class' API from the package choice.
 \let\textst\sout
+
+%% Admonitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% NOTE: we could use any other package, actually.
+
+\RequirePackage[framemethod=TikZ]{mdframed}
+\newmdenv[linecolor=blue,frametitle=Note]{note}
+\newmdenv[linecolor=green,frametitle=Tip]{tip}
+\newmdenv[linecolor=yellow,frametitle=Important]{important}
+\newmdenv[linecolor=red,frametitle=Caution]{caution}
+\newmdenv[linecolor=orange,frametitle=Warning]{warning}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

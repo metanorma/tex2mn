@@ -12,4 +12,19 @@ DefMacro('\mn{}',
 DefConstructor('\textst{}',
   "<ltx:text class='strikethrough'>#1</ltx:text>");
 
+## Admonitions #################################################################
+
+# NOTE: this is modeled after quote's treatment in LaTeX.pool.ltxml
+
+my @admonitions = qw(note tip important caution warning);
+foreach my $admonition (@admonitions)
+{
+  DefEnvironment("{$admonition}",
+    "<ltx:para class=\"admonition--$admonition\">#body</ltx:para>",
+    # NOTE: this beforeDigest gives us a single <p> inside <para> broken by <break>,
+    #       instead of multiple <p> splitted on multiple <para>s (with no classes after the first one).
+    beforeDigest => sub { Let('\\\\', '\@block@cr'); Let('\par', '\@block@cr') },
+    mode => 'text');
+}
+
 1;
