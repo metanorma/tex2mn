@@ -187,6 +187,14 @@
   </xsl:template>
 
   <!--
+    Footnotes
+  -->
+
+  <xsl:template match="ltx:note">
+    <xsl:value-of select="concat(' footnote:[', text(), ']')"/>
+  </xsl:template>
+
+  <!--
     Utilities
   -->
 
