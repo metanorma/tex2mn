@@ -203,21 +203,44 @@
   </xsl:template>
 
   <!--
-    Lists (unordered, arbitrarily nested, w/ line breaks and paragraphs)
+    Lists (arbitrarily nested, w/ line breaks and paragraphs)
   -->
 
-  <xsl:template name="unordered-list__item__depth_marker">
+  <xsl:template name="list__continuation_marker">
+    <xsl:text>+&#xa;</xsl:text>
+  </xsl:template>
+
+  <!-- Unordered lists -->
+
+  <xsl:template name="list--unordered__item_depth_marker">
     <xsl:for-each select="ancestor-or-self::ltx:itemize">*</xsl:for-each>
     <xsl:text> </xsl:text>
   </xsl:template>
 
   <xsl:template match="ltx:itemize/ltx:item/ltx:para[not(preceding-sibling::ltx:para)]">
-    <xsl:call-template name="unordered-list__item__depth_marker"/>
+    <xsl:call-template name="list--unordered__item_depth_marker"/>
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="ltx:itemize/ltx:item/ltx:para[preceding-sibling::ltx:para]">
-    <xsl:text>+&#xa;</xsl:text>
+    <xsl:call-template name="list__continuation_marker"/>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <!-- Ordered lists -->
+
+  <xsl:template name="list--ordered__item_depth_marker">
+    <xsl:for-each select="ancestor-or-self::ltx:enumerate">.</xsl:for-each>
+    <xsl:text> </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="ltx:enumerate/ltx:item/ltx:para[not(preceding-sibling::ltx:para)]">
+    <xsl:call-template name="list--ordered__item_depth_marker"/>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="ltx:enumerate/ltx:item/ltx:para[preceding-sibling::ltx:para]">
+    <xsl:call-template name="list__continuation_marker"/>
     <xsl:apply-templates/>
   </xsl:template>
 

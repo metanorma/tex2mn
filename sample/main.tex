@@ -169,6 +169,8 @@
 
   \section{Tests for lists}
 
+  \subsection{Unordered lists}
+
   Let's try with the simplest list.
 
   \begin{itemize}
@@ -216,5 +218,56 @@
       \item C1
     \end{itemize}
   \end{itemize}
+
+  \subsection{Ordered lists}
+
+  Let's try with the simplest list.
+
+  \begin{enumerate}
+    \item Hey,
+    \item ho,
+    \item let's go!
+  \end{enumerate}
+
+  Now we check line breaks and paragraphs.
+
+  \begin{enumerate}
+    \item No lines here.
+
+    \item This is a paragraph\\
+          containing a line break.
+
+    \item This is a paragraph.
+
+          This is another paragraph.
+  \end{enumerate}
+
+  Here are some nested lists.
+
+  \begin{enumerate}
+    \item A0
+    \item B0
+    \begin{enumerate}
+      \item A1
+      \item B1
+    \end{enumerate}
+    \item C0
+    \begin{enumerate}
+      \item A1
+      \item B1
+      \begin{enumerate}
+        \item A2
+        \item B2
+        \begin{enumerate}
+          \item A3
+          \item B3
+          \item C3
+        \end{enumerate}
+        \item C2
+      \end{enumerate}
+      \item C1
+    \end{enumerate}
+  \end{enumerate}
+
 
 \end{document}
