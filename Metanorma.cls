@@ -10,6 +10,11 @@
 \NewDocumentCommand{\mn}{m}
   {\lxRDFa[.]{asciidoc-attributes={#1}}}
 
+%% General style %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% No indentation on paragraphs.
+\setlength\parindent{0pt}
+
 %% Strikethrough %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % `normalem` avoids changes to the behaviour of emphasis.
