@@ -167,4 +167,54 @@
 
   This is the simplest footnote\footnote{Here it is.}.
 
+  \section{Tests for lists}
+
+  Let's try with the simplest list.
+
+  \begin{itemize}
+    \item Hey,
+    \item ho,
+    \item let's go!
+  \end{itemize}
+
+  Now we check line breaks and paragraphs.
+
+  \begin{itemize}
+    \item No lines here.
+
+    \item This is a paragraph\\
+          containing a line break.
+
+    \item This is a paragraph.
+
+          This is another paragraph.
+  \end{itemize}
+
+  Here are some nested lists.
+
+  \begin{itemize}
+    \item A0
+    \item B0
+    \begin{itemize}
+      \item A1
+      \item B1
+    \end{itemize}
+    \item C0
+    \begin{itemize}
+      \item A1
+      \item B1
+      \begin{itemize}
+        \item A2
+        \item B2
+        \begin{itemize}
+          \item A3
+          \item B3
+          \item C3
+        \end{itemize}
+        \item C2
+      \end{itemize}
+      \item C1
+    \end{itemize}
+  \end{itemize}
+
 \end{document}

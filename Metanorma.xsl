@@ -195,6 +195,33 @@
   </xsl:template>
 
   <!--
+    Hard line breaks (in paragraphs)
+  -->
+
+  <xsl:template match="ltx:p/ltx:break">
+    <xsl:text> +&#xa;</xsl:text>
+  </xsl:template>
+
+  <!--
+    Lists (unordered, arbitrarily nested, w/ line breaks and paragraphs)
+  -->
+
+  <xsl:template name="unordered-list__item__depth_marker">
+    <xsl:for-each select="ancestor-or-self::ltx:itemize">*</xsl:for-each>
+    <xsl:text> </xsl:text>
+  </xsl:template>
+
+  <xsl:template match="ltx:itemize/ltx:item/ltx:para[not(preceding-sibling::ltx:para)]">
+    <xsl:call-template name="unordered-list__item__depth_marker"/>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="ltx:itemize/ltx:item/ltx:para[preceding-sibling::ltx:para]">
+    <xsl:text>+&#xa;</xsl:text>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <!--
     Utilities
   -->
 
