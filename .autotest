@@ -1,0 +1,6 @@
+Autotest.add_hook :initialize do |at|
+  # Let changes to test/X/*.(tex|xml) and test/X.(tex|xml) run test/X.rb 
+  at.add_mapping /^test\/(.*?)(\/.*)?\.(tex|xml)$/ do |filename, matches|
+    at.files_matching /^test\/#{matches[1]}.rb$/
+  end
+end

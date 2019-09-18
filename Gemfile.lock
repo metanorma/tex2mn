@@ -1,0 +1,20 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.11.3)
+    minitest-autotest (1.1.1)
+      minitest-server (~> 1.0)
+      path_expander (~> 1.0)
+    minitest-server (1.0.5)
+      minitest (~> 5.0)
+    path_expander (1.0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  minitest (~> 5.11.3)
+  minitest-autotest (~> 1.1.1)
+
+BUNDLED WITH
+   1.17.3
