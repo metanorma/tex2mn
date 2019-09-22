@@ -41,35 +41,35 @@ class TestHeadings < Minitest::Test
     INPUT
 
       Lorem ipsum.
-      
+
       == L1 heading
-      
+
       Lorem ipsum.
-      
+
       === L2 heading
-      
+
       Lorem ipsum.
-      
+
       ==== L3 heading
-      
+
       Lorem ipsum.
-      
+
       ===== L4 heading
-      
+
       Lorem ipsum.
-      
+
       ====== L5 heading
-      
+
       Lorem ipsum.
-      
+
       [level=6]
       ====== L6 heading
-      
+
       Lorem ipsum.
-      
+
       [level=7]
       ====== L7 heading
-      
+
       Lorem ipsum.
     OUTPUT
   end
@@ -113,35 +113,35 @@ class TestHeadings < Minitest::Test
     INPUT
 
       Lorem ipsum.
-      
+
       == {blank}
-      
+
       Lorem ipsum.
-      
+
       === {blank}
-      
+
       Lorem ipsum.
-      
+
       ==== {blank}
-      
+
       Lorem ipsum.
-      
+
       ===== {blank}
-      
+
       Lorem ipsum.
-      
+
       ====== {blank}
-      
+
       Lorem ipsum.
-      
+
       [level=6]
       ====== {blank}
-      
+
       Lorem ipsum.
-      
+
       [level=7]
       ====== {blank}
-      
+
       Lorem ipsum.
     OUTPUT
   end
@@ -170,23 +170,21 @@ class TestHeadings < Minitest::Test
     INPUT
 
       Lorem ipsum.
-      
+
       [heading=terms and definitions]
       == Termini e definizioni
-      
+
       Lorem ipsum.
-      
+
       [annex]
       == Annex
-      
+
       Lorem ipsum.
-      
+
       [%inline-header]
       == Inline header
-      
+
       Lorem ipsum.
     OUTPUT
   end
 end
-
-
