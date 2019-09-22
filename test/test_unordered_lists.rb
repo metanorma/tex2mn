@@ -36,12 +36,12 @@ class TestUnorderedLists < Minitest::Test
 
         \begin{itemize}
           \item No lines here.
-      
+
           \item This is a paragraph\\
                 containing a line break.
-      
+
           \item This is a paragraph.
-      
+
                 This is another paragraph.
         \end{itemize}
 
