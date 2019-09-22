@@ -1,6 +1,0 @@
-[submodule "isodoc-rice"]
-	path = isodoc-rice
-	url = https://github.com/metanorma/isodoc-rice.git
-[submodule "metanorma-model-iso"]
-	path = metanorma-model-iso
-	url = https://github.com/metanorma/metanorma-model-iso.git
