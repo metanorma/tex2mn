@@ -5,3 +5,7 @@ group :development, :test do
   gem "minitest", "~> 5.11.3"
   gem "minitest-autotest", "~> 1.1.1"
 end
+
+group :development do
+  gem "rubocop", "~> 0.54.0"
+end
