@@ -1,11 +1,25 @@
 # metanorma:
 # 	docker run -v "$(pwd)":/metanorma/ -w /metanorma ribose/metanorma "metanorma -t iso -x html,doc,xml main.adoc"
 
-main.adoc: main.xml
+main.diff: main.adoc main--saxon.adoc
+	diff \
+		main.adoc \
+		main--saxon.adoc \
+		> main.diff
+
+main--saxon.adoc: main.xml
 	saxon \
 		-s:main.xml \
 		-xsl:Metanorma.xsl \
-		-o:main.adoc
+		-o:main--saxon.adoc
+
+main.adoc: main.xml
+	latexmlpost \
+		main.xml \
+		--stylesheet=Metanorma.xsl \
+		--destination=main.adoc \
+		--nodefaultresources \
+		--novalidate
 
 main.xml: main.tex
 	latexml \

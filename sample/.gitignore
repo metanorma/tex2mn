@@ -269,3 +269,5 @@ TSWLatexianTemp*
 # other outputs
 main.xml
 main.adoc
+main--saxon.adoc
+main.diff
