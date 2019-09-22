@@ -160,4 +160,3 @@ class TestAdmonitions < Minitest::Test
     OUTPUT
   end
 end
-
