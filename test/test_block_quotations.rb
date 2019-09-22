@@ -15,7 +15,6 @@ class TestBlockQuotations < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [quote]
@@ -24,6 +23,7 @@ class TestBlockQuotations < Minitest::Test
       -----
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -44,7 +44,6 @@ class TestBlockQuotations < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [quote]
@@ -57,6 +56,7 @@ class TestBlockQuotations < Minitest::Test
       -----
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -74,7 +74,6 @@ class TestBlockQuotations < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [quote,ISO,"ISO7301,section 1"]
@@ -83,6 +82,7 @@ class TestBlockQuotations < Minitest::Test
       -----
 
       Following paragraph.
+
     OUTPUT
   end
 end

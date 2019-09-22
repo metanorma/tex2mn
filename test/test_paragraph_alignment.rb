@@ -13,12 +13,12 @@ class TestParagraphAlignment < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       This paragraph is justified.
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -35,13 +35,13 @@ class TestParagraphAlignment < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [align=left]
       This paragraph is left aligned.
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -58,13 +58,13 @@ class TestParagraphAlignment < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [align=center]
       This paragraph is centered.
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -81,13 +81,13 @@ class TestParagraphAlignment < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [align=right]
       This paragraph is right aligned.
 
       Following paragraph.
+
     OUTPUT
   end
 end

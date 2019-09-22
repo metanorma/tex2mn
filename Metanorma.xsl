@@ -13,9 +13,9 @@
 
   <xsl:template match="ltx:tags|ltx:title"/>
 
-  <xsl:template match="@*|node()">
+  <!-- <xsl:template match="@*|node()">
     <xsl:copy><xsl:apply-templates select="@*|node()"/></xsl:copy>
-  </xsl:template> 
+  </xsl:template>  -->
 
   <xsl:template match="ltx:section[ltx:title/text()='Foreword' or @heading='foreword' or @foreword]">
     <xsl:text>[[Foreword]]&#xA;</xsl:text>
@@ -49,10 +49,12 @@
 
   <xsl:template name="heading">
     <xsl:param name="depth"/>
-
-    <xsl:call-template name="newline"/>
-    <xsl:call-template name="heading-attributes"/>
-
+    <!-- optional attributes tag -->
+    <xsl:if test="@asciidoc-attributes">
+      <xsl:value-of select="concat('[', @asciidoc-attributes, ']')"/>
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+    <!-- heading command -->
     <xsl:choose>
       <xsl:when test="ltx:title/text()!=''">
         <xsl:value-of select="concat($depth, ' ', ltx:title/text())"/>
@@ -61,17 +63,11 @@
         <xsl:value-of select="concat($depth, ' ', '{blank}')"/>
       </xsl:otherwise>
     </xsl:choose>
-
     <xsl:call-template name="newline"/>
+    <!-- blank line -->
+    <xsl:call-template name="newline"/>
+    <!-- contents -->
     <xsl:apply-templates/>
-    <xsl:call-template name="newline"/>
-  </xsl:template>
-
-  <xsl:template name="heading-attributes">
-    <xsl:if test="@asciidoc-attributes">
-      <xsl:value-of select="concat('[', @asciidoc-attributes, ']')"/>
-      <xsl:call-template name="newline"/>
-    </xsl:if>
   </xsl:template>
 
   <xsl:template match="ltx:section">
@@ -125,8 +121,8 @@
   </xsl:template>
 
   <xsl:template match="ltx:para">
-    <xsl:call-template name="newline"/>
     <xsl:apply-templates/>
+    <xsl:call-template name="newline"/>
   </xsl:template>
 
   <xsl:template match="//ltx:para/ltx:p[preceding-sibling::ltx:p]">
@@ -162,12 +158,12 @@
   </xsl:template>
 
   <xsl:template match="ltx:quote">
-    <xsl:call-template name="newline"/>
     <xsl:call-template name="quote-attributes"/>
     <xsl:call-template name="quote-delimiter"/>
     <xsl:apply-templates/>
     <xsl:call-template name="newline"/>
     <xsl:call-template name="quote-delimiter"/>
+    <!-- TODO: should a blank line be here? -->
   </xsl:template>
 
   <!--
@@ -179,11 +175,11 @@
   </xsl:template>
 
   <xsl:template match="//ltx:para[starts-with(@class, 'admonition--')]">
-    <xsl:call-template name="newline"/>
     <xsl:value-of select="concat('[', translate(substring(@class, 13), $lowercase, $uppercase), ']&#xa;')"/>
     <xsl:call-template name="admonition-delimiter"/>
     <xsl:apply-templates/>
     <xsl:call-template name="admonition-delimiter"/>
+    <xsl:call-template name="newline"/>
   </xsl:template>
 
   <!--
@@ -198,7 +194,7 @@
     Hard line breaks (in paragraphs)
   -->
 
-  <xsl:template match="ltx:p/ltx:break">
+  <xsl:template match="ltx:para/ltx:p/ltx:break">
     <xsl:text> +&#xa;</xsl:text>
   </xsl:template>
 

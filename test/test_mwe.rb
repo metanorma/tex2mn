@@ -3,7 +3,7 @@ require "helper"
 
 class TestMwe < Minitest::Test
   def test_file_comparison
-    assert_equal render_file("test_mwe/test_mwe.tex"), read_file("test_mwe/test_mwe.xml")
+    assert_equal render_file("test_mwe/test_mwe.tex"), read_file("test_mwe/test_mwe.adoc")
   end
 
   def test_string_comparison
@@ -13,7 +13,6 @@ class TestMwe < Minitest::Test
         Lorem ipsum.
       \end{document}
     INPUT
-
       == Foobar
 
       Lorem ipsum.

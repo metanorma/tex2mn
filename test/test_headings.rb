@@ -39,7 +39,6 @@ class TestHeadings < Minitest::Test
         Lorem ipsum.
       \end{document}
     INPUT
-
       Lorem ipsum.
 
       == L1 heading
@@ -71,6 +70,7 @@ class TestHeadings < Minitest::Test
       ====== L7 heading
 
       Lorem ipsum.
+
     OUTPUT
   end
 
@@ -109,9 +109,9 @@ class TestHeadings < Minitest::Test
         \mn{level=7}
 
         Lorem ipsum.
+
       \end{document}
     INPUT
-
       Lorem ipsum.
 
       == {blank}
@@ -143,6 +143,7 @@ class TestHeadings < Minitest::Test
       ====== {blank}
 
       Lorem ipsum.
+
     OUTPUT
   end
 
@@ -168,7 +169,6 @@ class TestHeadings < Minitest::Test
         Lorem ipsum.
       \end{document}
     INPUT
-
       Lorem ipsum.
 
       [heading=terms and definitions]
@@ -185,6 +185,7 @@ class TestHeadings < Minitest::Test
       == Inline header
 
       Lorem ipsum.
+
     OUTPUT
   end
 end

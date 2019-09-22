@@ -15,7 +15,6 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [NOTE]
@@ -24,6 +23,7 @@ class TestAdmonitions < Minitest::Test
       ====
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -40,7 +40,6 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [TIP]
@@ -49,6 +48,7 @@ class TestAdmonitions < Minitest::Test
       ====
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -65,7 +65,6 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [IMPORTANT]
@@ -74,6 +73,7 @@ class TestAdmonitions < Minitest::Test
       ====
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -90,7 +90,6 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [CAUTION]
@@ -99,6 +98,7 @@ class TestAdmonitions < Minitest::Test
       ====
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -115,7 +115,6 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [WARNING]
@@ -124,6 +123,7 @@ class TestAdmonitions < Minitest::Test
       ====
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -144,7 +144,6 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       [NOTE]
@@ -157,6 +156,7 @@ class TestAdmonitions < Minitest::Test
       ====
 
       Following paragraph.
+
     OUTPUT
   end
 end

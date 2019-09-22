@@ -9,8 +9,8 @@ class TestFootnotes < Minitest::Test
         This text has a footnote\footnote{Here is the footnote text.}.
       \end{document}
     INPUT
-
       This text has a footnote footnote:[Here is the footnote text.].
+
     OUTPUT
   end
 end

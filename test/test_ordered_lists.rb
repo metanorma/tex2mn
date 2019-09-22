@@ -17,7 +17,6 @@ class TestOrderedLists < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       . Hey,
@@ -25,6 +24,7 @@ class TestOrderedLists < Minitest::Test
       . let’s go!
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -48,7 +48,6 @@ class TestOrderedLists < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       . No lines here.
@@ -59,6 +58,7 @@ class TestOrderedLists < Minitest::Test
       This is another paragraph.
 
       Following paragraph.
+
     OUTPUT
   end
 
@@ -96,7 +96,6 @@ class TestOrderedLists < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-
       Previous paragraph.
 
       . A0
@@ -115,6 +114,7 @@ class TestOrderedLists < Minitest::Test
       .. C1
 
       Following paragraph.
+
     OUTPUT
   end
 end
