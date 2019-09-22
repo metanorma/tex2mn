@@ -194,7 +194,7 @@
     Hard line breaks (in paragraphs)
   -->
 
-  <xsl:template match="ltx:para/ltx:p/ltx:break">
+  <xsl:template match="ltx:p/ltx:break">
     <xsl:text> +&#xa;</xsl:text>
   </xsl:template>
 

@@ -128,6 +128,7 @@ class TestAdmonitions < Minitest::Test
   end
 
   def test_long_note
+    skip "see https://github.com/metanorma/tex2mn/issues/33"
     assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
