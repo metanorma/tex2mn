@@ -9,8 +9,8 @@ class TestTextFormatting < Minitest::Test
         Bold \textbf{text} and {\bfseries bold group}.
       \end{document}
     INPUT
-
       Bold **text** and **bold group**.
+
     OUTPUT
   end
 
@@ -21,8 +21,8 @@ class TestTextFormatting < Minitest::Test
         Italic \textit{text} and {\itshape italic group}.
       \end{document}
     INPUT
-
       Italic __text__ and __italic group__.
+
     OUTPUT
   end
 
@@ -33,8 +33,8 @@ class TestTextFormatting < Minitest::Test
         Smallcaps \textsc{text} and {\scshape smallcaps group}.
       \end{document}
     INPUT
-
       Smallcaps [smallcap]#text# and [smallcap]#smallcaps group#.
+
     OUTPUT
   end
 
@@ -45,8 +45,8 @@ class TestTextFormatting < Minitest::Test
         Strikethrough \textst{text}.
       \end{document}
     INPUT
-
       Strikethrough [strike]#text#.
+
     OUTPUT
   end
 end
