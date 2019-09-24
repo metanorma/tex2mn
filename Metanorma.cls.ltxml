@@ -6,8 +6,10 @@ LoadClass('article');
 
 RequirePackage('lxRDFa');
 
+# NOTE: switching to ASCII encoding (inside the enveloping group) preserves quotes.
+# Otherwise, they would be mapped to curly ones by Tex.pool.ltxml fontmaps and ligatures.
 DefMacro('\mn{}',
-  '\lxRDFa[.]{asciidoc-attributes={#1}}');
+  '{\fontencoding{ASCII}\lxRDFa[.]{asciidoc-attributes={#1}}}');
 
 DefConstructor('\textst{}',
   "<ltx:text class='strikethrough'>#1</ltx:text>");
