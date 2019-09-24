@@ -62,7 +62,6 @@ class TestBlockQuotations < Minitest::Test
   end
 
   def test_attributes
-    skip "see https://github.com/metanorma/tex2mn/issues/26"
     assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
