@@ -6,6 +6,8 @@
 
 \RequirePackage{lxRDFa}
 \RequirePackage{graphicx}
+% TODO: what's the best baseline AMS setup?
+\RequirePackage{amsmath}
 
 \RequirePackage{xparse}
 

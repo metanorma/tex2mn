@@ -270,6 +270,34 @@
   </xsl:template>
 
   <!--
+    Math
+  -->
+
+  <xsl:template match="ltx:equation">
+    <xsl:if test="@labels">
+      <!-- NOTE: latexml lists and prefixes labels as "LABEL:lab1 LABEL:lab2" so we take the first one and drop the prefix -->
+      <xsl:value-of select="concat('[[', substring-after(substring-before(concat(@labels, ' '), ' '), ':'), ']]&#xa;')"/>
+    </xsl:if>
+    <!-- TODO: should distinction between environments be stricter? -->
+    <!-- equation, gather -->
+    <xsl:apply-templates select="ltx:Math"/>
+    <!-- align -->
+    <xsl:apply-templates select="ltx:MathFork/ltx:Math"/>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:Math[@mode='inline']">
+    <xsl:value-of select="concat('stem:[', @tex, ']')"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:Math[not(@mode) or @mode='display']">
+    <xsl:text>[stem]&#xa;</xsl:text>
+    <xsl:text>++++&#xa;</xsl:text>
+    <xsl:value-of select="@tex"/>
+    <xsl:text>&#xa;++++&#xa;</xsl:text>
+  </xsl:template>
+
+  <!--
     Utilities
   -->
 
