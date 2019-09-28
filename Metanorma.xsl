@@ -125,17 +125,13 @@
     <xsl:call-template name="newline"/>
   </xsl:template>
 
-  <xsl:template match="//ltx:para/ltx:p[preceding-sibling::ltx:p]">
-    <xsl:call-template name="newline"/>
+  <xsl:template match="ltx:para/ltx:p">
     <xsl:call-template name="paragraph-alignment"/>
     <xsl:apply-templates/>
-    <xsl:call-template name="newline"/>
-  </xsl:template>
-
-  <xsl:template match="//ltx:para/ltx:p[not(preceding-sibling::ltx:p)]">
-    <xsl:call-template name="paragraph-alignment"/>
-    <xsl:apply-templates/>
-    <xsl:call-template name="newline"/>
+    <xsl:call-template name="newline"/> <!-- this is the trailing newline of the last line -->
+    <xsl:if test="current()[following-sibling::*]">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
   </xsl:template>
 
   <!--
@@ -204,6 +200,11 @@
 
   <xsl:template name="list__continuation_marker">
     <xsl:text>+&#xa;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="ltx:item/ltx:para/ltx:p">
+    <xsl:apply-templates/>
+    <xsl:call-template name="newline"/> <!-- this is the trailing newline of the last line -->
   </xsl:template>
 
   <!-- Unordered lists -->
