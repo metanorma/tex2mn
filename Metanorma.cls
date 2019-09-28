@@ -4,8 +4,10 @@
 
 \LoadClass{article}
 
-\RequirePackage{xparse}
 \RequirePackage{lxRDFa}
+\RequirePackage{graphicx}
+
+\RequirePackage{xparse}
 
 \NewDocumentCommand{\mn}{m}
   {\lxRDFa[.]{asciidoc-attributes={#1}}}
