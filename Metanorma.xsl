@@ -241,6 +241,34 @@
   </xsl:template>
 
   <!--
+    Figures
+  -->
+
+  <xsl:template match="ltx:figure">
+    <xsl:if test="@labels">
+      <!-- NOTE: latexml lists and prefixes labels as "LABEL:lab1 LABEL:lab2" so we take the first one and drop the prefix -->
+      <xsl:value-of select="concat('[[', substring-after(substring-before(concat(@labels, ' '), ' '), ':'), ']]&#xa;')"/>
+    </xsl:if>
+    <xsl:if test="not(@labels)">
+      <!-- TODO: drop this unless it's required by asciidoc -->
+      <xsl:value-of select="concat('[[', @xml:id, ']]&#xa;')"/>
+    </xsl:if>
+    <xsl:apply-templates select="ltx:caption"/>
+    <xsl:apply-templates select="ltx:graphics"/>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:figure/ltx:graphics">
+    <!-- TODO: we could use the caption as alt text, perhaps? -->
+    <xsl:value-of select="concat('image::', @graphic, '[]&#xa;')"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:figure/ltx:caption/ltx:tag"/>
+  <xsl:template match="ltx:figure/ltx:caption">
+    <xsl:value-of select="concat('.', text(), '&#xa;')"/>
+  </xsl:template>
+
+  <!--
     Utilities
   -->
 
