@@ -298,6 +298,50 @@
   </xsl:template>
 
   <!--
+    Tables
+  -->
+
+  <xsl:template match="ltx:table">
+    <xsl:if test="@labels">
+      <!-- NOTE: latexml lists and prefixes labels as "LABEL:lab1 LABEL:lab2" so we take the first one and drop the prefix -->
+      <xsl:value-of select="concat('[[', substring-after(substring-before(concat(@labels, ' '), ' '), ':'), ']]&#xa;')"/>
+    </xsl:if>
+    <xsl:apply-templates select="ltx:caption"/>
+    <xsl:apply-templates select="ltx:tabular"/>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:table/ltx:caption/ltx:tag"/>
+  <xsl:template match="ltx:table/ltx:caption">
+    <xsl:value-of select="concat('.', text(), '&#xa;')"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:tabular">
+    <xsl:value-of select="concat('[cols=', count(ltx:tbody/ltx:tr[1]/ltx:td), '*]&#xa;')"/>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="ltx:tbody">
+    <xsl:text>|===&#xa;</xsl:text>
+    <xsl:apply-templates/>
+    <xsl:text>|===&#xa;</xsl:text>
+  </xsl:template>
+
+  <xsl:template match="ltx:tr">
+    <xsl:apply-templates/>
+    <xsl:if test="current()[following-sibling::*]">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="ltx:td">
+    <xsl:text>| </xsl:text>
+    <xsl:apply-templates/>
+    <xsl:text>&#xa;</xsl:text>
+  </xsl:template>
+
+
+  <!--
     Utilities
   -->
 
