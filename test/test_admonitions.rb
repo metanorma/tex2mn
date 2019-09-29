@@ -3,7 +3,17 @@ require "helper"
 
 class TestAdmonitions < Minitest::Test
   def test_note
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Previous paragraph.
+
+      [NOTE]
+      ====
+      This is a note.
+      ====
+
+      Following paragraph.
+
+    OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -15,20 +25,20 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_tip
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      [NOTE]
+      [TIP]
       ====
-      This is a note.
+      This is a tip.
       ====
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_tip
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -40,20 +50,20 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_important
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      [TIP]
+      [IMPORTANT]
       ====
-      This is a tip.
+      This is important.
       ====
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_important
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -65,20 +75,20 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_caution
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      [IMPORTANT]
+      [CAUTION]
       ====
-      This is important.
+      This is a cautionary advice.
       ====
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_caution
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -90,20 +100,20 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_warning
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      [CAUTION]
+      [WARNING]
       ====
-      This is a cautionary advice.
+      This is a warning.
       ====
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_warning
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -115,21 +125,25 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_long_note
+    skip "see https://github.com/metanorma/tex2mn/issues/33"
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      [WARNING]
+      [NOTE]
       ====
-      This is a warning.
+      This is a note.
+
+      It contains multiple paragraphs.
+
+      It is pretty long.
       ====
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_long_note
-    skip "see https://github.com/metanorma/tex2mn/issues/33"
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -145,19 +159,5 @@ class TestAdmonitions < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-      Previous paragraph.
-
-      [NOTE]
-      ====
-      This is a note.
-
-      It contains multiple paragraphs.
-
-      It is pretty long.
-      ====
-
-      Following paragraph.
-
-    OUTPUT
   end
 end

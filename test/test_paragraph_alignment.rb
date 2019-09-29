@@ -3,7 +3,14 @@ require "helper"
 
 class TestParagraphAlignment < Minitest::Test
   def test_justified
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Previous paragraph.
+
+      This paragraph is justified.
+
+      Following paragraph.
+
+    OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -13,17 +20,18 @@ class TestParagraphAlignment < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_left_aligned
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      This paragraph is justified.
+      [align=left]
+      This paragraph is left aligned.
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_left_aligned
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -35,18 +43,18 @@ class TestParagraphAlignment < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_centered
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      [align=left]
-      This paragraph is left aligned.
+      [align=center]
+      This paragraph is centered.
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_centered
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -58,18 +66,18 @@ class TestParagraphAlignment < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_right_aligned
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      [align=center]
-      This paragraph is centered.
+      [align=right]
+      This paragraph is right aligned.
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_right_aligned
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -81,13 +89,5 @@ class TestParagraphAlignment < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-      Previous paragraph.
-
-      [align=right]
-      This paragraph is right aligned.
-
-      Following paragraph.
-
-    OUTPUT
   end
 end
