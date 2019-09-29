@@ -44,6 +44,37 @@
   </xsl:template>
 
   <!--
+    Document root
+  -->
+
+  <xsl:template match="/">
+    <xsl:call-template name="document-attributes"/>
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <!--
+    Document attributes
+  -->
+
+  <xsl:template name="document-attributes">
+    <xsl:for-each select="ltx:document/ltx:rdf">
+      <xsl:if test="@content">
+        <xsl:value-of select="concat(':', @property, ': ', @content, '&#xA;')"/>
+      </xsl:if>
+      <xsl:if test="not(@content)">
+        <xsl:value-of select="concat(':', @property, ':&#xA;')"/>
+      </xsl:if>
+    </xsl:for-each>
+    <xsl:if test="ltx:document/ltx:rdf">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="ltx:text[@content]">
+    <xsl:value-of select="concat('{', @content, '}')"/>
+  </xsl:template>
+
+  <!--
     Sectioning
   -->
 
