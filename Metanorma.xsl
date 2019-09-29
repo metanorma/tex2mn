@@ -387,15 +387,22 @@
   -->
 
   <xsl:template match="ltx:ref">
-    <!-- NOTE: not sure why, if the node is empty then node() is @labelref -->
-    <xsl:if test="@labelref=text()">
-      <!-- NOTE: latexml prefixes labels as "LABEL:lab1" so we drop the prefix -->
-      <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), '&gt;&gt;')"/>
-    </xsl:if>
-    <xsl:if test="@labelref!=text()">
-      <!-- NOTE: latexml prefixes labels as "LABEL:lab1" so we drop the prefix -->
-      <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), ', ', text(), '&gt;&gt;')"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@href and @href=text()">
+        <xsl:value-of select="@href"/>
+      </xsl:when>
+      <xsl:when test="@href and @href!=text()">
+        <xsl:value-of select="concat(@href, '[', text(), ']')"/>
+      </xsl:when>
+      <xsl:when test="@labelref and @labelref=text()">
+        <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), '&gt;&gt;')"/>
+      </xsl:when>
+      <xsl:when test="@labelref and @labelref!=text()">
+        <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), ', ', text(), '&gt;&gt;')"/>
+      </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!--
