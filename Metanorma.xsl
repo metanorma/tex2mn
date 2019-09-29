@@ -233,6 +233,13 @@
     <xsl:text>+&#xa;</xsl:text>
   </xsl:template>
 
+  <xsl:template name="list__item_label_marker">
+    <xsl:if test="../@labels">
+      <!-- NOTE: latexml lists and prefixes labels as "LABEL:lab1 LABEL:lab2" so we take the first one and drop the prefix -->
+      <xsl:value-of select="concat('[[', substring-after(substring-before(concat(../@labels, ' '), ' '), ':'), ']] ')"/>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="ltx:item/ltx:para/ltx:p">
     <xsl:apply-templates/>
     <xsl:call-template name="newline"/> <!-- this is the trailing newline of the last line -->
@@ -247,11 +254,13 @@
 
   <xsl:template match="ltx:itemize/ltx:item/ltx:para[not(preceding-sibling::ltx:para)]">
     <xsl:call-template name="list--unordered__item_depth_marker"/>
+    <xsl:call-template name="list__item_label_marker"/>
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="ltx:itemize/ltx:item/ltx:para[preceding-sibling::ltx:para]">
     <xsl:call-template name="list__continuation_marker"/>
+    <xsl:call-template name="list__item_label_marker"/>
     <xsl:apply-templates/>
   </xsl:template>
 
@@ -264,11 +273,13 @@
 
   <xsl:template match="ltx:enumerate/ltx:item/ltx:para[not(preceding-sibling::ltx:para)]">
     <xsl:call-template name="list--ordered__item_depth_marker"/>
+    <xsl:call-template name="list__item_label_marker"/>
     <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="ltx:enumerate/ltx:item/ltx:para[preceding-sibling::ltx:para]">
     <xsl:call-template name="list__continuation_marker"/>
+    <xsl:call-template name="list__item_label_marker"/>
     <xsl:apply-templates/>
   </xsl:template>
 
