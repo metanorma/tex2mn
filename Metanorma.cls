@@ -6,6 +6,7 @@
 
 \RequirePackage{lxRDFa}
 \RequirePackage{graphicx}
+\RequirePackage{hyperref}
 % TODO: what's the best baseline AMS setup?
 \RequirePackage{amsmath}
 
