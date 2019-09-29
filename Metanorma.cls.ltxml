@@ -13,6 +13,16 @@ RequirePackage('amsmath');
 DefMacro('\mn{}',
   '{\fontencoding{ASCII}\lxRDFa[.]{asciidoc-attributes={#1}}}');
 
+## Document attributes #########################################################
+
+DefMacro('\set{}{}',
+  '{\fontencoding{ASCII}\lxRDF{property=#1,content=#2}}');
+
+DefConstructor('\get{}',
+  "<ltx:text content='#1'/>");
+
+## Strikethrough ###############################################################
+
 DefConstructor('\textst{}',
   "<ltx:text class='strikethrough'>#1</ltx:text>");
 

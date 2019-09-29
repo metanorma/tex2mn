@@ -14,6 +14,21 @@
 \NewDocumentCommand{\mn}{m}
   {\lxRDFa[.]{asciidoc-attributes={#1}}}
 
+%% Document attributes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+
+\NewDocumentCommand{\set}{mm}{%
+  \lxRDF{property=#1,content=#2}%
+  \expandafter\def\csname metadata@#1\endcsname{#2}}
+
+\@onlypreamble\set
+
+\NewDocumentCommand{\get}{m}
+  {\csname metadata@#1\endcsname}
+
+\makeatother
+
 %% General style %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % No indentation on paragraphs.
