@@ -3,14 +3,7 @@ require "helper"
 
 class TestMathEnvironments < Minitest::Test
   def test_equation
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
-      \documentclass{metanorma}
-      \begin{document}
-        \begin{equation}
-          f(x)=(x+a)(x+b)
-        \end{equation}
-      \end{document}
-    INPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [stem]
       ++++
       f(x)=(x+a)(x+b)
@@ -18,17 +11,17 @@ class TestMathEnvironments < Minitest::Test
 
 
     OUTPUT
-  end
-
-  def test_equation_with_label
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
-        \begin{equation}\label{eq:quadratic}
+        \begin{equation}
           f(x)=(x+a)(x+b)
         \end{equation}
       \end{document}
     INPUT
+  end
+
+  def test_equation_with_label
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [[eq:quadratic]]
       [stem]
       ++++
@@ -37,19 +30,17 @@ class TestMathEnvironments < Minitest::Test
 
 
     OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        \begin{equation}\label{eq:quadratic}
+          f(x)=(x+a)(x+b)
+        \end{equation}
+      \end{document}
+    INPUT
   end
 
   def test_gather
-    assert_equal render_string(<<~'INPUT'), <<~'OUTPUT'
-      \documentclass{metanorma}
-      \begin{document}
-        \begin{gather}
-          A \\
-          B \\
-          C \\
-        \end{gather}
-      \end{document}
-    INPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [stem]
       ++++
       \displaystyle A
@@ -67,19 +58,19 @@ class TestMathEnvironments < Minitest::Test
 
 
     OUTPUT
-  end
-
-  def test_gather_with_labels
-    assert_equal render_string(<<~'INPUT'), <<~'OUTPUT'
       \documentclass{metanorma}
       \begin{document}
         \begin{gather}
-          A \label{eq:A}\\
-          B \label{eq:B}\\
-          C \label{eq:C}\\
+          A \\
+          B \\
+          C \\
         \end{gather}
       \end{document}
     INPUT
+  end
+
+  def test_gather_with_labels
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [[eq:A]]
       [stem]
       ++++
@@ -100,18 +91,19 @@ class TestMathEnvironments < Minitest::Test
 
 
     OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        \begin{gather}
+          A \label{eq:A}\\
+          B \label{eq:B}\\
+          C \label{eq:C}\\
+        \end{gather}
+      \end{document}
+    INPUT
   end
 
   def test_align
-    assert_equal render_string(<<~'INPUT'), <<~'OUTPUT'
-      \documentclass{metanorma}
-      \begin{document}
-        \begin{align}
-          B'&=-\nabla \times E\\
-          E'&=\nabla \times B - 4\pi j
-        \end{align}
-      \end{document}
-    INPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [stem]
       ++++
       \displaystyle B^{\prime}=-\nabla\times E
@@ -124,18 +116,18 @@ class TestMathEnvironments < Minitest::Test
 
 
     OUTPUT
-  end
-
-  def test_align_with_labels
-    assert_equal render_string(<<~'INPUT'), <<~'OUTPUT'
       \documentclass{metanorma}
       \begin{document}
         \begin{align}
-          B'&=-\nabla \times E         \label{eq:MaxB} \\
-          E'&=\nabla \times B - 4\pi j \label{eq:MaxE}
+          B'&=-\nabla \times E\\
+          E'&=\nabla \times B - 4\pi j
         \end{align}
       \end{document}
     INPUT
+  end
+
+  def test_align_with_labels
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [[eq:MaxB]]
       [stem]
       ++++
@@ -150,5 +142,13 @@ class TestMathEnvironments < Minitest::Test
 
 
     OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        \begin{align}
+          B'&=-\nabla \times E         \label{eq:MaxB} \\
+          E'&=\nabla \times B - 4\pi j \label{eq:MaxE}
+        \end{align}
+      \end{document}
+    INPUT
   end
 end

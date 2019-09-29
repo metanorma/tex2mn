@@ -3,14 +3,14 @@ require "helper"
 
 class TestMathInline < Minitest::Test
   def test_inline_math
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      The identity stem:[e^{i\pi}+1=0] is pretty neat.
+
+    OUTPUT
       \documentclass{metanorma}
       \begin{document}
         The identity $e^{i\pi}+1=0$ is pretty neat.
       \end{document}
     INPUT
-      The identity stem:[e^{i\\pi}+1=0] is pretty neat.
-
-    OUTPUT
   end
 end

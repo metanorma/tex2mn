@@ -3,7 +3,17 @@ require "helper"
 
 class TestBlockQuotations < Minitest::Test
   def test_single_paragraph
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Previous paragraph.
+
+      [quote]
+      -----
+      This is a quote with a single paragraph.
+      -----
+
+      Following paragraph.
+
+    OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -15,21 +25,25 @@ class TestBlockQuotations < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_multiple_paragraphs
+    skip "see https://github.com/metanorma/tex2mn/issues/33"
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
       [quote]
       -----
-      This is a quote with a single paragraph.
+      This is a quote with a multiple paragraphs.
+
+      Here is the second one.
+
+      And a third one, for good measure.
       -----
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_multiple_paragraphs
-    skip "see https://github.com/metanorma/tex2mn/issues/33"
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -45,24 +59,20 @@ class TestBlockQuotations < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_attributes
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      [quote]
+      [quote,ISO,"ISO7301,section 1"]
       -----
-      This is a quote with a multiple paragraphs.
-
-      Here is the second one.
-
-      And a third one, for good measure.
+      This quotation has attributes.
       -----
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_attributes
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -75,15 +85,5 @@ class TestBlockQuotations < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-      Previous paragraph.
-
-      [quote,ISO,"ISO7301,section 1"]
-      -----
-      This quotation has attributes.
-      -----
-
-      Following paragraph.
-
-    OUTPUT
   end
 end

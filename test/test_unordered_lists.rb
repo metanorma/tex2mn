@@ -3,7 +3,16 @@ require "helper"
 
 class TestUnorderedLists < Minitest::Test
   def test_short_items
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Previous paragraph.
+
+      * Hey,
+      * ho,
+      * let’s go!
+
+      Following paragraph.
+
+    OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -17,19 +26,22 @@ class TestUnorderedLists < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_long_items
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      * Hey,
-      * ho,
-      * let’s go!
+      * No lines here.
+      * This is a paragraph +
+      containing a line break.
+      * This is a paragraph.
+      +
+      This is another paragraph.
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_long_items
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -48,22 +60,30 @@ class TestUnorderedLists < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
+  end
+
+  def test_nesting
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
-      * No lines here.
-      * This is a paragraph +
-      containing a line break.
-      * This is a paragraph.
-      +
-      This is another paragraph.
+      * A0
+      * B0
+      ** A1
+      ** B1
+      * C0
+      ** A1
+      ** B1
+      *** A2
+      *** B2
+      **** A3
+      **** B3
+      **** C3
+      *** C2
+      ** C1
 
       Following paragraph.
 
     OUTPUT
-  end
-
-  def test_nesting
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Previous paragraph.
@@ -96,25 +116,5 @@ class TestUnorderedLists < Minitest::Test
         Following paragraph.
       \end{document}
     INPUT
-      Previous paragraph.
-
-      * A0
-      * B0
-      ** A1
-      ** B1
-      * C0
-      ** A1
-      ** B1
-      *** A2
-      *** B2
-      **** A3
-      **** B3
-      **** C3
-      *** C2
-      ** C1
-
-      Following paragraph.
-
-    OUTPUT
   end
 end

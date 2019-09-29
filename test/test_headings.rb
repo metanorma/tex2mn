@@ -3,7 +3,40 @@ require "helper"
 
 class TestHeadings < Minitest::Test
   def test_levels
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Lorem ipsum.
+
+      == L1 heading
+
+      Lorem ipsum.
+
+      === L2 heading
+
+      Lorem ipsum.
+
+      ==== L3 heading
+
+      Lorem ipsum.
+
+      ===== L4 heading
+
+      Lorem ipsum.
+
+      ====== L5 heading
+
+      Lorem ipsum.
+
+      [level=6]
+      ====== L6 heading
+
+      Lorem ipsum.
+
+      [level=7]
+      ====== L7 heading
+
+      Lorem ipsum.
+
+    OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Lorem ipsum.
@@ -39,43 +72,43 @@ class TestHeadings < Minitest::Test
         Lorem ipsum.
       \end{document}
     INPUT
+  end
+
+  def test_blank_levels
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Lorem ipsum.
 
-      == L1 heading
-
-      Lorem ipsum.
-
-      === L2 heading
-
-      Lorem ipsum.
-
-      ==== L3 heading
+      == {blank}
 
       Lorem ipsum.
 
-      ===== L4 heading
+      === {blank}
 
       Lorem ipsum.
 
-      ====== L5 heading
+      ==== {blank}
+
+      Lorem ipsum.
+
+      ===== {blank}
+
+      Lorem ipsum.
+
+      ====== {blank}
 
       Lorem ipsum.
 
       [level=6]
-      ====== L6 heading
+      ====== {blank}
 
       Lorem ipsum.
 
       [level=7]
-      ====== L7 heading
+      ====== {blank}
 
       Lorem ipsum.
 
     OUTPUT
-  end
-
-  def test_blank_levels
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Lorem ipsum.
@@ -112,43 +145,28 @@ class TestHeadings < Minitest::Test
 
       \end{document}
     INPUT
+  end
+
+  def test_attributes
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Lorem ipsum.
 
-      == {blank}
-
-      Lorem ipsum.
-
-      === {blank}
-
-      Lorem ipsum.
-
-      ==== {blank}
+      [heading=terms and definitions]
+      == Termini e definizioni
 
       Lorem ipsum.
 
-      ===== {blank}
+      [annex]
+      == Annex
 
       Lorem ipsum.
 
-      ====== {blank}
-
-      Lorem ipsum.
-
-      [level=6]
-      ====== {blank}
-
-      Lorem ipsum.
-
-      [level=7]
-      ====== {blank}
+      [%inline-header]
+      == Inline header
 
       Lorem ipsum.
 
     OUTPUT
-  end
-
-  def test_attributes
-    assert_equal render_string(<<~'INPUT'), <<~OUTPUT
       \documentclass{metanorma}
       \begin{document}
         Lorem ipsum.
@@ -169,23 +187,5 @@ class TestHeadings < Minitest::Test
         Lorem ipsum.
       \end{document}
     INPUT
-      Lorem ipsum.
-
-      [heading=terms and definitions]
-      == Termini e definizioni
-
-      Lorem ipsum.
-
-      [annex]
-      == Annex
-
-      Lorem ipsum.
-
-      [%inline-header]
-      == Inline header
-
-      Lorem ipsum.
-
-    OUTPUT
   end
 end
