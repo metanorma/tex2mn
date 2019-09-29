@@ -1,7 +1,7 @@
 require "minitest/autorun"
 require "helper"
 
-class TestFigures < Minitest::Test
+class TestTables < Minitest::Test
   def test_naked_tabular
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [cols=2*]
