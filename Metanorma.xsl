@@ -382,6 +382,21 @@
     <xsl:text>&#xa;</xsl:text>
   </xsl:template>
 
+  <!--
+    Cross references
+  -->
+
+  <xsl:template match="ltx:ref">
+    <!-- NOTE: not sure why, if the node is empty then node() is @labelref -->
+    <xsl:if test="@labelref=text()">
+      <!-- NOTE: latexml prefixes labels as "LABEL:lab1" so we drop the prefix -->
+      <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), '&gt;&gt;')"/>
+    </xsl:if>
+    <xsl:if test="@labelref!=text()">
+      <!-- NOTE: latexml prefixes labels as "LABEL:lab1" so we drop the prefix -->
+      <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), ', ', text(), '&gt;&gt;')"/>
+    </xsl:if>
+  </xsl:template>
 
   <!--
     Utilities

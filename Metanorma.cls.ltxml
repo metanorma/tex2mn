@@ -6,6 +6,7 @@ LoadClass('article');
 
 RequirePackage('lxRDFa');
 RequirePackage('graphicx');
+RequirePackage('hyperref');
 RequirePackage('amsmath');
 
 # NOTE: switching to ASCII encoding (inside the enveloping group) preserves quotes.
