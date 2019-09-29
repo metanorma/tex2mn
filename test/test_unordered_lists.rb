@@ -117,4 +117,36 @@ class TestUnorderedLists < Minitest::Test
       \end{document}
     INPUT
   end
+
+  def test_labeled_items
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Previous paragraph.
+
+      * A0
+      * [[foo]] B0
+      ** A1
+      ** [[bar]] B1
+      * C0
+
+      Following paragraph.
+
+    OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        Previous paragraph.
+
+        \begin{itemize}
+          \item A0
+          \item \label{foo} B0
+          \begin{itemize}
+            \item A1
+            \item \label{bar} B1
+          \end{itemize}
+          \item C0
+        \end{itemize}
+
+        Following paragraph.
+      \end{document}
+    INPUT
+  end
 end
