@@ -43,15 +43,38 @@
 % We decouple the class' API from the package choice.
 \let\textst\sout
 
-%% Admonitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% NOTE: we could use any other package, actually.
+%% Blocks %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage[framemethod=TikZ]{mdframed}
+
+% Admonitions
+
 \newmdenv[linecolor=blue,frametitle=Note]{note}
 \newmdenv[linecolor=green,frametitle=Tip]{tip}
 \newmdenv[linecolor=yellow,frametitle=Important]{important}
 \newmdenv[linecolor=red,frametitle=Caution]{caution}
 \newmdenv[linecolor=orange,frametitle=Warning]{warning}
+
+% Requirement, recommendation and permission
+
+\mdfdefinestyle{requirement}{linecolor=gray,frametitle=Requirement}
+\mdfdefinestyle{recommendation}{linecolor=gray,frametitle=Recommendation}
+\mdfdefinestyle{permission}{linecolor=gray,frametitle=Permission}
+
+\NewDocumentEnvironment{requirement}{}{\begin{mdframed}[style=requirement]}{\end{mdframed}}
+\NewDocumentEnvironment{recommendation}{}{\begin{mdframed}[style=recommendation]}{\end{mdframed}}
+\NewDocumentEnvironment{permission}{}{\begin{mdframed}[style=permission]}{\end{mdframed}}
+
+% Specification, measurement target, verification and import
+
+\mdfdefinestyle{specification}{linecolor=lightgray,frametitle=Specification}
+\mdfdefinestyle{measurement-target}{linecolor=lightgray,frametitle=Measurement target}
+\mdfdefinestyle{verification}{linecolor=lightgray,frametitle=Verification}
+\mdfdefinestyle{import}{linecolor=lightgray,frametitle=Import}
+
+\NewDocumentEnvironment{specification}{}{\begin{mdframed}[style=specification]}{\end{mdframed}}
+\NewDocumentEnvironment{measurement-target}{}{\begin{mdframed}[style=measurement-target]}{\end{mdframed}}
+\NewDocumentEnvironment{verification}{}{\begin{mdframed}[style=verification]}{\end{mdframed}}
+\NewDocumentEnvironment{import}{}{\begin{mdframed}[style=import]}{\end{mdframed}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
