@@ -156,7 +156,7 @@
     <xsl:call-template name="newline"/>
   </xsl:template>
 
-  <xsl:template match="ltx:para/ltx:p">
+  <xsl:template match="ltx:p">
     <xsl:call-template name="paragraph-alignment"/>
     <xsl:apply-templates/>
     <xsl:call-template name="newline"/> <!-- this is the trailing newline of the last line -->
@@ -188,7 +188,6 @@
     <xsl:call-template name="quote-attributes"/>
     <xsl:call-template name="quote-delimiter"/>
     <xsl:apply-templates/>
-    <xsl:call-template name="newline"/>
     <xsl:call-template name="quote-delimiter"/>
     <!-- TODO: should a blank line be here? -->
   </xsl:template>
@@ -403,6 +402,44 @@
       <xsl:otherwise>
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:template>
+
+  <!--
+    Blocks
+  -->
+
+  <!-- NOTE: we expect to match only p, block and inline-block but use priority to simplify the XSL -->
+  <xsl:template match="ltx:*[starts-with(@class, 'block-example--')]" priority="1">
+    <xsl:value-of select="concat('[.', substring-after(@class, 'block-example--'), ']&#xa;')"/>
+    <xsl:call-template name="block--example__delimiter"/>
+    <!-- NOTE: if we matched a p we need an extra line termination -->
+    <xsl:apply-templates/><xsl:if test="name()='p'"><xsl:text>&#xa;</xsl:text></xsl:if>
+    <xsl:call-template name="block--example__delimiter"/>
+    <xsl:if test="current()[following-sibling::*]">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="block--example__delimiter">
+    <!-- NOTE: we add a = for each nesting level -->
+    <xsl:for-each select="ancestor::ltx:*[starts-with(@class, 'block-example--')]">=</xsl:for-each>
+    <xsl:text>====&#xa;</xsl:text>
+  </xsl:template>
+
+  <!-- NOTE: we expect to match only p, block and inline-block but use priority to simplify the XSL -->
+  <xsl:template match="ltx:*[starts-with(@class, 'block-open--')]" priority="1">
+    <xsl:value-of select="concat('[.', substring-after(@class, 'block-open--'), ']&#xa;')"/>
+    <xsl:call-template name="block--open__delimiter"/>
+    <xsl:apply-templates/>
+    <xsl:text>&#xa;</xsl:text>
+    <xsl:call-template name="block--open__delimiter"/>
+    <xsl:if test="current()[following-sibling::*]">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="block--open__delimiter">
+    <xsl:text>--&#xa;</xsl:text>
   </xsl:template>
 
   <!--

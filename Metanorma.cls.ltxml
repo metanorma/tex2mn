@@ -1,3 +1,5 @@
+package LaTeXML::Package::Pool;
+
 use LaTeXML::Package;
 use strict;
 use warnings;
@@ -41,5 +43,33 @@ foreach my $admonition (@admonitions)
     beforeDigest => sub { Let('\\\\', '\@block@cr'); Let('\par', '\@block@cr') },
     mode => 'text');
 }
+
+## Blocks ######################################################################
+
+sub define_blocks {
+  my ($block, @modifiers) = @_;
+  foreach my $modifier (@modifiers) {
+    DefEnvironment(
+      "{$modifier}",
+      sub {
+        my ($document, %props) = @_;
+        $_[0]->maybeCloseElement('ltx:p'); # this starts a new vertical block
+        insertBlock(
+          $document,
+          $props{body},
+          class => "$block--$modifier",
+        );
+      },
+      beforeDigest => sub {
+        Let('\par', '\inner@par');
+        Let('\\\\', '\inner@par');
+      },
+      # mode => 'text'
+    );
+  }
+}
+
+define_blocks('block-example', qw(requirement recommendation permission));
+define_blocks('block-open', qw(specification measurement-target verification import));
 
 1;
