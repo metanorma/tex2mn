@@ -42,6 +42,7 @@ jobs:
         env:
           CPANM_TMPDIR: "$TMPDIR/cpanm"
         run: |
+          sudo apt-get install -y libxml2-dev libxslt1-dev libicu-dev zlib1g-dev
           sudo cpanm --local-lib=${CPANM_TMPDIR}/perl5 local::lib && eval $(perl -I ${CPANM_TMPDIR}/perl5/lib/perl5/ -Mlocal::lib)
 
       - name: Install LaTeXML
