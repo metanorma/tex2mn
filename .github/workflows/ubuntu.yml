@@ -30,6 +30,10 @@ jobs:
           bundle update --bundler
           bundle install --jobs 4 --retry 3
 
+      - name: Install cpanm
+        run: |
+          curl -L https://cpanmin.us | perl - --sudo App::cpanminus
+
       # NOTE: we need LaTeXML including commit
       # https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e
       # related to issue https://github.com/brucemiller/LaTeXML/issues/1153
