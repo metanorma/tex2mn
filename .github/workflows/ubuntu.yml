@@ -1,0 +1,49 @@
+name: ubuntu
+
+on: [push, pull_request]
+
+# From Travis, not yet available in GHA
+# cache:
+#   bundler: true
+#   directories:
+#     - $HOME/perl5/
+
+jobs:
+  test-linux:
+    name: Test on Ruby ${{ matrix.ruby }} Ubuntu
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [ '2.6', '2.5', '2.4' ]
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          architecture: 'x64'
+
+      - name: Update gems
+        run: |
+          gem install bundler -v "~> 2"
+          bundle install --jobs 4 --retry 3
+
+      # NOTE: we need LaTeXML including commit
+      # https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e
+      # related to issue https://github.com/brucemiller/LaTeXML/issues/1153
+      # but that's planned for release on 0.85 (early 2020). We can't get it from apt yet.
+      - name: Install LaTeXML dependencies
+        run: |
+          sudo cpanm --local-lib=~/perl5 local::lib && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+
+      - name: Install LaTeXML
+        # NOTE: cpanminus insists on installing LaTeXML in /tmp/* (why?);
+        # since that can't be cached at least we skip tests.
+        run: |
+          sudo cpanm --notest git://github.com/brucemiller/LaTeXML.git@9a0e7dc5
+
+      - name: Run specs
+        run: |
+          bundle exec rake test
+
