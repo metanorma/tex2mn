@@ -469,6 +469,34 @@
   </xsl:template>
 
   <!--
+    Terms and Definitions
+  -->
+
+  <xsl:template match="ltx:*[@class='block-example']" priority="1">
+    <xsl:text>[example]&#xa;</xsl:text>
+    <xsl:call-template name="block--example__delimiter"/>
+    <!-- NOTE: if we matched a p we need an extra line termination -->
+    <xsl:apply-templates/><xsl:if test="name()='p'"><xsl:text>&#xa;</xsl:text></xsl:if>
+    <xsl:call-template name="block--example__delimiter"/>
+    <xsl:if test="current()[following-sibling::*]">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="ltx:para[@class='source']">
+    <xsl:text>[.source]&#xa;</xsl:text>
+    <xsl:apply-templates/>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:rdf[@property='alt' or @property='deprecated' or @property='domain']">
+    <xsl:value-of select="concat(@property, ':[', @content, ']&#xA;')"/>
+    <xsl:if test="current()[not(following-sibling::ltx:rdf)]">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
     Bibliography
   -->
 

@@ -44,32 +44,52 @@ foreach my $admonition (@admonitions)
     mode => 'text');
 }
 
+# NOTE: source are meant to be a single paragraph
+DefEnvironment("{source}",
+  "<ltx:para class=\"source\">#body</ltx:para>",
+  # NOTE: this beforeDigest gives us a single <p> inside <para> broken by <break>,
+  #       instead of multiple <p> splitted on multiple <para>s (with no classes after the first one).
+  beforeDigest => sub { Let('\\\\', '\@block@cr'); Let('\par', '\@block@cr') },
+  mode => 'text');
+
 ## Blocks ######################################################################
+
+sub define_block {
+  my ($environment, $class) = @_;
+  DefEnvironment(
+    "{$environment}",
+    sub {
+      my ($document, %props) = @_;
+      $_[0]->maybeCloseElement('ltx:p'); # this starts a new vertical block
+      insertBlock(
+        $document,
+        $props{body},
+        class => $class,
+      );
+    },
+    beforeDigest => sub {
+      Let('\par', '\inner@par');
+      Let('\\\\', '\inner@par');
+    },
+    # mode => 'text'
+  );
+}
 
 sub define_blocks {
   my ($block, @modifiers) = @_;
   foreach my $modifier (@modifiers) {
-    DefEnvironment(
-      "{$modifier}",
-      sub {
-        my ($document, %props) = @_;
-        $_[0]->maybeCloseElement('ltx:p'); # this starts a new vertical block
-        insertBlock(
-          $document,
-          $props{body},
-          class => "$block--$modifier",
-        );
-      },
-      beforeDigest => sub {
-        Let('\par', '\inner@par');
-        Let('\\\\', '\inner@par');
-      },
-      # mode => 'text'
-    );
+    define_block("{$modifier}", "$block--$modifier");
   }
 }
 
+define_block('example', 'block-example');
 define_blocks('block-example', qw(requirement recommendation permission));
 define_blocks('block-open', qw(specification measurement-target verification import));
+
+## Terms and Definitions #######################################################
+
+DefMacro('\alt{}', '\lxRDF{property=alt,content=#1}');
+DefMacro('\deprecated{}', '\lxRDF{property=deprecated,content=#1}');
+DefMacro('\domain{}', '\lxRDF{property=domain,content=#1}');
 
 1;
