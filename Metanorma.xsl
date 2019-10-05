@@ -443,6 +443,32 @@
   </xsl:template>
 
   <!--
+    Bibliography
+  -->
+
+  <xsl:template match="ltx:cite">
+    <xsl:for-each select="str:tokenize(./ltx:bibref/@bibrefs, ',')">
+      <xsl:value-of select="concat('&lt;&lt;', ., '&gt;&gt;')"/>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="ltx:bibliography/ltx:title">
+    <xsl:text>[bibliography]&#xa;</xsl:text>
+    <xsl:value-of select="concat('== ', ., '&#xa;')"/>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <xsl:template match="ltx:bibliography/ltx:biblist">
+    <xsl:for-each select="ltx:bibitem">
+      <xsl:text>* </xsl:text>
+      <xsl:value-of select="concat('[[[', @key, ',', position(), ']]]')"/>
+      <xsl:apply-templates match="ltx:bibblock"/>
+      <xsl:text>&#xa;</xsl:text>
+    </xsl:for-each>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <!--
     Utilities
   -->
 
