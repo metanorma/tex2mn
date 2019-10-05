@@ -48,8 +48,19 @@
   -->
 
   <xsl:template match="/">
+    <xsl:call-template name="document-title"/>
     <xsl:call-template name="document-attributes"/>
     <xsl:apply-templates/>
+  </xsl:template>
+
+  <!--
+    Document title
+  -->
+
+  <xsl:template name="document-title">
+    <xsl:if test="ltx:document/ltx:title">
+      <xsl:value-of select="concat('= ', ltx:document/ltx:title, '&#xA;')"/>
+    </xsl:if>
   </xsl:template>
 
   <!--
