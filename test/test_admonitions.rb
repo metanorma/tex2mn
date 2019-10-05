@@ -128,17 +128,17 @@ class TestAdmonitions < Minitest::Test
   end
 
   def test_long_note
-    skip "see https://github.com/metanorma/tex2mn/issues/33"
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
       [NOTE]
       ====
-      This is a note.
+      This is a note with multiple paragraphs.
 
-      It contains multiple paragraphs.
+      Here is the second one, +
+      which is broken.
 
-      It is pretty long.
+      And a third one, for good measure.
       ====
 
       Following paragraph.
@@ -149,11 +149,12 @@ class TestAdmonitions < Minitest::Test
         Previous paragraph.
 
         \begin{note}
-          This is a note.
+          This is a note with multiple paragraphs.
 
-          It contains multiple paragraphs.
+          Here is the second one,\\
+          which is broken.
 
-          It is pretty long.
+          And a third one, for good measure.
         \end{note}
 
         Following paragraph.
