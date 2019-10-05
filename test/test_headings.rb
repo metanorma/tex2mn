@@ -151,6 +151,11 @@ class TestHeadings < Minitest::Test
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Lorem ipsum.
 
+      [[foobar]]
+      == The foo and the bar
+
+      Lorem ipsum.
+
       [heading=terms and definitions]
       == Termini e definizioni
 
@@ -169,6 +174,11 @@ class TestHeadings < Minitest::Test
     OUTPUT
       \documentclass{metanorma}
       \begin{document}
+        Lorem ipsum.
+
+        \section{The foo and the bar}
+        \label{foobar}
+
         Lorem ipsum.
 
         \section{Termini e definizioni}
