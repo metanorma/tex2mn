@@ -80,6 +80,11 @@
 
   <xsl:template name="heading">
     <xsl:param name="depth"/>
+    <!-- optional label -->
+    <xsl:if test="@labels">
+      <!-- NOTE: latexml lists and prefixes labels as "LABEL:lab1 LABEL:lab2" so we take the first one and drop the prefix -->
+      <xsl:value-of select="concat('[[', substring-after(substring-before(concat(@labels, ' '), ' '), ':'), ']]&#xa;')"/>
+    </xsl:if>
     <!-- optional attributes tag -->
     <xsl:if test="@asciidoc-attributes">
       <xsl:value-of select="concat('[', @asciidoc-attributes, ']')"/>
