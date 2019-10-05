@@ -1,11 +1,25 @@
 require "open3"
 
-def wrap_stderr(stderr, separator = "#" * 80)
-  separator + "\n" + stderr + separator
+def wrap_stderr(stderr)
+  separator("STDERR") + "\n" + stderr + separator
+end
+
+def separator(label="", length=120)
+  return "█" * length if label.empty?
+  "██ #{label} ".yield_self { |head| head + "█" * (length - head.size) }
 end
 
 def render_string(string)
-  run_latexmlpost(run_latexml(string))
+  tex = string
+  xml = run_latexml(string)
+  adoc = run_latexmlpost(xml)
+  if ENV.key?("DEBUG")
+    puts [separator("TEX"), "\n", tex].join
+    puts [separator("XML"), "\n", xml].join
+    puts [separator("ADOC"), "\n", adoc].join
+    puts [separator, "\n"].join
+  end
+  adoc
 end
 
 def read_file(filename)
@@ -24,7 +38,7 @@ def run_latexml(stdin_data)
 end
 
 def run_latexmlpost(stdin_data)
-  command = "latexmlpost - --stylesheet=Metanorma.xsl --nodefaultresources --novalidate"
+  command = "latexmlpost - --stylesheet=Metanorma.xsl --nocrossref --nodefaultresources --novalidate"
   stdout, stderr, status = Open3.capture3(command, stdin_data: stdin_data)
   return stdout if status.success?
   raise StandardError.new("latexmlpost execution failed; stderr below.\n" + wrap_stderr(stderr))
