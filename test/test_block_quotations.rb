@@ -7,9 +7,9 @@ class TestBlockQuotations < Minitest::Test
       Previous paragraph.
 
       [quote]
-      -----
+      _____
       This is a quote with a single paragraph.
-      -----
+      _____
 
       Following paragraph.
 
@@ -33,13 +33,13 @@ class TestBlockQuotations < Minitest::Test
       Previous paragraph.
 
       [quote]
-      -----
+      _____
       This is a quote with a multiple paragraphs.
 
       Here is the second one.
 
       And a third one, for good measure.
-      -----
+      _____
 
       Following paragraph.
 
@@ -66,9 +66,9 @@ class TestBlockQuotations < Minitest::Test
       Previous paragraph.
 
       [quote,ISO,"ISO7301,section 1"]
-      -----
+      _____
       This quotation has attributes.
-      -----
+      _____
 
       Following paragraph.
 
