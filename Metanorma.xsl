@@ -282,6 +282,26 @@
     <xsl:apply-templates/>
   </xsl:template>
 
+  <!-- Description lists -->
+
+  <xsl:template match="ltx:description">
+    <xsl:for-each select="ltx:item">
+      <xsl:value-of select="concat(./ltx:tags/ltx:tag[not(@role)], ':')"/>
+      <xsl:for-each select="ancestor-or-self::ltx:description">:</xsl:for-each>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:apply-templates/>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="ltx:description/ltx:item/ltx:para[not(preceding-sibling::ltx:para)]">
+    <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="ltx:description/ltx:item/ltx:para[preceding-sibling::ltx:para]">
+    <xsl:call-template name="list__continuation_marker"/>
+    <xsl:apply-templates/>
+  </xsl:template>
+
   <!--
     Figures
   -->
