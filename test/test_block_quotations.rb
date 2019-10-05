@@ -28,7 +28,6 @@ class TestBlockQuotations < Minitest::Test
   end
 
   def test_multiple_paragraphs
-    skip "see https://github.com/metanorma/tex2mn/issues/33"
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Previous paragraph.
 
@@ -36,7 +35,8 @@ class TestBlockQuotations < Minitest::Test
       _____
       This is a quote with a multiple paragraphs.
 
-      Here is the second one.
+      Here is the second one, +
+      which is broken.
 
       And a third one, for good measure.
       _____
@@ -51,7 +51,8 @@ class TestBlockQuotations < Minitest::Test
         \begin{quote}
           This is a quote with a multiple paragraphs.
 
-          Here is the second one.
+          Here is the second one,\\
+          which is broken.
 
           And a third one, for good measure.
         \end{quote}

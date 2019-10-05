@@ -14,6 +14,8 @@ RequirePackage('amsmath');
 # NOTE: switching to ASCII encoding (inside the enveloping group) preserves quotes.
 # Otherwise, they would be mapped to curly ones by Tex.pool.ltxml fontmaps and ligatures.
 DefMacro('\mn{}',
+  '{\fontencoding{ASCII}\lxRDF{property=asciidoc-attributes,content={#1}}}');
+DefMacro('\mna{}',
   '{\fontencoding{ASCII}\lxRDFa[.]{asciidoc-attributes={#1}}}');
 
 ## Document attributes #########################################################
@@ -69,7 +71,7 @@ sub define_block {
     },
     beforeDigest => sub {
       Let('\par', '\inner@par');
-      Let('\\\\', '\inner@par');
+      # Let('\\\\', '\inner@par');
     },
     # mode => 'text'
   );
@@ -82,6 +84,7 @@ sub define_blocks {
   }
 }
 
+define_block('quote', 'block-quote');
 define_block('example', 'block-example');
 define_blocks('block-example', qw(requirement recommendation permission));
 define_blocks('block-open', qw(specification measurement-target verification import));
