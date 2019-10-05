@@ -13,6 +13,8 @@
 \RequirePackage{xparse}
 
 \NewDocumentCommand{\mn}{m}
+  {\lxRDF{property=asciidoc-attributes,content={#1}}}
+\NewDocumentCommand{\mna}{m}
   {\lxRDFa[.]{asciidoc-attributes={#1}}}
 
 %% Document attributes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

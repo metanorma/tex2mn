@@ -176,8 +176,8 @@
 
   <xsl:template name="quote-attributes">
     <xsl:choose>
-      <xsl:when test="@asciidoc-attributes">
-        <xsl:value-of select="concat('[quote,', @asciidoc-attributes, ']&#xa;')"/>
+      <xsl:when test="./ltx:rdf[@property='asciidoc-attributes']">
+        <xsl:value-of select="concat('[quote,', ./ltx:rdf/@content, ']&#xa;')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:text>[quote]&#xa;</xsl:text>
@@ -189,10 +189,11 @@
     <xsl:text>_____&#xa;</xsl:text>
   </xsl:template>
 
-  <xsl:template match="ltx:quote">
+  <!-- <xsl:template match="ltx:quote"> -->
+  <xsl:template match="ltx:*[@class='block-quote']" priority="1">
     <xsl:call-template name="quote-attributes"/>
     <xsl:call-template name="quote-delimiter"/>
-    <xsl:apply-templates/>
+    <xsl:apply-templates/><xsl:if test="name()='p'"><xsl:text>&#xa;</xsl:text></xsl:if>
     <xsl:call-template name="quote-delimiter"/>
     <!-- TODO: should a blank line be here? -->
   </xsl:template>
