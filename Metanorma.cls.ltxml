@@ -31,21 +31,9 @@ DefConstructor('\get{}',
 DefConstructor('\textst{}',
   "<ltx:text class='strikethrough'>#1</ltx:text>");
 
-## Admonitions #################################################################
+## Blocks ######################################################################
 
 # NOTE: this is modeled after quote's treatment in LaTeX.pool.ltxml
-
-my @admonitions = qw(note tip important caution warning);
-foreach my $admonition (@admonitions)
-{
-  DefEnvironment("{$admonition}",
-    "<ltx:para class=\"admonition--$admonition\">#body</ltx:para>",
-    # NOTE: this beforeDigest gives us a single <p> inside <para> broken by <break>,
-    #       instead of multiple <p> splitted on multiple <para>s (with no classes after the first one).
-    beforeDigest => sub { Let('\\\\', '\@block@cr'); Let('\par', '\@block@cr') },
-    mode => 'text');
-}
-
 # NOTE: source are meant to be a single paragraph
 DefEnvironment("{source}",
   "<ltx:para class=\"source\">#body</ltx:para>",
@@ -53,8 +41,6 @@ DefEnvironment("{source}",
   #       instead of multiple <p> splitted on multiple <para>s (with no classes after the first one).
   beforeDigest => sub { Let('\\\\', '\@block@cr'); Let('\par', '\@block@cr') },
   mode => 'text');
-
-## Blocks ######################################################################
 
 sub define_block {
   my ($environment, $class) = @_;
@@ -88,6 +74,7 @@ define_block('quote', 'block-quote');
 define_block('example', 'block-example');
 define_blocks('block-example', qw(requirement recommendation permission));
 define_blocks('block-open', qw(specification measurement-target verification import));
+define_blocks('block-admonition', qw(note tip important caution warning));
 
 ## Terms and Definitions #######################################################
 
