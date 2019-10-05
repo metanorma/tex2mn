@@ -16,6 +16,7 @@ main--saxon.adoc: main.xml
 main.adoc: main.xml
 	latexmlpost \
 		main.xml \
+		--nocrossref \
 		--stylesheet=Metanorma.xsl \
 		--destination=main.adoc \
 		--nodefaultresources \
