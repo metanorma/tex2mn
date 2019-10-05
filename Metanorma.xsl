@@ -186,7 +186,7 @@
   </xsl:template>
 
   <xsl:template name="quote-delimiter">
-    <xsl:text>-----&#xa;</xsl:text>
+    <xsl:text>_____&#xa;</xsl:text>
   </xsl:template>
 
   <xsl:template match="ltx:quote">
