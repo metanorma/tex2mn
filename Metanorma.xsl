@@ -407,16 +407,17 @@
 
   <xsl:template match="ltx:ref">
     <xsl:choose>
-      <xsl:when test="@href and @href=text()">
+      <xsl:when test="@href and @href=node()">
         <xsl:value-of select="@href"/>
       </xsl:when>
-      <xsl:when test="@href and @href!=text()">
-        <xsl:value-of select="concat(@href, '[', text(), ']')"/>
+      <xsl:when test="@href and @href!=node()">
+        <xsl:value-of select="concat(@href, '[', node(), ']')"/>
       </xsl:when>
-      <xsl:when test="@labelref and @labelref=text()">
+      <!-- NOTE: by default (disabled with nocrossref) latexmk would add a child text node containing @labelref-->
+      <xsl:when test="@labelref and not(node())">
         <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), '&gt;&gt;')"/>
       </xsl:when>
-      <xsl:when test="@labelref and @labelref!=text()">
+      <xsl:when test="@labelref and node()">
         <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), ', ', text(), '&gt;&gt;')"/>
       </xsl:when>
       <xsl:otherwise>
