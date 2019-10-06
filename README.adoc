@@ -1,0 +1,63 @@
+= tex2mn
+
+image:https://img.shields.io/github/v/release/metanorma/tex2mn["GitHub release", link="https://github.com/metanorma/tex2mn/releases"]
+image:https://github.com/metanorma/tex2mn/workflows/ubuntu/badge.svg["Build Status", link="https://github.com/metanorma/tex2mn/actions"]
+
+This project consists of
+
+* a LaTeX document class to write Metanorma documents, and
+* an XSLT stylesheet to convert Metanorma documents from LaTeX to AsciiDoc.
+
+The goal is to allow LaTeX users a simple start with the Metanorma framework.
+
+== Installation
+
+The only prerequisites for `tex2mn` are a TeX distribution and https://dlmf.nist.gov/LaTeXML/[`latexml`].
+
+Many TeX distributions already include `latexml`, but `tex2mn` requires a feature
+(described in https://github.com/brucemiller/LaTeXML/issues/1153[this issue] and
+implemented in https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e[this commit])
+which will be released with version 0.85 (planned for early 2020).
+
+This means that you need to install `latexml` latest version https://dlmf.nist.gov/LaTeXML/get.html#cpanm[as the author explains] or at least pinpoint it to the version `tex2mn` needs:
+
+[source,bash]
+----
+sudo cpanm git://github.com/brucemiller/LaTeXML.git@9a0e7dc5
+----
+
+To setup `tex2mn` itself you just need to copy these files from the repo to your project folder:
+
+----
+Metanorma.cls
+Metanorma.cls.ltxml
+Metanorma.xsl
+----
+
+== Usage
+
+=== Authoring
+
+Once `Metanorma.cls` is in your project folder, you can use it just like any other LaTeX document class.
+
+WARNING: The class is minimal and its source can be easily studied, however its syntax is still experimental.
+
+=== Conversion
+
+Once `Metanorma.cls.ltxml` and `Metanorma.xsl` are in your project folder, you can convert your document as follows:
+
+[source,bash]
+----
+latexml main.tex --output=main.xml --nocomments
+latexmlpost main.xml --destination=main.adoc --stylesheet=Metanorma.xsl --nocrossref --nodefaultresources
+----
+
+This will produce the Metanorma AsciiDoc version `main.adoc` of your Metanorma LaTeX document `main.tex`.
+
+== Credits
+
+This project is developed, maintained and funded by https://www.metanorma.com/docs/getting-started/[Ribose Inc.]
+
+== License
+
+This project is available under the terms of the http://opensource.org/licenses/MIT[MIT License].
