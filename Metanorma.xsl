@@ -526,7 +526,8 @@
   <xsl:template match="ltx:bibliography/ltx:biblist">
     <xsl:for-each select="ltx:bibitem">
       <xsl:text>* </xsl:text>
-      <xsl:value-of select="concat('[[[', @key, ',', position(), ']]]')"/>
+      <!-- NOTE: remember that position() should be equivalent to refnum if no label is given -->
+      <xsl:value-of select="concat('[[[', @key, ',', ./ltx:tags/ltx:tag[@role='refnum'], ']]]')"/>
       <xsl:apply-templates match="ltx:bibblock"/>
       <xsl:text>&#xa;</xsl:text>
     </xsl:for-each>
