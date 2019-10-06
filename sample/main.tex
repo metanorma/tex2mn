@@ -1,273 +1,116 @@
 \documentclass{Metanorma}
 
+\title{Sample document}
+\set{author}{John Doe}
+\set{author-phonetic}{jän dō}
+
 \begin{document}
+  \maketitle
+  \tableofcontents
+  \bigskip
 
-  \section{Custom terms and definitions}
-  \mn{heading=terms and definitions}
+  The author of this document is \get{author}, which is pronounced
+  \get{author-phonetic}.\\ This document contains random snippets
+  from \cite{ISO7301} and is written using \LaTeX --
+  details about that in \cite{knuthwebsite}.
 
-  Lipsum
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \section{Section}
+  \section{Introduction}
 
-  Lipsum
+  Here is a paragraph that contains formatting samples: \textbf{bold},
+  \textit{italic}, \textsc{small caps} and \textst{strikethrough}
+  are all available.
 
-  \subsection{Subsection}
-  \mn{heading=terms and definitions}
-
-  Lipsum
-
-  \section{Annex}
-  \mn{annex}
-
-  Lipsum
-
-  \subsection{}
-
-  Lipsum
-
-  \subsubsection{Subsubsection}
-  \mn{\%inline-header}
-
-  Lipsum
-
-  \paragraph{Paragraph}
-
-  Lipsum
-
-  \subparagraph{Subparagraph}
-
-  Lipsum
-
-  \subparagraph{Subparagraph l6}
-  \mn{level=6}
-
-  Lipsum
-
-  \subparagraph{Subparagraph l7}
-  \mn{level=7}
-
-  Lipsum
-
-  \section{Tests for text formatting}
-
-  Bold \textbf{bold} and {\bfseries bold group}.
-
-  Emphasis \textit{emphasis} and {\itshape emphasis group}.
-
-  Small caps \textsc{small caps} and {\scshape small caps group}.
-
-  Strikethrough \textst{strikethrough}.
-
-  \section{Tests for paragraph alignment}
-
-  This paragraph is justified.
-  This paragraph is justified.
-  This paragraph is justified.
-  This paragraph is justified.
-  This paragraph is justified.
-
-  This one too. This one too. This one too.
-  This one too. This one too. This one too.
-  This one too. This one too. This one too.
-  This one too. This one too. This one too.
-  This one too. This one too. This one too.
+  \begin{note}
+    The next few paragraphs are explicitly aligned.
+  \end{note}
 
   \begin{flushleft}
-    This paragraph is left aligned.
-    This paragraph is left aligned.
-    This paragraph is left aligned.
-    This paragraph is left aligned.
-    This paragraph is left aligned.
-
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
+    Paragraphs can be aligned left.
   \end{flushleft}
 
   \begin{center}
-    This paragraph is centered.
-    This paragraph is centered.
-    This paragraph is centered.
-    This paragraph is centered.
-    This paragraph is centered.
-
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
+    Paragraphs can be centered.
   \end{center}
 
   \begin{flushright}
-    This paragraph is right aligned.
-    This paragraph is right aligned.
-    This paragraph is right aligned.
-    This paragraph is right aligned.
-    This paragraph is right aligned.
-
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
-    This one too. This one too. This one too.
+    Paragraphs can be aligned right.
   \end{flushright}
 
-  \section{Tests for quotes}
-
-  \begin{quote}
-    This is the simples quote.
-  \end{quote}
-
-  \begin{quote}
-    This is a quote with multiple paragraphs.
-
-    Here is the second one.
-  \end{quote}
-
-  \begin{quote}
-    \mn{ISO, "ISO7301,section 1"}
-    This is a pretty complex quote.
-
-    There could not be more stuff.
-
-    In fact, there are attributes too!
-  \end{quote}
-
-  \section{Tests for admonitions}
-
-  \begin{note}
-    This is a \textbf{note}.
-  \end{note}
-
-  \begin{tip}
-    This is a \textbf{tip}.
-
-    This is a \textbf{tip}.
-  \end{tip}
-
-  \begin{important}
-    This is \textbf{important}.
-
-    This is \textbf{important}.
-
-    This is \textbf{important}.
-  \end{important}
-
   \begin{caution}
-    This is \textbf{caution}ary advice.
+    The upcoming table contains possibly inaccurate informations.
   \end{caution}
 
-  \begin{warning}
-    This is a \textbf{warning}.
-  \end{warning}
+  \begin{table}\label{tab:example}
+    \caption{This week's weather}
+    \begin{tabular}{ll}
+      Day & Summary \\
+      Monday & A clear day with lots of sunshine.\\
+      Tuesday & Cloudy with rain, across many northern regions.\\
+      Wednesday & Rain will still linger for the morning.\\
+    \end{tabular}
+  \end{table}
 
-  \section{Tests for footnotes}
+  \begin{tip}
+    \LaTeX is very convenient when typesetting high-quality documents;
+    you can easily insert captioned frames
+    like table \ref{tab:example} and figure \ref{fig:example}.
+  \end{tip}
 
-  This is the simplest footnote\footnote{Here it is.}.
+  \begin{figure}\label{fig:example}
+    \centering
+    \caption{Metanorma's logo and payoff.}
+    \includegraphics[width=2in]{metanorma.png}
+  \end{figure}
 
-  \section{Tests for lists}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \subsection{Unordered lists}
+  \section{Terms and Definitions}
 
-  Let's try with the simplest list.
+  \subsection{paddy}
+  \label{paddy}
+  \alt{paddy rice}
+  \alt{rough rice}
+  \deprecated{cargo rice}
+  \domain{rice}
 
-  \begin{itemize}
-    \item Hey,
-    \item ho,
-    \item let's go!
-  \end{itemize}
+  rice retaining its husk after threshing
 
-  Now we check line breaks and paragraphs.
+  \begin{example}
+    Foreign seeds, husks, bran, sand, dust.
+  \end{example}
 
-  \begin{itemize}
-    \item No lines here.
+  \begin{note}
+    The starch of waxy rice consists almost entirely of amylopectin.
+    The kernels have a tendency to stick together after cooking.
+  \end{note}
 
-    \item This is a paragraph\\
-          containing a line break.
+  \begin{source}
+    \cite{ISO7301}, The term "cargo rice" is shown as deprecated,
+    and Note 1 to entry is not included here
+  \end{source}
 
-    \item This is a paragraph.
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-          This is another paragraph.
-  \end{itemize}
+  \section{Symbols and Abbreviations}
 
-  Here are some nested lists.
+  \begin{description}
+    \item[CPU] The brain of the computer.
+    \item[Hard drive] Permanent storage for operating system and/or user files.
+    \item[RAM] Temporarily stores information the CPU uses during operation.
+    \item[Keyboard] Used to enter text or control items on the screen.
+    \item[Mouse] Used to point to and select items on your computer screen.
+    \item[Monitor] Displays information in visual form using text and graphics.
+  \end{description}
 
-  \begin{itemize}
-    \item A0
-    \item B0
-    \begin{itemize}
-      \item A1
-      \item B1
-    \end{itemize}
-    \item C0
-    \begin{itemize}
-      \item A1
-      \item B1
-      \begin{itemize}
-        \item A2
-        \item B2
-        \begin{itemize}
-          \item A3
-          \item B3
-          \item C3
-        \end{itemize}
-        \item C2
-      \end{itemize}
-      \item C1
-    \end{itemize}
-  \end{itemize}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \subsection{Ordered lists}
+  \begin{thebibliography}{2}
+    \bibitem[ISO 7301]{ISO7301} Rice -- Specification
 
-  Let's try with the simplest list.
-
-  \begin{enumerate}
-    \item Hey,
-    \item ho,
-    \item let's go!
-  \end{enumerate}
-
-  Now we check line breaks and paragraphs.
-
-  \begin{enumerate}
-    \item No lines here.
-
-    \item This is a paragraph\\
-          containing a line break.
-
-    \item This is a paragraph.
-
-          This is another paragraph.
-  \end{enumerate}
-
-  Here are some nested lists.
-
-  \begin{enumerate}
-    \item A0
-    \item B0
-    \begin{enumerate}
-      \item A1
-      \item B1
-    \end{enumerate}
-    \item C0
-    \begin{enumerate}
-      \item A1
-      \item B1
-      \begin{enumerate}
-        \item A2
-        \item B2
-        \begin{enumerate}
-          \item A3
-          \item B3
-          \item C3
-        \end{enumerate}
-        \item C2
-      \end{enumerate}
-      \item C1
-    \end{enumerate}
-  \end{enumerate}
-
-
+    \bibitem{knuthwebsite}
+      Knuth: Computers and Typesetting,
+      \\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+  \end{thebibliography}
 \end{document}
