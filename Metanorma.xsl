@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  tex2mn - converts Metanorma documents from LaTeX to AsciiDoc
+
+  Copyright (C) 2019 Ribose Inc. <open.source@ribose.com>
+  This project is available under the terms of the MIT License.
+-->
+
 <xsl:stylesheet
   version   = "1.0"
   xmlns:xsl = "http://www.w3.org/1999/XSL/Transform"
