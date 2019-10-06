@@ -13,6 +13,9 @@ class TestBibliography < Minitest::Test
       [bibliography]
       == References
 
+      * [[[ISO7301,ISO 7301]]]
+      Rice – Specification
+
       * [[[latexcompanion,1]]]
       Michel Goossens, Frank Mittelbach, and Alexander Samarin.
       __The LaTeX Companion__.
@@ -39,6 +42,9 @@ class TestBibliography < Minitest::Test
         \cite{latexcompanion,knuthwebsite}.
 
         \begin{thebibliography}{3}
+          \bibitem[ISO 7301]{ISO7301}
+            Rice -- Specification
+
           \bibitem{latexcompanion}
             Michel Goossens, Frank Mittelbach, and Alexander Samarin.
             \textit{The \LaTeX\ Companion}.
