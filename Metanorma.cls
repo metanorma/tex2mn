@@ -79,4 +79,16 @@
 \NewDocumentEnvironment{verification}{}{\begin{mdframed}[style=verification]}{\end{mdframed}}
 \NewDocumentEnvironment{import}{}{\begin{mdframed}[style=import]}{\end{mdframed}}
 
+%% Terms and definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\NewDocumentCommand{\alt}{m}{{\large #1}\par}
+\NewDocumentCommand{\deprecated}{m}{\textbf{DEPRECATED:} #1\par}
+\NewDocumentCommand{\domain}{m}{\textbf{DOMAIN:} #1\par}
+
+\mdfdefinestyle{example}{linecolor=lightgray,frametitle=Example}
+\mdfdefinestyle{source}{linecolor=lightgray,frametitle=Source}
+
+\NewDocumentEnvironment{example}{}{\begin{mdframed}[style=example]}{\end{mdframed}}
+\NewDocumentEnvironment{source}{}{\begin{mdframed}[style=source]}{\end{mdframed}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
