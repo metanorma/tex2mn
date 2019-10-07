@@ -158,10 +158,12 @@ class TestAdmonitions < Minitest::Test
       [.requirement]
       ====
       Level 1
-       [.requirement]
+
+      [.requirement]
       =====
       Level 2
-       [.requirement]
+
+      [.requirement]
       ======
       Level 3
       ======
@@ -189,19 +191,23 @@ class TestAdmonitions < Minitest::Test
       [.requirement]
       ====
       This is a requirement.
-       [.specification]
+
+      [.specification]
       --
       This is a specification.
       --
-       [.measurement-target]
+
+      [.measurement-target]
       --
       This is a measurement target.
       --
-       [.verification]
+
+      [.verification]
       --
       This is a verification.
       --
-       [.import]
+
+      [.import]
       --
       This is an import.
       --
