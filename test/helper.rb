@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require "open3"
 
 def wrap_stderr(stderr)
   separator("STDERR") + "\n" + stderr + separator
 end
 
-def separator(label="", length=120)
+def separator(label = "", length = 120)
   return "█" * length if label.empty?
   "██ #{label} ".yield_self { |head| head + "█" * (length - head.size) }
 end
@@ -13,13 +15,15 @@ def render_string(string)
   tex = string
   xml = run_latexml(string)
   adoc = run_latexmlpost(xml)
-  if ENV.key?("DEBUG")
-    puts [separator("TEX"), "\n", tex].join
-    puts [separator("XML"), "\n", xml].join
-    puts [separator("ADOC"), "\n", adoc].join
-    puts [separator, "\n"].join
-  end
+  print_debug(tex, xml, adoc) if ENV.key?("DEBUG")
   adoc
+end
+
+def print_debug(tex, xml, adoc)
+  puts [separator("TEX"), "\n", tex].join
+  puts [separator("XML"), "\n", xml].join
+  puts [separator("ADOC"), "\n", adoc].join
+  puts [separator, "\n"].join
 end
 
 def read_file(filename)
