@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "minitest/autorun"
 require "helper"
 
@@ -153,20 +155,18 @@ class TestAdmonitions < Minitest::Test
 
   def test_block_nesting
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
-    [.requirement]
-    ====
-    Level 1
-
-    [.requirement]
-    =====
-    Level 2
-
-    [.requirement]
-    ======
-    Level 3
-    ======
-    =====
-    ====
+      [.requirement]
+      ====
+      Level 1
+       [.requirement]
+      =====
+      Level 2
+       [.requirement]
+      ======
+      Level 3
+      ======
+      =====
+      ====
 
     OUTPUT
       \documentclass{metanorma}
@@ -186,30 +186,26 @@ class TestAdmonitions < Minitest::Test
 
   def test_block_substructure
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
-    [.requirement]
-    ====
-    This is a requirement.
-
-    [.specification]
-    --
-    This is a specification.
-    --
-
-    [.measurement-target]
-    --
-    This is a measurement target.
-    --
-
-    [.verification]
-    --
-    This is a verification.
-    --
-
-    [.import]
-    --
-    This is an import.
-    --
-    ====
+      [.requirement]
+      ====
+      This is a requirement.
+       [.specification]
+      --
+      This is a specification.
+      --
+       [.measurement-target]
+      --
+      This is a measurement target.
+      --
+       [.verification]
+      --
+      This is a verification.
+      --
+       [.import]
+      --
+      This is an import.
+      --
+      ====
 
     OUTPUT
       \documentclass{metanorma}
