@@ -1,0 +1,7 @@
+= Text formatting
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_text_formatting.rb[test_text_formatting.rb]
+
+* bold/italics/strikethrogh/smallcaps
+* quotation marks
+* sup/sub
