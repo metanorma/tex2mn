@@ -1,0 +1,11 @@
+= tex2mn manual
+:epoch: 1573292686
+:repo-url: https://github.com/metanorma/tex2mn
+:repo-tag: master
+:repo-blob-url: {repo-url}/blob/{repo-tag}
+:repo-tree-url: {repo-url}/tree/{repo-tag}
+:toc:
+
+include::reading_the_manual.adoc[leveloffset=+1]
+// include::text_formatting.adoc[leveloffset=+1]
+// include::paragraph_formatting.adoc[leveloffset=+1]
