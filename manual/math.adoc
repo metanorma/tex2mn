@@ -1,0 +1,40 @@
+= Math
+
+[NOTE]
+====
+These features are verified by tests in
+{repo-blob-url}/test/test_math_inline.rb[test_math_inline.rb] and
+{repo-blob-url}/test/test_math_display.rb[test_math_display.rb].
+====
+
+You can typeset inline math delimiting it with `S`/`$` pairs:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Euler's identity is $e^{i\pi}+1=0$.
+|[source,asciidoc]
+Euler's identity is stem:[e^{i\pi}+1=0].
+|===
+
+You can typeset display math delimiting it with `\[`/`\]` pairs:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Here is the Binomial Theorem:
+\[(1+x)^n = \sum_{k=0}^n {n \choose k}x^k\]
+|[source,asciidoc]
+----
+Here is the Binomial Theorem:
+
+[stem]
+++++
+(1+x)^n = \sum_{k=0}^n {n \choose k}x^k
+++++
+----
+|===
+
+// TODO: Whould we make it explicit about `:stem: latexmath`?
+// TODO: == Math environments
+// TODO: == Formulae, see https://www.metanorma.com/author/topics/document-format/text/#formulae

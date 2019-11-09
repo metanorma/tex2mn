@@ -1,0 +1,57 @@
+= Cross-references
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_cross_references.rb[test_cross_references.rb].
+====
+
+== Internal references
+
+To reference some part of the document you must first of all label it using `\label`.
+Many parts of the document accept labels (headings, tables, list items, etc.) and you will find an example in the related section when that's the case.
+
+For the sake of the next examples, let's assume a section labeled `sec:foo` exists.
+
+You can reference `sec:foo` by using the `\ref` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Go look at \ref{sec:foo}.
+|[source,asciidoc]
+Go look at <<sec:foo>>.
+|===
+
+To reference `sec:foo` with a custom text you can use the `\hyperref` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Go look at \hyperref[sec:foo]{this}.
+|[source,asciidoc]
+Go look at <<sec:foo, this>>.
+|===
+
+== External references
+
+References can also point to URLs identifying resources external to the document.
+
+You can link to a website by using the `\url` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Go look at \url{https://www.metanorma.com/}.
+|[source,asciidoc]
+Go look at https://www.metanorma.com/.
+|===
+
+To link to a website with a custom text you can use the `\href` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Go look at \href{https://www.metanorma.com/}{Metanorma home}.
+|[source,asciidoc]
+Go look at https://www.metanorma.com/[Metanorma home].
+|===

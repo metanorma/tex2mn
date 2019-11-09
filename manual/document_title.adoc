@@ -1,0 +1,23 @@
+= Document title
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_title.rb[test_title.rb].
+
+You can define the document's title by using the `\title` macro _in the preamble_:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\documentclass{metanorma}
+\title{My first document}
+\begin{document}
+  Document contents here.
+\end{document}
+----
+|[source,asciidoc]
+----
+= My first document
+
+Document contents here.
+----
+|===

@@ -1,0 +1,68 @@
+= Document attributes
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_document_attributes.rb[test_document_attributes.rb].
+
+Document attributes are global metadata that can be interpreted by `metanorma` when processing the `AsciiDoc` output.
+Which attributes you should use depend upon the Metanorma flavour you're targeting.
+Attributes supported by most Metanorma flavours can be found in the https://www.metanorma.com/author/ref/document-attributes/[generic attributes reference].
+
+You can define a document attribute by using the `*\set*` macro _in the preamble_:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\documentclass{metanorma}
+\set{my-attribute}{foobar}
+\begin{document}
+  Document contents here.
+\end{document}
+----
+|[source,asciidoc]
+----
+:my-attribute: foobar
+
+Document contents here.
+----
+|===
+
+You can define a boolean attribute by using the `*\set*` with an empty argument:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\documentclass{metanorma}
+\set{my-boolean-attribute}{}
+\begin{document}
+  Document contents here.
+\end{document}
+----
+|[source,asciidoc]
+----
+:my-boolean-attribute:
+
+Document contents here.
+----
+|===
+
+
+You can use an attribute's value by using the `*\get*` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\documentclass{metanorma}
+\set{my-attribute}{some value}
+\begin{document}
+  The attribute value is \get{my-attribute}.
+\end{document}
+----
+|[source,asciidoc]
+----
+:my-attribute: some value
+
+The attribute's value is {my-attribute}.
+----
+|===

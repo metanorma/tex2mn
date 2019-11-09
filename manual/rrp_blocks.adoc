@@ -1,0 +1,157 @@
+= Requirements, Recommendations, and Permissions
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_blocks.rb[test_blocks.rb].
+====
+
+You can typeset requirements, recommendations, and permissions by using the homonymous environments `*requirement*`, `*recommendation*` and `*permission*`:
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{requirement}
+  This is a requirement block.
+\end{requirement}
+|[source,asciidoc]
+----
+[.requirement]
+====
+This is a requirement block.
+====
+----
+|===
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{recommendation}
+  This is a recommendation block.
+\end{recommendation}
+|[source,asciidoc]
+----
+[.recommendation]
+====
+This is a recommendation block.
+====
+----
+|===
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{permission}
+  This is a permission block.
+\end{permission}
+|[source,asciidoc]
+----
+[.permission]
+====
+This is a permission block.
+====
+----
+|===
+
+== Attributes
+
+CAUTION: TODO
+
+== Nesting
+
+Requirements, recommendations and permissions can be nested:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\begin{requirement}
+  Here is a nested requirement.
+
+  \begin{requirement}
+    First nested requirement.
+  \end{requirement}
+
+  Here is another nested requirement.
+
+  \begin{requirement}
+    Second nested requirement.
+  \end{requirement}
+\end{requirement}
+----
+|[source,asciidoc]
+----
+[.requirement]
+====
+Here is a nested requirement.
+
+[.requirement]
+=====
+First nested requirement.
+=====
+
+Here is another nested requirement.
+
+[.requirement]
+======
+Second nested requirement.
+======
+====
+----
+|===
+
+== Internal structure
+
+The internal structure of requirements, recommendations and permissions can be further marked up with environments which will help making the document machine-readable. Such environments are: `*specification*`, `*measurement-target*`, `*verification*`, and `*import*`.
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\begin{requirement}
+  This is descriptive text.
+
+  \begin{specification}
+    This is a formal statement, which may be considered the object of the requirement.
+  \end{specification}
+
+  \begin{measurement-target}
+    This is a quantitative measure for the requirement.
+  \end{measurement-target}
+
+  \begin{verification}
+    This is a verification step for the requirement
+  \end{verification}
+
+  \begin{import}
+    This is a code stub.
+  \end{import}
+\end{requirement}
+----
+|[source,asciidoc]
+----
+[.requirement]
+====
+This is descriptive text.
+
+[.specification]
+--
+This is a formal statement, which may be considered the object of the requirement.
+--
+
+[.measurement-target]
+--
+This is a quantitative measure for the requirement.
+--
+
+[.verification]
+--
+This is a verification step for the requirement
+--
+
+[.import]
+--
+This is a code stub.
+--
+====
+----
+|===
