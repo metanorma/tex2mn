@@ -1,0 +1,67 @@
+= Lists
+
+All usual typologies of lists available in `LaTeX` can be used;
+as usual, they work by listing items usinf the `\item` macro inside a specific environment.
+
+== Ordered lists
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_ordered_lists.rb[test_ordered_lists.rb].
+
+You can typeset ordered lists using the `enumerate` environment:
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{enumerate}
+  \item Hey,
+  \item ho,
+  \item let's go!
+\end{enumerate}
+|[source,asciidoc]
+. Hey,
+. ho,
+. let’s go!
+|===
+
+== Unordered lists
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_unordered_lists.rb[test_unordered_lists.rb].
+
+You can typeset unordered lists using the `itemize` environment:
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{itemize}
+  \item Foo
+  \item Bar
+  \item Baz
+\end{itemize}
+|[source,asciidoc]
+* Foo
+* Bar
+* Baz
+|===
+
+== Description lists
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_description_lists.rb[test_description_lists.rb].
+
+You can typeset description lists using the `description` environment:
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{description}
+  \item[Lee] bass guitar and lead vocals
+  \item[Lifeson] guitars and backing vocals
+  \item[Peart] drums and percussion
+\end{description}
+|[source,asciidoc]
+Lee:: bass guitar and lead vocals
+Lifeson:: guitars and backing vocals
+Peart:: drums and percussion
+|===
+
+// TODO: == Nested lists
+// TODO: == Long items and paragraph breaks

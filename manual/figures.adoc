@@ -1,0 +1,28 @@
+= Figures
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_figures.rb[test_figures.rb].
+====
+
+You can typeset figures by using the `figure` environment.
+
+Use `\includegraphics` to include an image.
+
+Use `\label` and `\caption` to add labels and captions to figures.
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{figure}
+  \label{fig:example}
+  \caption{This is the caption}
+  \includegraphics{example.jpg}
+\end{figure}
+|[source,asciidoc]
+----
+[[fig:example]]
+.This is the caption
+image::example.jpg[]
+----
+|===

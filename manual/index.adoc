@@ -1,11 +1,36 @@
 = tex2mn manual
-:epoch: 1573292686
+:epoch: 1573304771
+:ctan-pkg-url: https://ctan.org/pkg
 :repo-url: https://github.com/metanorma/tex2mn
 :repo-tag: master
 :repo-blob-url: {repo-url}/blob/{repo-tag}
 :repo-tree-url: {repo-url}/tree/{repo-tag}
 :toc:
+:toclevels: 5
 
 include::reading_the_manual.adoc[leveloffset=+1]
-// include::text_formatting.adoc[leveloffset=+1]
-// include::paragraph_formatting.adoc[leveloffset=+1]
+
+== Document
+include::document_title.adoc[leveloffset=+2]
+include::document_attributes.adoc[leveloffset=+2]
+
+== Sections
+=== Levels
+=== Names
+=== Attributes
+=== Annexes
+=== Special sections
+==== Symbols and abbreviations
+==== Terms and definitions
+
+include::text_formatting.adoc[leveloffset=+1]
+include::paragraph_alignment.adoc[leveloffset=+1]
+include::cross_references.adoc[leveloffset=+1]
+include::block_quotations.adoc[leveloffset=+1]
+include::lists.adoc[leveloffset=+1]
+include::math.adoc[leveloffset=+1]
+include::tables.adoc[leveloffset=+1]
+include::figures.adoc[leveloffset=+1]
+include::footnotes.adoc[leveloffset=+1]
+include::rrp_blocks.adoc[leveloffset=+1]
+

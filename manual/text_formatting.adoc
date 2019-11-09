@@ -1,7 +1,63 @@
 = Text formatting
 
-NOTE: These features are verified by tests in {repo-blob-url}/test/test_text_formatting.rb[test_text_formatting.rb]
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_text_formatting.rb[test_text_formatting.rb].
 
-* bold/italics/strikethrogh/smallcaps
-* quotation marks
-* sup/sub
+You can set bold, italic and small caps text using respectively `\textbf`, `\textit` and `\textsc`.
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\textbf{Bold} text.
+
+\textit{Italic} text.
+
+\textsc{Small caps} text.
+----
+|[source,asciidoc]
+----
+**Bold** text.
+
+__Italic__ text.
+
+[smallcap]#Small caps# text.
+----
+|===
+
+The _switch_ versions of these macros are available too: `\bfseries`, `\itshape` and `\scshape`.
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+{\bfseries Bold} text.
+
+{\itshape Italic} text.
+
+{\scshape Small caps} text.
+----
+|[source,asciidoc]
+----
+**Bold** text.
+
+__Italic__ text.
+
+[smallcap]#Small caps# text.
+----
+|===
+
+To typeset strikethrough text you can use the `*\textst*` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\textst{Strikethrough} text.
+----
+|[source,asciidoc]
+----
+[strike]#Strikethrough# text.
+----
+|===
+
+NOTE: Strikethrough text is implemented using the {ctan-pkg-url}/ulem[ulem] package.

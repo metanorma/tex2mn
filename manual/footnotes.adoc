@@ -1,0 +1,19 @@
+= Footnotes
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_footnotes.rb[test_footnotes.rb].
+====
+
+You can typeset footnotes by using `\footnote`:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Footnotes are useful\footnote{Unless abused.}.
+|[source,asciidoc]
+Footnotes are useful footnote:[Unless abused.].
+|===
+
+// TODO: === Footnotes in tables
+// TODO: === Footnotes in figures

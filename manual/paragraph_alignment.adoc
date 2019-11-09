@@ -1,0 +1,52 @@
+= Paragraph alignment
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_paragraph_alignment.rb[test_paragraph_alignment.rb].
+
+You can set paragraph alignment explicitly using the `flushleft`, `center` and `flushright` environments.
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\begin{flushleft}
+  This paragraph is left aligned.
+\end{flushleft}
+----
+|[source,asciidoc]
+----
+[align=left]
+This paragraph is left aligned.
+----
+|===
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\begin{center}
+  This paragraph is centered.
+\end{center}
+----
+|[source,asciidoc]
+----
+[align=center]
+This paragraph is centered.
+----
+|===
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\begin{flushright}
+  This paragraph is right aligned.
+\end{flushright}
+----
+|[source,asciidoc]
+----
+[align=right]
+This paragraph is right aligned.
+----
+|===
+
+The default alignment is _justified_, so no environment is provided for that.

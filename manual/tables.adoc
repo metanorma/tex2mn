@@ -1,0 +1,56 @@
+= Tables
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_tables.rb[test_tables.rb].
+====
+
+You can typeset simple tables using the `tabular` environment:
+
+[cols="a,a",separator=!]
+!===
+![source,latex]
+\begin{tabular}{ll}
+  A & B \\
+  C & D \\
+\end{tabular}
+![source,asciidoc]
+----
+[cols=2*]
+|===
+| A
+| B
+
+| C
+| D
+|===
+----
+!===
+
+You can add labels and captions by wrapping a `tabular` with the `table` environment and using the `\label` and `\caption` macros:
+
+[cols="a,a",separator=!]
+!===
+![source,latex]
+\begin{table}
+  \label{tab:example}
+  \caption{This is the caption}
+  \begin{tabular}{ll}
+    A & B \\
+    C & D \\
+  \end{tabular}
+\end{table}
+![source,asciidoc]
+----
+[[tab:example]]
+.This is the caption
+[cols=2*]
+|===
+| A
+| B
+
+| C
+| D
+|===
+----
+!===

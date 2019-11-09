@@ -1,0 +1,46 @@
+= Block quotations
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_block_quotations.rb[test_block_quotations.rb].
+
+You can typeset block quotations using the `quote` environment:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\begin{quote}
+  This is a block quotation.
+\end{quote}
+----
+|
+[source,asciidoc]
+----
+  [quote]
+  ____
+  This is a block quotation.
+  ____
+----
+|===
+
+The attribution and the citation title can be passed through to AsciiDoc by using the `*\mn*` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\begin{quote}
+  \mn{ISO,"ISO7301, section 1"}
+  This is a block quotation.
+\end{quote}
+----
+|
+[source,asciidoc]
+----
+  [quote,ISO,"ISO7301, section 1"]
+  ____
+  This is a block quotation.
+  ____
+----
+|===
+
+CAUTION: This feature is not complete; attribution and citation title are currently not rendered by `LaTeX`.
