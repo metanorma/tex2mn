@@ -1,0 +1,184 @@
+= Sections
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_headings.rb[test_headings.rb].
+
+You can perform sectioning with the usual hierarchy of macros: `\section`, `\subsection`, `\subsubsection`, `\paragraph`, and `\subparagraph`:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{My section}
+
+\subsection{My subsection}
+
+\subsubsection{My subsubsection}
+
+\paragraph{My paragraph}
+
+\subparagraph{My subparagraph}
+----
+|[source,asciidoc]
+----
+== My section
+
+=== My subsection
+
+==== My subsubsection
+
+===== My paragraph
+
+====== My subparagraph
+----
+|===
+
+
+
+
+== Fixed names
+
+Metanorma relies on (case insensitive) canonical names to recognize a few standard sections:
+
+* `Abstract`
+* `Introduction`
+* `Scope`
+* `Normative References`
+* `Terms and Definitions`
+* `Symbols and Abbreviations`
+* `Bibliography`
+
+NOTE: `Terms and Definitions` and `Symbols and Abbreviations` expect a fixed structure, explained in the respective sections of this manual. Conversely, the heading for `Bibliography` is tipically generated automatically.
+
+If you need to name these sections in a different way (e.g. in non-english documents), you can set the canonical name to be recognized by Metanorma as an attribute:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{Mõisted ja määratlused}
+\mna{heading=terms and definitions}
+----
+|[source,asciidoc]
+----
+[heading=terms and definitions]
+== Mõisted ja määratlused
+----
+|===
+
+
+
+
+== Blank headings
+
+To define a subclause which is numbered but bears no header text, you can use a blank name:
+
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\subsection{}
+
+This subclause bears no title text.
+----
+|[source,asciidoc]
+----
+=== {blank}
+
+This subclause bears no title text.
+----
+|===
+
+
+
+
+== Deep levels
+
+Metanorma allows headings up to seven levels.
+`LaTeX` has only 5 macros, so we account for the two deepest levels by attaching a `*level*` attribute to `\subparagraph`:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\subparagraph{Heading at level 6}
+\mna{level=6}
+
+\subparagraph{Heading at level 7}
+\mna{level=7}
+----
+|[source,asciidoc]
+----
+[level=6]
+====== Heading at level 6
+
+[level=7]
+====== Heading at level 7
+----
+|===
+
+CAUTION: This feature has bad ergonomics and might change before the next major release.
+
+
+
+
+== Annexes: TODO
+=== Inline headings: TODO
+
+
+
+
+== Language and script
+
+You can set the `language` and the `script` of a section using attributes:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{French section}
+\mna{language=fr}
+
+\section{Math section}
+\mna{script=Zmth}
+----
+|[source,asciidoc]
+----
+[language=fr]
+== French section
+
+[script=Zmth]
+== Math section
+----
+|===
+
+
+
+
+== Obligations
+
+You can set the `obligation` of a section (which can be either `informative` or `normative`) using an attribute:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{Informative section}
+\mna{obligation=informative}
+----
+|[source,asciidoc]
+----
+[obligation=informative]
+== Informative section
+----
+|===
+
+Note that most sections have a fixed default.
+Annexes and clauses default to `normative` but you can set them to `informative`.
+
+
+
+
+== Foreword: TODO
+== Symbols and abbreviations: TODO
+== Terms and definitions: TODO

@@ -1,5 +1,5 @@
 = tex2mn manual
-:epoch: 1573304771
+:epoch: 1573399564
 :ctan-pkg-url: https://ctan.org/pkg
 :repo-url: https://github.com/metanorma/tex2mn
 :repo-tag: master
@@ -15,14 +15,9 @@ include::document_title.adoc[leveloffset=+2]
 include::document_attributes.adoc[leveloffset=+2]
 include::document_authors.adoc[leveloffset=+2]
 
-== Sections
-=== Levels
-=== Names
-=== Attributes
-=== Annexes
-=== Special sections
-==== Symbols and abbreviations
-==== Terms and definitions
+== `*\mn*` and `*\mna*`: TODO
+
+include::sections.adoc[leveloffset=+1]
 
 include::text_formatting.adoc[leveloffset=+1]
 include::paragraph_alignment.adoc[leveloffset=+1]
