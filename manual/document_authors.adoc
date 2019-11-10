@@ -1,0 +1,49 @@
+= Document authors
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_document_authors.rb[test_document_authors.rb].
+
+Document authors are handled as document attributes.
+
+You can `*\set*` a single author by specifying it in the preamble:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\documentclass{metanorma}
+\set{author}{John Doe}
+\begin{document}
+  Document authored by \get{author}.
+\end{document}
+----
+|[source,asciidoc]
+----
+:author: John Doe
+
+Document authored by {author}.
+----
+|===
+
+You can `*\set*` a multiple authors by enumerating them in the preamble:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\documentclass{metanorma}
+\set{author_1}{Tom Sawyer}
+\set{author_2}{Dick Tracy}
+\set{author_3}{Harry Potter}
+\begin{document}
+  Document authored by \get{author_1}, \get{author_2}, and \get{author_3}.
+\end{document}
+----
+|[source,asciidoc]
+----
+:author_1: Tom Sawyer
+:author_2: Dick Tracy
+:author_3: Harry Potter
+
+Document authored by {author_1}, {author_2}, and {author_3}.
+----
+|===

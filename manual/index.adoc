@@ -13,6 +13,7 @@ include::reading_the_manual.adoc[leveloffset=+1]
 == Document
 include::document_title.adoc[leveloffset=+2]
 include::document_attributes.adoc[leveloffset=+2]
+include::document_authors.adoc[leveloffset=+2]
 
 == Sections
 === Levels
