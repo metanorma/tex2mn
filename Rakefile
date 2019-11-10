@@ -6,7 +6,7 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList["test/**/test_*.rb"]
 end
 
-namespace "manual" do
+namespace 'manual' do
   # NOTE: this is a distilled version of
   #   https://github.com/asciidoctor/asciidoctor-extensions-lab/blob/master/scripts/asciidoc-coalescer.rb
   #   This is helpful to produce a version of the manual which can be browsed on GitHub.
@@ -28,4 +28,3 @@ namespace "manual" do
     sh 'find manual/*.adoc ! -name index.adoc | entr ruby -i -pe "gsub(/(?<=^:epoch: )\d+$/,Time.now.to_i.to_s)" manual/index.adoc'
   end
 end
-
