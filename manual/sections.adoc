@@ -227,5 +227,14 @@ Annexes and clauses default to `normative` but you can set them to `informative`
 
 
 
-== Symbols and abbreviations: TODO
+== Symbols and abbreviations
+
+`Symbols and Abbreviations` sections are expected to be simple <<_description_lists,description lists>>.
+
+Metanorma takes care of sorting the symbol entries in the order prescribed by ISO/IEC DIR 2, but it does not support sorting LaTeX math entries.
+Also note that the PDF rendered directly by LaTeX will not be sorted.
+
+
+
+
 == Terms and definitions: TODO
