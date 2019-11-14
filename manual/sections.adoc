@@ -240,7 +240,29 @@ Lorem ipsum.
 
 
 
-=== Inline headings: TODO
+=== Inline headings
+
+You can typeset inline headings by passing `\%inline-header` as an attribute:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\subsection{Inline header,}
+\mna{\%inline-header}
+
+which begins this line.
+----
+|[source,asciidoc]
+----
+[%inline-header]
+=== Inline header,
+
+which begins this line.
+----
+|===
+
+CAUTION: This feature has bad ergonomics and might change before the next major release.
 
 
 
