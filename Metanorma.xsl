@@ -24,11 +24,11 @@
     <xsl:copy><xsl:apply-templates select="@*|node()"/></xsl:copy>
   </xsl:template>  -->
 
-  <xsl:template match="ltx:section[ltx:title/text()='Foreword' or @heading='foreword' or @foreword]">
+  <!-- NOTE: it's apparently forbidden (by latexmlpost) to use a variable in a predicate -->
+  <xsl:template match="ltx:section[translate(ltx:title/text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='foreword' or @asciidoc-attributes='heading=foreword']">
     <xsl:text>[[Foreword]]&#xA;</xsl:text>
-    <xsl:value-of select="concat('.', ltx:title/text())"/>
+    <xsl:value-of select="concat('.', ltx:title/text(), '&#xA;')"/>
     <xsl:apply-templates/>
-    <xsl:text>&#xA;</xsl:text>
   </xsl:template>
 
   <xsl:template name="term-extras">

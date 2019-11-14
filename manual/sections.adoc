@@ -68,6 +68,54 @@ If you need to name these sections in a different way (e.g. in non-english docum
 
 
 
+== Foreword
+
+Another special section is the foreword, which has the canonical name `Foreword` and should be used at the very beginning:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{Foreword}
+First paragraph of foreword.
+
+Second paragraph of foreword.
+----
+|[source,asciidoc]
+----
+[[Foreword]]
+.Foreword
+First paragraph of foreword.
+
+Second paragraph of foreword.
+----
+|===
+
+Just like the other standard sections, you can also pass the canonical name as an attribute:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{Prefazione}
+\mna{heading=foreword}
+Primo paragrafo della prefazione.
+
+Secondo paragrafo della prefazione.
+----
+|[source,asciidoc]
+----
+[[Foreword]]
+.Prefazione
+Primo paragrafo della prefazione.
+
+Secondo paragrafo della prefazione.
+----
+|===
+
+
+
+
 == Blank headings
 
 To define a subclause which is numbered but bears no header text, you can use a blank name:
@@ -179,6 +227,5 @@ Annexes and clauses default to `normative` but you can set them to `informative`
 
 
 
-== Foreword: TODO
 == Symbols and abbreviations: TODO
 == Terms and definitions: TODO
