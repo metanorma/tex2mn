@@ -70,6 +70,8 @@ If you need to name these sections in a different way (e.g. in non-english docum
 
 == Foreword
 
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_foreword.rb[test_foreword.rb].
+
 Another special section is the foreword, which has the canonical name `Foreword` and should be used at the very beginning:
 
 [cols="a,a"]
