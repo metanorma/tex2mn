@@ -170,7 +170,74 @@ CAUTION: This feature has bad ergonomics and might change before the next major 
 
 
 
-== Annexes: TODO
+== Appendices
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_appendix.rb[test_appendix.rb].
+
+You can typeset appendices (i.e. annexes) by using the `\appendix` macro as it's customary in LaTeX.
+After you've called it all `\sections` will be treated as appendices.
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{Ordinary section}
+
+Lorem ipsum.
+
+\appendix
+
+\section{My first appendix}
+
+Lorem ipsum.
+
+\section{Another appendix}
+
+Lorem ipsum.
+
+----
+|[source,asciidoc]
+----
+== The last ordinary section
+
+Lorem ipsum.
+
+[appendix]
+== My first appendix
+
+Lorem ipsum.
+
+[appendix]
+== Another appendix
+
+Lorem ipsum.
+----
+|===
+
+Just like other sections, you can pass attributes to appendices. E.g. to change the `obligation`:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\appendix
+\section{My appendix}
+\mna[obligation=informative]
+
+Lorem ipsum.
+----
+|[source,asciidoc]
+----
+[appendix,obligation=informative]
+== My appendix
+
+Lorem ipsum.
+----
+|===
+
+
+
+
 === Inline headings: TODO
 
 

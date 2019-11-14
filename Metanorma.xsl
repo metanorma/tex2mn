@@ -18,7 +18,7 @@
 
   <xsl:strip-space elements="*" />
 
-  <xsl:template match="ltx:tags|ltx:title"/>
+  <xsl:template match="ltx:tags|ltx:title|ltx:toctitle"/>
 
   <!-- <xsl:template match="@*|node()">
     <xsl:copy><xsl:apply-templates select="@*|node()"/></xsl:copy>
@@ -98,16 +98,23 @@
 
   <xsl:template name="heading">
     <xsl:param name="depth"/>
+    <xsl:param name="extra"/>
     <!-- optional label -->
     <xsl:if test="@labels">
       <!-- NOTE: latexml lists and prefixes labels as "LABEL:lab1 LABEL:lab2" so we take the first one and drop the prefix -->
       <xsl:value-of select="concat('[[', substring-after(substring-before(concat(@labels, ' '), ' '), ':'), ']]&#xa;')"/>
     </xsl:if>
     <!-- optional attributes tag -->
-    <xsl:if test="@asciidoc-attributes">
-      <xsl:value-of select="concat('[', @asciidoc-attributes, ']')"/>
-      <xsl:call-template name="newline"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="@asciidoc-attributes and $extra">
+        <xsl:value-of select="concat('[', $extra, ',', @asciidoc-attributes, ']')"/>
+        <xsl:call-template name="newline"/>
+      </xsl:when>
+      <xsl:when test="@asciidoc-attributes or $extra">
+        <xsl:value-of select="concat('[', $extra, @asciidoc-attributes, ']')"/>
+        <xsl:call-template name="newline"/>
+      </xsl:when>
+    </xsl:choose>
     <!-- heading command -->
     <xsl:choose>
       <xsl:when test="ltx:title/text()!=''">
@@ -122,6 +129,13 @@
     <xsl:call-template name="newline"/>
     <!-- contents -->
     <xsl:apply-templates/>
+  </xsl:template>
+
+  <xsl:template match="ltx:appendix">
+    <xsl:call-template name="heading">
+      <xsl:with-param name="depth" select="'=='" />
+      <xsl:with-param name="extra" select="'appendix'" />
+    </xsl:call-template>
   </xsl:template>
 
   <xsl:template match="ltx:section">
