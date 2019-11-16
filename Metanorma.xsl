@@ -323,7 +323,8 @@
 
   <xsl:template match="ltx:description">
     <xsl:for-each select="ltx:item">
-      <xsl:value-of select="concat(./ltx:tags/ltx:tag[not(@role)], ':')"/>
+      <xsl:apply-templates select="ltx:tags/ltx:tag[not(@role)]"/>
+      <xsl:text>:</xsl:text>
       <xsl:for-each select="ancestor-or-self::ltx:description">:</xsl:for-each>
       <xsl:text>&#xa;</xsl:text>
       <xsl:apply-templates/>

@@ -89,4 +89,11 @@ DefMacro('\alt{}', '\lxRDF{property=alt,content=#1}');
 DefMacro('\deprecated{}', '\lxRDF{property=deprecated,content=#1}');
 DefMacro('\domain{}', '\lxRDF{property=domain,content=#1}');
 
+## LaTeX.pool.ltxml overrides ##################################################
+
+# NOTE: the original is '\normalfont\bfseries #1' but that's annoying since
+# we want to just do <xsl:apply-templates select="ltx:tags/ltx:tag[not(@role)]"/>
+# to match description list labels and that would get us an undesired bold.
+DefMacro('\descriptionlabel{}', '\normalfont #1');
+
 1;

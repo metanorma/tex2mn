@@ -139,4 +139,33 @@ class TestDescriptionLists < Minitest::Test
       \end{document}
     INPUT
   end
+
+  def test_math_labels
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Previous paragraph.
+
+      stem:[\alpha]::
+      First variable
+      stem:[\beta]::
+      Second variable
+      stem:[\gamma]::
+      Third variable
+
+      Following paragraph.
+
+    OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        Previous paragraph.
+
+        \begin{description}
+          \item[$\alpha$] First variable
+          \item[$\beta$] Second variable
+          \item[$\gamma$] Third variable
+        \end{description}
+
+        Following paragraph.
+      \end{document}
+    INPUT
+  end
 end
