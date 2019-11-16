@@ -42,7 +42,7 @@ class TestForeword < Minitest::Test
       \documentclass{metanorma}
       \begin{document}
         \section{Prefazione}
-        \mn{heading=foreword}
+        \mna{heading=foreword}
 
         Lorem ipsum.
       \end{document}
