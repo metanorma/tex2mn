@@ -63,5 +63,18 @@ Lifeson:: guitars and backing vocals
 Peart:: drums and percussion
 |===
 
-// TODO: == Nested lists
+
+
+
+== Nested lists
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_stressed_lists.rb[test_stressed_lists.rb].
+
+You can nest ordered, unordered and description lists freely.
+
+CAUTION: While `AsciiDoc` has no depth limit, `LaTeX` is limited to a depth of 4.
+
+
+
+
 // TODO: == Long items and paragraph breaks
