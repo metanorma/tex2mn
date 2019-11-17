@@ -1,11 +1,11 @@
-name: ubuntu
+name: windows
 
 on: [push, pull_request]
 
 jobs:
-  test-ubuntu:
-    name: Test on Ubuntu
-    runs-on: ubuntu-latest
+  test-windows:
+    name: Test on Windows
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
@@ -21,13 +21,13 @@ jobs:
         with:
           perl-version: ${{ matrix.perl }}
 
-      # LaTeXML dependencies: see https://dlmf.nist.gov/LaTeXML/get.html#prerequisites
-      #   LaTeXML (cpan) -> XML::LibXML (cpan) -> DB_File (cpan) -> libdb-dev (apt)
-      #   LaTeXML (cpan) -> XML::LibXSLT (cpan) -> libxml2-dev libxslt1-dev (apt)
-      # NOTE: we needed also libicu-dev and zlib1g-dev on Travis CI
-      - name: Install LaTeXML prerequisites
+      # NOTE: this is a trick I learned from
+      #   * https://github.com/skaji/perl-github-actions-sample/blob/master/.github/workflows/windows.yml#L21
+      #   * https://medium.com/@skaji/perl-meets-github-actions-3893ae100205
+      # It works because shogo82148's action uses Strawberry Perl for Windows.
+      - name: Add Strawberry Perl to PATH (*before* MSYS Perl!)
         run: |
-          sudo apt-get install -y libdb-dev libxml2-dev libxslt1-dev
+          echo "##[add-path]C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin"
 
       # NOTE: we need LaTeXML including commit
       # https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e
