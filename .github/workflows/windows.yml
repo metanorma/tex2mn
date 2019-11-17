@@ -33,6 +33,10 @@ jobs:
       # # LaTeXML (cpan) -> XML::LibXSLT (cpan) -> Alien::MSYS (cpan) -> ???
       - name: Install LaTeXML dependencies
         run: |
+          perl -V
+          perl -MApp::cpanminus -le "print 'ok'"
+          perl -le "print for grep { /(berry|perl)/ } split /;/, $ENV{PATH}"
+          cpanm --version
           cpanm --verbose --no-interactive --notest XML::LibXML
 
       # # NOTE: we need LaTeXML including commit
