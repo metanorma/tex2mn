@@ -20,7 +20,7 @@ jobs:
         name: Setup Perl
         uses: crazy-max/ghaction-chocolatey@v1
         with:
-          args: install strawberryperl --version 5.28.1.1
+          args: install strawberryperl --version 5.30.0.1
 
       # - name: Setup Perl ${{ matrix.perl }}
       #   uses: shogo82148/actions-setup-perl@v1
