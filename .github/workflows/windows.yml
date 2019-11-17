@@ -35,8 +35,7 @@ jobs:
         run: |
           get-command perl
           cpan App::cpanminus
-          rm C:\Program Files\Git\usr\bin\perl.exe
-          del /f "C:\Program Files\Git\usr\bin\perl.exe"
+          rm "C:\Program Files\Git\usr\bin\perl.exe"
           get-command perl
           cpan App::cpanminus
         # perl -V
