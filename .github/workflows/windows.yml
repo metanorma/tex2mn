@@ -16,11 +16,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@master
 
-      -
-        name: Setup Perl
-        uses: crazy-max/ghaction-chocolatey@v1
-        with:
-          args: install strawberryperl --version 5.30.0.1
+      # -
+      #   name: Setup Perl
+      #   uses: crazy-max/ghaction-chocolatey@v1
+      #   with:
+      #     args: install strawberryperl --version 5.30.0.1
+
+      # choco install strawberryperl
+      - name: Set up Perl
+        run: |
+          echo "##[add-path]C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin"
+      - name: perl -V
+        run: perl -V
+
 
       # - name: Setup Perl ${{ matrix.perl }}
       #   uses: shogo82148/actions-setup-perl@v1
@@ -33,9 +41,6 @@ jobs:
       # # LaTeXML (cpan) -> XML::LibXSLT (cpan) -> Alien::MSYS (cpan) -> ???
       - name: Install LaTeXML dependencies
         run: |
-          get-command perl
-          cpan App::cpanminus
-          rm "C:\Program Files\Git\usr\bin\perl.exe"
           get-command perl
           cpan App::cpanminus
         # perl -V
