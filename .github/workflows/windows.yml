@@ -36,6 +36,7 @@ jobs:
           perl -V
           perl -MApp::cpanminus -le "print 'ok'"
           perl -le "print for grep { /(berry|perl)/ } split /;/, $ENV{PATH}"
+          cpan App::cpanminus
           cpanm --version
           cpanm --verbose --no-interactive --notest XML::LibXML
 
