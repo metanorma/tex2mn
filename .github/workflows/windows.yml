@@ -16,45 +16,52 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@master
 
-      - name: Setup Perl ${{ matrix.perl }}
-        uses: shogo82148/actions-setup-perl@v1
+      -
+        name: Choco help
+        uses: crazy-max/ghaction-chocolatey@v1
         with:
-          perl-version: ${{ matrix.perl }}
+          args: -h
 
-      # LaTeXML dependencies: see https://dlmf.nist.gov/LaTeXML/get.html#prerequisites
-      # LaTeXML (cpan) -> XML::LibXML (cpan) -> DB_File (cpan) -> ???
-      # We need a Berkley DB version from https://www.oracle.com/database/technologies/related/berkeleydb-release-history.html
-      # LaTeXML (cpan) -> XML::LibXSLT (cpan) -> Alien::MSYS (cpan) -> ???
-      - name: Install LaTeXML dependencies
-        run: |
-          cpanm --verbose --no-interactive --notest XML::LibXSLT
 
-      # NOTE: we need LaTeXML including commit
-      # https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e
-      # related to issue https://github.com/brucemiller/LaTeXML/issues/1153
-      # but that's planned for release on 0.85 (early 2020).
-      - name: Install LaTeXML
-        run: cpanm --verbose --no-interactive --notest git://github.com/brucemiller/LaTeXML.git@9a0e7dc5
+      # - name: Setup Perl ${{ matrix.perl }}
+      #   uses: shogo82148/actions-setup-perl@v1
+      #   with:
+      #     perl-version: ${{ matrix.perl }}
 
-      - name: Setup Ruby ${{ matrix.ruby }}
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.ruby }}
-          architecture: 'x64'
+      # # LaTeXML dependencies: see https://dlmf.nist.gov/LaTeXML/get.html#prerequisites
+      # # LaTeXML (cpan) -> XML::LibXML (cpan) -> DB_File (cpan) -> ???
+      # # We need a Berkley DB version from https://www.oracle.com/database/technologies/related/berkeleydb-release-history.html
+      # # LaTeXML (cpan) -> XML::LibXSLT (cpan) -> Alien::MSYS (cpan) -> ???
+      # - name: Install LaTeXML dependencies
+      #   run: |
+      #     cpanm --verbose --no-interactive --notest XML::LibXSLT
 
-      - name: Cache gems
-        id: cache-gems
-        uses: actions/cache@v1
-        with:
-          path: ${{ runner.tool_cache }}/Ruby/2.5.5/x64/lib/ruby/gems
-          key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile.lock') }}
+      # # NOTE: we need LaTeXML including commit
+      # # https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e
+      # # related to issue https://github.com/brucemiller/LaTeXML/issues/1153
+      # # but that's planned for release on 0.85 (early 2020).
+      # - name: Install LaTeXML
+      #   run: cpanm --verbose --no-interactive --notest git://github.com/brucemiller/LaTeXML.git@9a0e7dc5
 
-      - name: Update gems
-        run: |
-          gem install bundler -v "~> 2"
-          bundle update --bundler
-          bundle install --jobs 4 --retry 3
+      # - name: Setup Ruby ${{ matrix.ruby }}
+      #   uses: actions/setup-ruby@v1
+      #   with:
+      #     ruby-version: ${{ matrix.ruby }}
+      #     architecture: 'x64'
 
-      - name: Run specs
-        run: |
-          bundle exec rake test
+      # - name: Cache gems
+      #   id: cache-gems
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ${{ runner.tool_cache }}/Ruby/2.5.5/x64/lib/ruby/gems
+      #     key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile.lock') }}
+
+      # - name: Update gems
+      #   run: |
+      #     gem install bundler -v "~> 2"
+      #     bundle update --bundler
+      #     bundle install --jobs 4 --retry 3
+
+      # - name: Run specs
+      #   run: |
+      #     bundle exec rake test
