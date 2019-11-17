@@ -16,36 +16,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@master
 
-      # -
-      #   name: Setup Perl
-      #   uses: crazy-max/ghaction-chocolatey@v1
-      #   with:
-      #     args: install strawberryperl --version 5.30.0.1
+      - name: Setup Perl ${{ matrix.perl }}
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: ${{ matrix.perl }}
 
-      # choco install strawberryperl
-
-      - name: Add Strawberry Perl to PATH
+      - name: Add Strawberry Perl to PATH (*before* MSYS Perl!)
         run: |
           echo "##[add-path]C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin"
-
-      # - name: Setup Perl ${{ matrix.perl }}
-      #   uses: shogo82148/actions-setup-perl@v1
-      #   with:
-      #     perl-version: ${{ matrix.perl }}
-
-      # # LaTeXML dependencies: see https://dlmf.nist.gov/LaTeXML/get.html#prerequisites
-      # # LaTeXML (cpan) -> XML::LibXML (cpan) -> DB_File (cpan) -> ???
-      # # We need a Berkley DB version from https://www.oracle.com/database/technologies/related/berkeleydb-release-history.html
-      # # LaTeXML (cpan) -> XML::LibXSLT (cpan) -> Alien::MSYS (cpan) -> ???
-      # - name: Install LaTeXML dependencies
-      #   run: |
-      #     cpanm --verbose --no-interactive --notest XML::LibXML
-      #   # get-command perl
-      #   # cpan App::cpanminus
-      #   # perl -V
-      #   # perl -MApp::cpanminus -le "print 'ok'"
-      #   # perl -le "print for grep { /(berry|perl)/ } split /;/, $ENV{PATH}"
-      #   # cpanm --version
 
       # NOTE: we need LaTeXML including commit
       # https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e
