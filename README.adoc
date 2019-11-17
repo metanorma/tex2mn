@@ -1,7 +1,14 @@
+:workflows-url: https://github.com/metanorma/tex2mn/workflows
+:actions-url: https://github.com/metanorma/tex2mn/actions
+:badges-branch: master
+
 = tex2mn
 
 image:https://img.shields.io/github/v/release/metanorma/tex2mn["GitHub release", link="https://github.com/metanorma/tex2mn/releases"]
-image:https://github.com/metanorma/tex2mn/workflows/ubuntu/badge.svg["Build Status", link="https://github.com/metanorma/tex2mn/actions"]
+
+image:{workflows-url}/ubuntu/badge.svg?branch={badges-branch}["Ubuntu build status", link="{actions-url}?query=workflow%3Aubuntu+branch%3A{badges-branch}"]
+image:{workflows-url}/macos/badge.svg?branch={badges-branch}["MacOS build status", link="{actions-url}?query=workflow%3Amacos+branch%3A{badges-branch}"]
+image:{workflows-url}/windows/badge.svg?branch={badges-branch}["Windows build status", link="{actions-url}?query=workflow%3Awindows+branch%3A{badges-branch}"]
 
 This project consists of
 
