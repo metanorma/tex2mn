@@ -21,6 +21,10 @@ jobs:
         with:
           perl-version: ${{ matrix.perl }}
 
+      # NOTE: this is a trick I learned from
+      #   * https://github.com/skaji/perl-github-actions-sample/blob/master/.github/workflows/windows.yml#L21
+      #   * https://medium.com/@skaji/perl-meets-github-actions-3893ae100205
+      # It works because shogo82148's action uses Strawberry Perl for Windows.
       - name: Add Strawberry Perl to PATH (*before* MSYS Perl!)
         run: |
           echo "##[add-path]C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin"
