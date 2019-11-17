@@ -20,8 +20,7 @@ jobs:
         name: Choco help
         uses: crazy-max/ghaction-chocolatey@v1
         with:
-          args: -h
-
+          args: choco install strawberryperl --version 5.28.1.1
 
       # - name: Setup Perl ${{ matrix.perl }}
       #   uses: shogo82148/actions-setup-perl@v1
