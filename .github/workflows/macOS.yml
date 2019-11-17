@@ -1,11 +1,11 @@
-name: ubuntu
+name: macos
 
 on: [push, pull_request]
 
 jobs:
-  test-ubuntu:
-    name: Test on Ubuntu
-    runs-on: ubuntu-latest
+  test-macos:
+    name: Test on MacOS
+    runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
@@ -22,12 +22,9 @@ jobs:
           perl-version: ${{ matrix.perl }}
 
       # LaTeXML dependencies: see https://dlmf.nist.gov/LaTeXML/get.html#prerequisites
-      #   LaTeXML (cpan) -> XML::LibXML (cpan) -> DB_File (cpan) -> libdb-dev (apt)
-      #   LaTeXML (cpan) -> XML::LibXSLT (cpan) -> libxml2-dev libxslt1-dev (apt)
-      # NOTE: we needed also libicu-dev and zlib1g-dev on Travis CI
       - name: Install LaTeXML prerequisites
         run: |
-          sudo apt-get install -y libdb-dev libxml2-dev libxslt1-dev
+          echo "Nothing extra to install. Yay!"
 
       # NOTE: we need LaTeXML including commit
       # https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e
