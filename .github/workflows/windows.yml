@@ -54,25 +54,25 @@ jobs:
       - name: Install LaTeXML
         run: cpanm --verbose --no-interactive --notest git://github.com/brucemiller/LaTeXML.git@9a0e7dc5
 
-      # - name: Setup Ruby ${{ matrix.ruby }}
-      #   uses: actions/setup-ruby@v1
-      #   with:
-      #     ruby-version: ${{ matrix.ruby }}
-      #     architecture: 'x64'
+      - name: Setup Ruby ${{ matrix.ruby }}
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          architecture: 'x64'
 
-      # - name: Cache gems
-      #   id: cache-gems
-      #   uses: actions/cache@v1
-      #   with:
-      #     path: ${{ runner.tool_cache }}/Ruby/2.5.5/x64/lib/ruby/gems
-      #     key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile.lock') }}
+      - name: Cache gems
+        id: cache-gems
+        uses: actions/cache@v1
+        with:
+          path: ${{ runner.tool_cache }}/Ruby/2.5.5/x64/lib/ruby/gems
+          key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile.lock') }}
 
-      # - name: Update gems
-      #   run: |
-      #     gem install bundler -v "~> 2"
-      #     bundle update --bundler
-      #     bundle install --jobs 4 --retry 3
+      - name: Update gems
+        run: |
+          gem install bundler -v "~> 2"
+          bundle update --bundler
+          bundle install --jobs 4 --retry 3
 
-      # - name: Run specs
-      #   run: |
-      #     bundle exec rake test
+      - name: Run specs
+        run: |
+          bundle exec rake test
