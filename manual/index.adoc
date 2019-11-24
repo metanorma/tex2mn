@@ -1,5 +1,5 @@
 = tex2mn manual
-:epoch: 1573399564
+:epoch: 1574615272
 :ctan-pkg-url: https://ctan.org/pkg
 :repo-url: https://github.com/metanorma/tex2mn
 :repo-tag: master
@@ -22,6 +22,7 @@ include::sections.adoc[leveloffset=+1]
 include::text_formatting.adoc[leveloffset=+1]
 include::paragraph_alignment.adoc[leveloffset=+1]
 include::cross_references.adoc[leveloffset=+1]
+include::bibliography.adoc[leveloffset=+1]
 include::block_quotations.adoc[leveloffset=+1]
 include::lists.adoc[leveloffset=+1]
 include::math.adoc[leveloffset=+1]

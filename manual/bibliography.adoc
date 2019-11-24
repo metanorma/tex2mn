@@ -1,0 +1,114 @@
+= Bibliography
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_bibliography.rb[test_bibliography.rb].
+
+You can cite a bibliographic source using the `\cite` macro as usual.
+
+The bibliographic database can be specified in two different ways.
+
+If the bibliography is small or you want to typeset each entry manually you can use the `thebibliography` environment to wrap a list of bibliographic items described by `\bibitem`.
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\documentclass{metanorma}
+
+\begin{document}
+
+  This document cites \cite{ISO7301}.
+  It also cites \cite{einstein}.
+
+  \begin{thebibliography}{2}
+    \bibitem[ISO 7301]{ISO7301}
+    Rice -- Specification
+
+    \bibitem{einstein}
+    Albert Einstein.
+    \textit{Zur Elektrodynamik bewegter K{\"o}rper}. (German)
+    [\textit{On the electrodynamics of moving bodies}].
+    Annalen der Physik, 322(10):891–921, 1905.
+  \end{thebibliography}
+\end{document}
+----
+|
+[source,asciidoc]
+----
+This document cites <<ISO7301>>.
+It also cites <<einstein>>.
+
+[bibliography]
+== References
+
+* [[[ISO7301,ISO 7301]]]
+Rice – Specification
+
+* [[[einstein,2]]]
+Albert Einstein.
+__Zur Elektrodynamik bewegter Körper__. (German)
+[__On the electrodynamics of moving bodies__].
+Annalen der Physik, 322(10):891–921, 1905.
+----
+|===
+
+If the bibliography is big or you have an existing BibTeX database, you can use that too by passing the filename to the `\bibliography` macro.
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\documentclass{metanorma}
+
+\begin{document}
+  Everyone should read \cite{einstein}.
+  Many interesting books are found in \cite{knuthwebsite}.
+
+  \bibliography{my_database.bib}
+\end{document}
+----
+.Contents of `my_database.bib`
+[source,bibtex]
+----
+@article{einstein,
+    author =  "Albert Einstein",
+    title =   "{Zur Elektrodynamik bewegter K{\"o}rper}. ({German})
+        [{On} lectrodynamics of moving bodies]",
+    journal = "Annalen der Physik",
+    volume =  "322",
+    number =  "10",
+    pages =   "891--921",
+    year =    "1905",
+    DOI =     "http://dx.doi.org/10.1002/andp.19053221004"
+}
+ 
+@misc{knuthwebsite,
+    author = "Donald Knuth",
+    title  = "Knuth: Computers and Typesetting",
+    url    = "http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html"
+}
+----
+|
+[source,asciidoc]
+----
+Everyone should read <<einstein>>.
+Many interesting books are found in <<knuthwebsite>>.
+
+[bibliography]
+== References
+
+* [[[einstein,1]]]
+{blank}A. Einstein (1905)
+Zur Elektrodynamik bewegter Körper. (German) [On the electrodynamics of moving bodies].
+Annalen der Physik322 (10),  pp. 891–921.
+External Links: http://dx.doi.org/10.1002/andp.19053221004[Document]
+
+* [[[knuthwebsite,3]]]
+{blank}D. Knuth
+Knuth: computers and typesetting.
+External Links: http://www-cs-faculty.stanford.edu/\~uno/abcde.html[Link]
+----
+|===
+
+CAUTION: While you can use bibliographic styles on the `LaTeX` side and
+https://www.relaton.com/[Relaton] databases on the `Adoc` side,
+these features are still not supported on the opposing side.
