@@ -13,6 +13,14 @@ main--saxon.adoc: main.xml
 		-xsl:Metanorma.xsl \
 		-o:main--saxon.adoc
 
+main.post.xml: main.xml
+	latexmlpost \
+		main.xml \
+		--nocrossref \
+		--destination=main.post.xml \
+		--nodefaultresources \
+		--novalidate
+
 main.adoc: main.xml
 	latexmlpost \
 		main.xml \
