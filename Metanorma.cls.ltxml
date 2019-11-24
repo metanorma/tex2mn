@@ -17,6 +17,7 @@ RequirePackage('lxRDFa');
 RequirePackage('graphicx');
 RequirePackage('hyperref');
 RequirePackage('amsmath');
+RequirePackage('subcaption');
 
 # NOTE: switching to ASCII encoding (inside the enveloping group) preserves quotes.
 # Otherwise, they would be mapped to curly ones by Tex.pool.ltxml fontmaps and ligatures.

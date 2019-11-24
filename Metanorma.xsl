@@ -344,7 +344,7 @@
     Figures
   -->
 
-  <xsl:template match="ltx:figure">
+  <xsl:template name="figure__label">
     <xsl:if test="@labels">
       <!-- NOTE: latexml lists and prefixes labels as "LABEL:lab1 LABEL:lab2" so we take the first one and drop the prefix -->
       <xsl:value-of select="concat('[[', substring-after(substring-before(concat(@labels, ' '), ' '), ':'), ']]&#xa;')"/>
@@ -353,6 +353,21 @@
       <!-- TODO: drop this unless it's required by asciidoc -->
       <xsl:value-of select="concat('[[', @xml:id, ']]&#xa;')"/>
     </xsl:if>
+  </xsl:template>
+
+  <!-- NOTE: this matches only parent of composite figures -->
+  <xsl:template match="ltx:figure[./ltx:figure]">
+    <xsl:call-template name="figure__label"/>
+    <xsl:apply-templates select="ltx:caption"/>
+    <xsl:text>====&#xa;</xsl:text>
+    <xsl:apply-templates select="ltx:figure"/>
+    <xsl:text>====&#xa;</xsl:text>
+    <xsl:call-template name="newline"/>
+  </xsl:template>
+
+  <!-- NOTE: this matches either simple figures or children of composite figures -->
+  <xsl:template match="ltx:figure[not(./ltx:figure)]">
+    <xsl:call-template name="figure__label"/>
     <xsl:apply-templates select="ltx:caption"/>
     <xsl:apply-templates select="ltx:graphics"/>
     <xsl:call-template name="newline"/>
@@ -364,7 +379,8 @@
   </xsl:template>
 
   <xsl:template match="ltx:figure/ltx:caption/ltx:tag"/>
-  <xsl:template match="ltx:figure/ltx:caption">
+  <!-- NOTE: is it correct to assume there's only one ltx:tex inside the caption? -->
+  <xsl:template match="ltx:figure/ltx:caption/ltx:text">
     <xsl:value-of select="concat('.', text(), '&#xa;')"/>
   </xsl:template>
 

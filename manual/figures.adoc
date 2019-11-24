@@ -26,3 +26,54 @@ Use `\label` and `\caption` to add labels and captions to figures.
 image::example.jpg[]
 ----
 |===
+
+
+
+
+== Subfigures
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_subfigures.rb[test_subfigures.rb].
+====
+
+To typeset a figure containing subfigures you can nest the `subfigure` environment inside a `figure`.
+
+The macros `\caption` and `\label` work as you would expect inside subfigures too.
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{figure}\centering
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{left.jpg}
+    \caption{A subfigure on the left}
+    \label{fig:left}
+  \end{subfigure}
+  \qquad
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{right.jpg}
+    \caption{A subfigure on the right}
+    \label{fig:right}
+  \end{subfigure}
+  \caption{A figure with two subfigures}
+  \label{fig:whole}
+\end{figure}
+|[source,asciidoc]
+----
+[[fig:whole]]
+.A figure with two subfigures
+====
+[[fig:left]]
+.A subfigure on the left
+image::left.jpg[]
+
+[[fig:right]]
+.A subfigure on the right
+image::right.jpg[]
+
+====
+----
+|===
+
+NOTE: Subfigures are implemented using the {ctan-pkg-url}/subcaption[subcaption] package.
