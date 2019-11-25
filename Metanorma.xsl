@@ -437,7 +437,8 @@
   </xsl:template>
 
   <xsl:template match="ltx:table/ltx:caption/ltx:tag"/>
-  <xsl:template match="ltx:table/ltx:caption">
+  <!-- NOTE: is it correct to assume there's only one ltx:tex inside the caption? -->
+  <xsl:template match="ltx:table/ltx:caption/ltx:text">
     <xsl:value-of select="concat('.', text(), '&#xa;')"/>
   </xsl:template>
 
