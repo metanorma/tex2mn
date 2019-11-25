@@ -77,3 +77,49 @@ image::right.jpg[]
 |===
 
 NOTE: Subfigures are implemented using the {ctan-pkg-url}/subcaption[subcaption] package.
+
+
+
+
+== Keys
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_figures_key.rb[test_figures_key.rb].
+====
+
+
+To typeset the key for a figure you can use a `*key*` environment (which behaves like a `description`) inside a `\paragraph` titled `Key`.
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{figure}
+  \includegraphics{example.jpg}
+  \label{fig:example}
+  \caption{This is the caption}
+  \paragraph*{Key}
+  \begin{key}
+    \item[A] First letter
+    \item[B] Second letter
+    \item[C] Third letter
+  \end{key}
+\end{figure}
+|[source,asciidoc]
+----
+[[fig:example]]
+.This is the caption
+image::example.jpg[]
+
+*Key*
+
+A::
+First letter
+B::
+Second letter
+C::
+Third letter
+----
+|===
+
+NOTE: Figures keys are implemented using the {ctan-pkg-url}/enumitem[enumitem] package.

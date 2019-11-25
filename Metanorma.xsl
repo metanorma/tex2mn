@@ -363,6 +363,7 @@
     <xsl:apply-templates select="ltx:figure"/>
     <xsl:text>====&#xa;</xsl:text>
     <xsl:call-template name="newline"/>
+    <xsl:apply-templates select="ltx:paragraph"/>
   </xsl:template>
 
   <!-- NOTE: this matches either simple figures or children of composite figures -->
@@ -371,6 +372,7 @@
     <xsl:apply-templates select="ltx:caption"/>
     <xsl:apply-templates select="ltx:graphics"/>
     <xsl:call-template name="newline"/>
+    <xsl:apply-templates select="ltx:paragraph"/>
   </xsl:template>
 
   <xsl:template match="ltx:figure/ltx:graphics">
@@ -382,6 +384,14 @@
   <!-- NOTE: is it correct to assume there's only one ltx:tex inside the caption? -->
   <xsl:template match="ltx:figure/ltx:caption/ltx:text">
     <xsl:value-of select="concat('.', text(), '&#xa;')"/>
+  </xsl:template>
+
+  <!-- NOTE: we're assuming the only paragraph inside an figure will be the key -->
+  <xsl:template match="ltx:figure/ltx:paragraph">
+    <xsl:value-of select="concat('*', ltx:title, '*&#xa;')"/>
+    <xsl:call-template name="newline"/>
+    <xsl:apply-templates select="ltx:para/ltx:description"/>
+    <xsl:call-template name="newline"/>
   </xsl:template>
 
   <!--

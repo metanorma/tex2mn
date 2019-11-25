@@ -90,6 +90,17 @@ DefMacro('\alt{}', '\lxRDF{property=alt,content=#1}');
 DefMacro('\deprecated{}', '\lxRDF{property=deprecated,content=#1}');
 DefMacro('\domain{}', '\lxRDF{property=domain,content=#1}');
 
+
+## Figures keys ################################################################
+
+# NOTE: this is straight from LaTeXML/lib/LaTeXML/Package/enumitem.sty.ltxml
+DefEnvironment('{key} OptionalUndigested',
+  "<ltx:description  xml:id='#id'>#body</ltx:description>",
+  beforeDigest => sub { Let('\makelabel', '\descriptionlabel'); },
+  properties => sub { beginItemize('description', '@desc'); },
+  beforeDigestEnd => sub { Digest('\par'); },
+  locked => 1, mode => 'text');
+
 ## LaTeX.pool.ltxml overrides ##################################################
 
 # NOTE: the original is '\normalfont\bfseries #1' but that's annoying since
