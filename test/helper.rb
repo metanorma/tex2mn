@@ -20,9 +20,9 @@ def render_string(string)
 end
 
 def print_debug(tex, xml, adoc)
-  puts [separator("TEX"), "\n", tex].join
-  puts [separator("XML"), "\n", xml].join
-  puts [separator("ADOC"), "\n", adoc].join
+  puts ["\n", separator("TEX"), "\n", tex].join
+  puts ["\n", separator("XML"), "\n", xml].join
+  puts ["\n", separator("ADOC"), "\n", adoc].join
   puts [separator, "\n"].join
 end
 
