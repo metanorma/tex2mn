@@ -467,25 +467,33 @@
   </xsl:template>
 
   <!--
+    Links
+  -->
+
+  <xsl:template match="ltx:ref[@href]">
+    <!-- NOTE: to handle *anything* a user might throw at us, we use the explicit link macro -->
+    <xsl:choose>
+      <xsl:when test="@href!=node()">
+        <xsl:value-of select="concat('link:++', @href, '++', '[', node(), ']')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat('link:++', @href, '++', '[]')"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
     Cross references
   -->
 
-  <xsl:template match="ltx:ref">
+  <xsl:template match="ltx:ref[@labelref]">
     <xsl:choose>
-      <xsl:when test="@href and @href=node()">
-        <xsl:value-of select="@href"/>
-      </xsl:when>
-      <xsl:when test="@href and @href!=node()">
-        <xsl:value-of select="concat(@href, '[', node(), ']')"/>
-      </xsl:when>
-      <!-- NOTE: by default (disabled with nocrossref) latexmk would add a child text node containing @labelref-->
-      <xsl:when test="@labelref and not(node())">
-        <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), '&gt;&gt;')"/>
-      </xsl:when>
-      <xsl:when test="@labelref and node()">
+      <!-- NOTE: by default (disabled with nocrossref) latexmk would add a child text node containing @labelref so we couldn't choose here -->
+      <xsl:when test="node()">
         <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), ', ', text(), '&gt;&gt;')"/>
       </xsl:when>
       <xsl:otherwise>
+        <xsl:value-of select="concat('&lt;&lt;', substring-after(@labelref, ':'), '&gt;&gt;')"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

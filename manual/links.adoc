@@ -1,0 +1,28 @@
+= Links (aka external references)
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_links.rb[test_links.rb].
+====
+
+References can also point to URLs identifying resources external to the document.
+
+You can link to a website by using the `\url` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Go look at \url{https://www.metanorma.com/}.
+|[source,asciidoc]
+Go look at link:++https://www.metanorma.com/++[].
+|===
+
+To link to a website with a custom text you can use the `\href` macro:
+
+[cols="a,a"]
+|===
+|[source,latex]
+Go look at \href{https://www.metanorma.com/}{Metanorma home}.
+|[source,asciidoc]
+Go look at link:++https://www.metanorma.com/++[Metanorma home].
+|===
