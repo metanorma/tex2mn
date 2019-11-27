@@ -16,7 +16,7 @@ class TestBibliography < Minitest::Test
       {blank}A. Einstein (1905)
       Zur Elektrodynamik bewegter Körper. (German) [On the electrodynamics of moving bodies].
       Annalen der Physik322 (10),  pp. 891–921.
-      External Links: http://dx.doi.org/http%3A//dx.doi.org/10.1002/andp.19053221004[Document]
+      External Links: link:++http://dx.doi.org/http%3A//dx.doi.org/10.1002/andp.19053221004++[Document]
 
       * [[[latexcompanion,2]]]
       {blank}M. Goossens, F. Mittelbach, and A. Samarin (1993)
@@ -26,7 +26,7 @@ class TestBibliography < Minitest::Test
       * [[[knuthwebsite,3]]]
       {blank}D. Knuth
       Knuth: computers and typesetting.
-      External Links: http://www-cs-faculty.stanford.edu/\~uno/abcde.html[Link]
+      External Links: link:++http://www-cs-faculty.stanford.edu/\~uno/abcde.html++[Link]
 
     OUTPUT
       \documentclass{Metanorma}
