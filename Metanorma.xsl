@@ -565,14 +565,28 @@
   </xsl:template>
 
   <!--
-    Bibliography
+    Citations
   -->
 
   <xsl:template match="ltx:cite">
-    <xsl:for-each select="str:tokenize(./ltx:bibref/@bibrefs, ',')">
+    <xsl:text>&lt;&lt;</xsl:text>
+    <xsl:value-of select="ltx:bibref/@bibrefs"/>
+    <!-- TODO: should we care about multiple bibrefs? -->
+    <!-- <xsl:for-each select="str:tokenize(./ltx:bibref/@bibrefs, ',')">
       <xsl:value-of select="concat('&lt;&lt;', ., '&gt;&gt;')"/>
-    </xsl:for-each>
+    </xsl:for-each> -->
+    <xsl:if test="@mn__localities!=''">
+      <xsl:value-of select="concat(',', @mn__localities)"/>
+    </xsl:if>
+    <xsl:if test="@mn__text!=''">
+      <xsl:value-of select="concat(',', @mn__text)"/>
+    </xsl:if>
+    <xsl:text>&gt;&gt;</xsl:text>
   </xsl:template>
+
+  <!--
+    Bibliography
+  -->
 
   <xsl:template match="ltx:bibliography/ltx:title">
     <xsl:text>[bibliography]&#xa;</xsl:text>

@@ -1,0 +1,39 @@
+= Advanced citations
+
+NOTE: These features are verified by tests in {repo-blob-url}/test/test_mncite.rb[test_mncite.rb].
+
+To leverage the full power of Metanorma you can use `*\mncite*` to typeset bibliographic references.
+
+`*\mncite*` accepts three arguments as `\mncite[<1>]{<2>}[<3>]`:
+
+1. the first argument (optional) is the citation which will be rendered literally;
+2. the second argument (mandatory) is the bibliographic key;
+3. the third argument (optional) is a list of https://www.metanorma.com/author/topics/document-format/bibliography/#localities[localities].
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\mncite{ISO712}
+
+\mncite[the foregoing reference]{ISO712}
+
+\mncite{ISO712}[section=5,page=8-10]
+
+\mncite[5:8-10]{ISO712}[section=5,page=8-10]
+----
+|
+[source,asciidoc]
+----
+<<ISO712>>
+
+<<ISO712,the foregoing reference>>
+
+<<ISO712,section=5,page=8-10>>
+
+<<ISO712,section=5,page=8-10,5:8-10>>
+----
+|===
+
+
+CAUTION: Localities are not rendered by the LaTeX class yet, only by Metanorma compilation. 

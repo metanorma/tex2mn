@@ -99,4 +99,9 @@
 \NewDocumentEnvironment{example}{}{\begin{mdframed}[style=example]}{\end{mdframed}}
 \NewDocumentEnvironment{source}{}{\begin{mdframed}[style=source]}{\end{mdframed}}
 
+%% Citation macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO: handle localities formatting
+\NewDocumentCommand{\mncite}{omo}{\cite[#1]{#2}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

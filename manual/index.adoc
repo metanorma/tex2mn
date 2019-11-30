@@ -23,7 +23,11 @@ include::text_formatting.adoc[leveloffset=+1]
 include::paragraph_alignment.adoc[leveloffset=+1]
 include::cross_references.adoc[leveloffset=+1]
 include::links.adoc[leveloffset=+1]
-include::bibliography.adoc[leveloffset=+1]
+
+== Bibliography and citations
+include::bibliography.adoc[leveloffset=+2]
+include::advanced_citations.adoc[leveloffset=+2]
+
 include::block_quotations.adoc[leveloffset=+1]
 include::lists.adoc[leveloffset=+1]
 include::math.adoc[leveloffset=+1]
