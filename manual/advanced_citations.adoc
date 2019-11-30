@@ -36,4 +36,6 @@ To leverage the full power of Metanorma you can use `*\mncite*` to typeset bibli
 |===
 
 
+CAUTION: Multiple citations, e.g. `\cite{KEY1,KEY2}` are not supported.
+
 CAUTION: Localities are not rendered by the LaTeX class yet, only by Metanorma compilation. 

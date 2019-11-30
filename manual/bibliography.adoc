@@ -4,6 +4,8 @@ NOTE: These features are verified by tests in {repo-blob-url}/test/test_bibliogr
 
 You can cite a bibliographic source using the `\cite` macro as usual.
 
+CAUTION: Multiple citations, e.g. `\cite{KEY1,KEY2}` are not supported.
+
 The bibliographic database can be specified in two different ways.
 
 If the bibliography is small or you want to typeset each entry manually you can use the `thebibliography` environment to wrap a list of bibliographic items described by `\bibitem`.

@@ -45,8 +45,7 @@ class TestBibliography < Minitest::Test
       This document is an example of thebibliography environment using
       in bibliography management. Three items are cited: __The LaTeX Companion__
       book <<latexcompanion>>, the Einstein journal paper <<einstein>>, and the
-      Donald Knuth’s website <<knuthwebsite>>. The LaTeX related items are
-      <<latexcompanion>><<knuthwebsite>>.
+      Donald Knuth’s website <<knuthwebsite>>.
 
       [bibliography]
       == References
@@ -76,8 +75,7 @@ class TestBibliography < Minitest::Test
         This document is an example of \texttt{thebibliography} environment using
         in bibliography management. Three items are cited: \textit{The \LaTeX\ Companion}
         book \cite{latexcompanion}, the Einstein journal paper \cite{einstein}, and the
-        Donald Knuth's website \cite{knuthwebsite}. The \LaTeX\ related items are
-        \cite{latexcompanion,knuthwebsite}.
+        Donald Knuth's website \cite{knuthwebsite}.
 
         \begin{thebibliography}{3}
           \bibitem[ISO 7301]{ISO7301}
