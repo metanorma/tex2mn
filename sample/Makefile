@@ -18,8 +18,7 @@ main.post.xml: main.xml
 		main.xml \
 		--nocrossref \
 		--destination=main.post.xml \
-		--nodefaultresources \
-		--novalidate
+		--nodefaultresources
 
 main.adoc: main.xml
 	latexmlpost \
@@ -27,8 +26,7 @@ main.adoc: main.xml
 		--nocrossref \
 		--stylesheet=Metanorma.xsl \
 		--destination=main.adoc \
-		--nodefaultresources \
-		--novalidate
+		--nodefaultresources
 
 main.xml: main.tex
 	latexml \
