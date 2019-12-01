@@ -1,0 +1,90 @@
+= Terms and definitions
+
+`Terms and Definitions` subsections must be composed by these elements, in order:
+
+1. a heading of the appropriate level containing the term
+2. an optional `\label` to cross-reference the term from the others
+3. these optional macros, _whose parameter can contain markup_:
+  `\alt`:: to specify alternative/admitted terms
+  `\deprecated`:: to specify deprecated terms
+  `\domain`:: to specify the term domain
+4. the term definition as a normal paragraph
+5. optional examples using the `*example*` environment
+6. optional notes using the `*note*` environment
+7. an optional citation using the `*source*` environment composed by a bibliographic reference followed by optional modification details
+
+Here is a full example:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{Terms and Definitions}
+
+\subsection{paddy}
+\label{paddy}
+\alt{paddy rice}
+\alt{rough \textbf{rice}}
+\deprecated{cargo rice}
+\domain{rice}
+
+rice retaining its husk after threshing
+
+\begin{example}
+  Foreign seeds, husks, bran, sand, dust.
+\end{example}
+
+\begin{note}
+  The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
+\end{note}
+
+\begin{source}
+  \mncite[section 3.2]{ISO7301}, The term "cargo rice" is shown as deprecated, and Note 1 to entry is not included here
+\end{source}
+----
+|[source,asciidoc]
+----
+== Terms and Definitions
+
+[[paddy]]
+=== paddy
+alt:[paddy rice]
+alt:[rough **rice**]
+deprecated:[cargo rice]
+domain:[rice]
+
+rice retaining its husk after threshing
+
+[example]
+Foreign seeds, husks, bran, sand, dust.
+
+NOTE: The starch of waxy rice consists almost entirely of amylopectin. The kernels have a tendency to stick together after cooking.
+
+[.source]
+<<ISO7301,section 3.2>>, The term "cargo rice" is shown as deprecated,
+and Note 1 to entry is not included here
+----
+|===
+
+To treat a subsection of `Terms and Definitions` as a normal subsection instead of a term, e.g. an introductory section, you apply the `*.nonterm*` attribute to it as follows:
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+\section{Terms and definitions}
+
+\subsection{Introduction}
+\mna{.nonterm}
+
+The following terms have non-normative effect, and should be ignored by the ametrical.
+----
+|[source,asciidoc]
+----
+== Terms and definitions
+
+[.nonterm]
+=== Introduction
+The following terms have non-normative effect, and should be ignored by the ametrical.
+----
+|===
