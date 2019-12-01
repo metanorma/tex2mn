@@ -64,12 +64,12 @@ class TestHeadings < Minitest::Test
         Lorem ipsum.
 
         \subparagraph{L6 heading}
-        \mna{level=6}
+        \mn{level=6}
 
         Lorem ipsum.
 
         \subparagraph{L7 heading}
-        \mna{level=7}
+        \mn{level=7}
 
         Lorem ipsum.
       \end{document}
@@ -136,12 +136,12 @@ class TestHeadings < Minitest::Test
         Lorem ipsum.
 
         \subparagraph{}
-        \mna{level=6}
+        \mn{level=6}
 
         Lorem ipsum.
 
         \subparagraph{}
-        \mna{level=7}
+        \mn{level=7}
 
         Lorem ipsum.
 
@@ -184,17 +184,17 @@ class TestHeadings < Minitest::Test
         Lorem ipsum.
 
         \section{Termini e definizioni}
-        \mna{heading=terms and definitions}
+        \mn{heading=terms and definitions}
 
         Lorem ipsum.
 
         \section{Annex}
-        \mna{annex}
+        \mn{annex}
 
         Lorem ipsum.
 
         \section{Inline header}
-        \mna{\%inline-header}
+        \mn{\%inline-header}
 
         Lorem ipsum.
       \end{document}

@@ -88,7 +88,7 @@ class TestAppendix < Minitest::Test
         \appendix
 
         \section{Bar}
-        \mna{obligation=informative}
+        \mn{obligation=informative}
 
         Lorem ipsum.
       \end{document}

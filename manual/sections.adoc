@@ -56,7 +56,7 @@ If you need to name these sections in a different way (e.g. in non-english docum
 |[source,latex]
 ----
 \section{Mõisted ja määratlused}
-\mna{heading=terms and definitions}
+\mn{heading=terms and definitions}
 ----
 |[source,asciidoc]
 ----
@@ -100,7 +100,7 @@ Just like the other standard sections, you can also pass the canonical name as a
 |[source,latex]
 ----
 \section{Prefazione}
-\mna{heading=foreword}
+\mn{heading=foreword}
 Primo paragrafo della prefazione.
 
 Secondo paragrafo della prefazione.
@@ -152,10 +152,10 @@ Metanorma allows headings up to seven levels.
 |[source,latex]
 ----
 \subparagraph{Heading at level 6}
-\mna{level=6}
+\mn{level=6}
 
 \subparagraph{Heading at level 7}
-\mna{level=7}
+\mn{level=7}
 ----
 |[source,asciidoc]
 ----
@@ -224,7 +224,7 @@ Just like other sections, you can pass attributes to appendices. E.g. to change 
 ----
 \appendix
 \section{My appendix}
-\mna[obligation=informative]
+\mn[obligation=informative]
 
 Lorem ipsum.
 ----
@@ -249,7 +249,7 @@ You can typeset inline headings by passing `\%inline-header` as an attribute:
 |[source,latex]
 ----
 \subsection{Inline header,}
-\mna{\%inline-header}
+\mn{\%inline-header}
 
 which begins this line.
 ----
@@ -276,10 +276,10 @@ You can set the `language` and the `script` of a section using attributes:
 |[source,latex]
 ----
 \section{French section}
-\mna{language=fr}
+\mn{language=fr}
 
 \section{Math section}
-\mna{script=Zmth}
+\mn{script=Zmth}
 ----
 |[source,asciidoc]
 ----
@@ -303,7 +303,7 @@ You can set the `obligation` of a section (which can be either `informative` or 
 |[source,latex]
 ----
 \section{Informative section}
-\mna{obligation=informative}
+\mn{obligation=informative}
 ----
 |[source,asciidoc]
 ----

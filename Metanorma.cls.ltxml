@@ -22,13 +22,12 @@ RequirePackage('subcaption');
 # NOTE: switching to ASCII encoding (inside the enveloping group) preserves quotes.
 # Otherwise, they would be mapped to curly ones by Tex.pool.ltxml fontmaps and ligatures.
 DefMacro('\mn{}',
-  '{\fontencoding{ASCII}\lxRDF{property=asciidoc-attributes,content={#1}}}');
-DefMacro('\mna{}',
-  '{\fontencoding{ASCII}\lxRDFa[.]{asciidoc-attributes={#1}}}');
+  '{\fontencoding{ASCII}\lxRDF[#1]{property=mn:attributes}}');
 
-# \mnRDFa{xpath}{keywordpairs}
+# NOTE: this fixes and specializes \lxRDFa
+# \mna{xpath}{keywordpairs}
 #   Add RDF attributes to nodes specified by the xpath expression.
-DefConstructor('\mnRDFa Semiverbatim RequiredKeyVals:RDFa', sub {
+DefConstructor('\mna Semiverbatim RequiredKeyVals:RDFa', sub {
   my ($document, $xpath, $kv) = @_;
   my ($save, @nodes);
   $xpath = ToString($xpath);
@@ -111,7 +110,7 @@ DefMacro('\domain{}', '\lxRDF[#1]{property=domain}');
 
 # TODO: does this need wrapping in fontencoding like mn and mna?
 DefMacro('\mncite[]{}[]',
-  '\cite[#1]{#2}{\fontencoding{ASCII}\mnRDFa{ltx:cite}{mn__text={#1},mn__localities={#3}}}');
+  '\cite[#1]{#2}{\fontencoding{ASCII}\mna{ltx:cite}{mn__text={#1},mn__localities={#3}}}');
 
 ## Figures keys ################################################################
 

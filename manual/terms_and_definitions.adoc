@@ -75,7 +75,7 @@ To treat a subsection of `Terms and Definitions` as a normal subsection instead 
 \section{Terms and definitions}
 
 \subsection{Introduction}
-\mna{.nonterm}
+\mn{.nonterm}
 
 The following terms have non-normative effect, and should be ignored by the ametrical.
 ----

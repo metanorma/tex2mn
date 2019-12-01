@@ -42,7 +42,7 @@ def run_latexml(stdin_data)
 end
 
 def run_latexmlpost(stdin_data)
-  command = "latexmlpost - --stylesheet=Metanorma.xsl --nocrossref --nodefaultresources --novalidate"
+  command = "latexmlpost - --stylesheet=Metanorma.xsl --nocrossref --nodefaultresources"
   stdout, stderr, status = Open3.capture3(command, stdin_data: stdin_data)
   return stdout if status.success?
   raise StandardError.new("latexmlpost execution failed; stderr below.\n" + wrap_stderr(stderr))

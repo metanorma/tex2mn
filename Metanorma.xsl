@@ -18,14 +18,15 @@
 
   <xsl:strip-space elements="*" />
 
-  <xsl:template match="ltx:tags|ltx:title|ltx:toctitle"/>
+  <!-- NOTE: these are tags which are either matched explicitly or ignored -->
+  <xsl:template match="ltx:tags|ltx:title|ltx:toctitle|ltx:rdf"/>
 
   <!-- <xsl:template match="@*|node()">
     <xsl:copy><xsl:apply-templates select="@*|node()"/></xsl:copy>
   </xsl:template>  -->
 
   <!-- NOTE: it's apparently forbidden (by latexmlpost) to use a variable in a predicate -->
-  <xsl:template match="ltx:section[translate(ltx:title/text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='foreword' or @asciidoc-attributes='heading=foreword']">
+  <xsl:template match="ltx:section[translate(ltx:title/text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='foreword' or ltx:rdf[@property='mn:attributes']/text()='heading=foreword']">
     <xsl:text>[[Foreword]]&#xA;</xsl:text>
     <xsl:value-of select="concat('.', ltx:title/text(), '&#xA;')"/>
     <xsl:apply-templates/>
@@ -106,12 +107,12 @@
     </xsl:if>
     <!-- optional attributes tag -->
     <xsl:choose>
-      <xsl:when test="@asciidoc-attributes and $extra">
-        <xsl:value-of select="concat('[', $extra, ',', @asciidoc-attributes, ']')"/>
+      <xsl:when test="ltx:rdf[@property='mn:attributes'] and $extra">
+        <xsl:value-of select="concat('[', $extra, ',', ltx:rdf[@property='mn:attributes']/text(), ']')"/>
         <xsl:call-template name="newline"/>
       </xsl:when>
-      <xsl:when test="@asciidoc-attributes or $extra">
-        <xsl:value-of select="concat('[', $extra, @asciidoc-attributes, ']')"/>
+      <xsl:when test="ltx:rdf[@property='mn:attributes'] or $extra">
+        <xsl:value-of select="concat('[', $extra, ltx:rdf[@property='mn:attributes']/text(), ']')"/>
         <xsl:call-template name="newline"/>
       </xsl:when>
     </xsl:choose>
@@ -207,14 +208,11 @@
   -->
 
   <xsl:template name="quote-attributes">
-    <xsl:choose>
-      <xsl:when test="./ltx:rdf[@property='asciidoc-attributes']">
-        <xsl:value-of select="concat('[quote,', ./ltx:rdf/@content, ']&#xa;')"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:text>[quote]&#xa;</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:text>[quote</xsl:text>
+    <xsl:if test="ltx:rdf[@property='mn:attributes']">
+      <xsl:value-of select="concat(',', ltx:rdf[@property='mn:attributes']/text())"/>
+    </xsl:if>
+    <xsl:text>]&#xa;</xsl:text>
   </xsl:template>
 
   <xsl:template name="quote-delimiter">
