@@ -10,7 +10,7 @@ class TestTermsAndDefinitions < Minitest::Test
       === paddy
 
       alt:[paddy rice]
-      alt:[rough rice]
+      alt:[rough **rice**]
       deprecated:[cargo rice]
       domain:[rice]
 

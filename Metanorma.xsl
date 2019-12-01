@@ -558,7 +558,9 @@
   </xsl:template>
 
   <xsl:template match="ltx:rdf[@property='alt' or @property='deprecated' or @property='domain']">
-    <xsl:value-of select="concat(@property, ':[', @content, ']&#xA;')"/>
+    <xsl:value-of select="concat(@property, ':[')"/>
+    <xsl:apply-templates/>
+    <xsl:text>]&#xa;</xsl:text>
     <xsl:if test="current()[not(following-sibling::ltx:rdf)]">
       <xsl:call-template name="newline"/>
     </xsl:if>

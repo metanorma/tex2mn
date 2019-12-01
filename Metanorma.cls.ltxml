@@ -103,9 +103,9 @@ define_blocks('block-admonition', qw(note tip important caution warning));
 
 ## Terms and Definitions #######################################################
 
-DefMacro('\alt{}', '\lxRDF{property=alt,content=#1}');
-DefMacro('\deprecated{}', '\lxRDF{property=deprecated,content=#1}');
-DefMacro('\domain{}', '\lxRDF{property=domain,content=#1}');
+DefMacro('\alt{}', '\lxRDF[#1]{property=alt}');
+DefMacro('\deprecated{}', '\lxRDF[#1]{property=deprecated}');
+DefMacro('\domain{}', '\lxRDF[#1]{property=domain}');
 
 ## Citation macros #############################################################
 
