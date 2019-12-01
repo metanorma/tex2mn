@@ -24,23 +24,25 @@ RequirePackage('subcaption');
 DefMacro('\mn{}',
   '{\fontencoding{ASCII}\lxRDF[#1]{property=mn:attributes}}');
 
+# NOTE: let's avoid \mna until possible
+
 # NOTE: this fixes and specializes \lxRDFa
 # \mna{xpath}{keywordpairs}
 #   Add RDF attributes to nodes specified by the xpath expression.
-DefConstructor('\mna Semiverbatim RequiredKeyVals:RDFa', sub {
-  my ($document, $xpath, $kv) = @_;
-  my ($save, @nodes);
-  $xpath = ToString($xpath);
-  $save = $document->getNode;
-  @nodes = $document->findnodes($xpath, $save);
-  Warn('expected', 'node', $document,
-       "Expected to find a node for RDFa attributes at the xpath: " . $xpath) unless scalar(@nodes);
-  my $attr = RDFAttributes($kv);
-  foreach my $node (@nodes) {
-    foreach my $k (sort keys %$attr) {
-      # use direct method ($doc method doesn't skips about="", which we need!)
-      $node->setAttribute($k => ToString($$attr{$k})); }}
-  $document->setNode($save); });
+# DefConstructor('\mna Semiverbatim RequiredKeyVals:RDFa', sub {
+#   my ($document, $xpath, $kv) = @_;
+#   my ($save, @nodes);
+#   $xpath = ToString($xpath);
+#   $save = $document->getNode;
+#   @nodes = $document->findnodes($xpath, $save);
+#   Warn('expected', 'node', $document,
+#        "Expected to find a node for RDFa attributes at the xpath: " . $xpath) unless scalar(@nodes);
+#   my $attr = RDFAttributes($kv);
+#   foreach my $node (@nodes) {
+#     foreach my $k (sort keys %$attr) {
+#       # use direct method ($doc method doesn't skips about="", which we need!)
+#       $node->setAttribute($k => ToString($$attr{$k})); }}
+#   $document->setNode($save); });
 
 ## Document attributes #########################################################
 
@@ -108,9 +110,17 @@ DefMacro('\domain{}', '\lxRDF[#1]{property=domain}');
 
 ## Citation macros #############################################################
 
-# TODO: does this need wrapping in fontencoding like mn and mna?
-DefMacro('\mncite[]{}[]',
-  '\cite[#1]{#2}{\fontencoding{ASCII}\mna{ltx:cite}{mn__text={#1},mn__localities={#3}}}');
+# NOTE: this is intended as a smarter version of 
+#   DefMacro('\mncite[]{}[]','\cite[#1]{#2}\mn{#3,#1}');
+DefMacro('\mncite[]{}[]', sub {
+  my (@mn_attributes, @tokens);
+  push(@mn_attributes, ToString($_[3])) if $_[3];
+  push(@mn_attributes, ToString($_[1])) if $_[1];
+  push(@tokens, Invocation(T_CS('\cite'), $_[1], $_[2]));
+  # NOTE: we should be putting the ltx:rdf *inside* the ltx:cite
+  push(@tokens, Invocation(T_CS('\mn'), join(',', @mn_attributes))) if scalar(@mn_attributes);
+  return @tokens;
+});
 
 ## Figures keys ################################################################
 

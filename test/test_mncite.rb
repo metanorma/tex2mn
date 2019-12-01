@@ -9,7 +9,9 @@ class TestMncite < Minitest::Test
       <<ISO712>>
 
     OUTPUT
-      \mncite{ISO712}
+      \begin{document}
+        \mncite{ISO712}
+      \end{document}
     INPUT
   end
 
@@ -18,7 +20,9 @@ class TestMncite < Minitest::Test
       <<ISO712,the foregoing reference>>
 
     OUTPUT
-      \mncite[the foregoing reference]{ISO712}
+      \begin{document}
+        \mncite[the foregoing reference]{ISO712}
+      \end{document}
     INPUT
   end
 
@@ -27,7 +31,9 @@ class TestMncite < Minitest::Test
       <<ISO712,section=5,page=8-10>>
 
     OUTPUT
-      \mncite{ISO712}[section=5,page=8-10]
+      \begin{document}
+        \mncite{ISO712}[section=5,page=8-10]
+      \end{document}
     INPUT
   end
 
@@ -36,7 +42,9 @@ class TestMncite < Minitest::Test
       <<ISO712,section="5-3-1,bis">>
 
     OUTPUT
-      \mncite{ISO712}[section="5-3-1,bis"]
+      \begin{document}
+        \mncite{ISO712}[section="5-3-1,bis"]
+      \end{document}
     INPUT
   end
 
@@ -45,7 +53,9 @@ class TestMncite < Minitest::Test
       <<ISO712,locality:frontispiece=5,page=8-10>>
 
     OUTPUT
-      \mncite{ISO712}[locality:frontispiece=5,page=8-10]
+      \begin{document}
+        \mncite{ISO712}[locality:frontispiece=5,page=8-10]
+      \end{document}
     INPUT
   end
 
@@ -54,7 +64,9 @@ class TestMncite < Minitest::Test
       <<ISO712,clause=5,table=1,this table>>
 
     OUTPUT
-      \mncite[this table]{ISO712}[clause=5,table=1]
+      \begin{document}
+        \mncite[this table]{ISO712}[clause=5,table=1]
+      \end{document}
     INPUT
   end
 end
