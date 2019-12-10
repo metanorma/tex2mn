@@ -1,17 +1,17 @@
-= Reviewer notes
+= Todos
 
 [NOTE]
 ====
-These features are verified by tests in {repo-blob-url}/test/test_reviewer_notes.rb[test_reviewer_notes.rb].
+These features are verified by tests in {repo-blob-url}/test/test_todos.rb[test_todos.rb].
 ====
 
-You can typeset reviewer notes by using the `*reviewernotes*` environment.
+You can typeset todo notes by using the `*todo*` environment.
 
 By using `*\mn*` at the beginning of the environment you can set the following attributes:
 
-`reviewer` (_mandatory_)::
+`reviewer` (_optional_)::
 Name of the reviewer
-`from` (_mandatory_)::
+`from` (_optional_)::
 Starting target anchor
 `to` (_optional_)::
 Ending target anchor
@@ -23,16 +23,16 @@ Here is a full example:
 [cols="a,a"]
 |===
 |[source,latex]
-\begin{reviewernote}
+\begin{todo}
   \mn{reviewer="John Doe",date=20180125T0121,from=A,to=B}
   Lorem ipsum.
-\end{reviewernote}
+\end{todo}
 |[source,asciidoc]
 ----
-[reviewer="John Doe",date=20180125T0121,from=A,to=B]
-****
+[TODO,reviewer="John Doe",date=20180125T0121,from=A,to=B]
+====
 Lorem ipsum.
-****
+====
 ----
 |===
 

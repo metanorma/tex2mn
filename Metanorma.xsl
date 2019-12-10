@@ -232,15 +232,23 @@
     Admonitions
   -->
 
-  <xsl:template name="admonition-delimiter">
+  <xsl:template name="block-admonition__attributes">
+    <xsl:value-of select="concat('[', translate(substring(@class, 19), $lowercase, $uppercase))"/>
+    <xsl:if test="ltx:rdf[@property='mn:attributes']">
+      <xsl:value-of select="concat(',', ltx:rdf[@property='mn:attributes']/text())"/>
+    </xsl:if>
+    <xsl:text>]&#xa;</xsl:text>
+  </xsl:template>
+
+  <xsl:template name="block-admonition__delimiter">
     <xsl:text>====&#xa;</xsl:text>
   </xsl:template>
 
   <xsl:template match="//ltx:*[starts-with(@class, 'block-admonition--')]">
-    <xsl:value-of select="concat('[', translate(substring(@class, 19), $lowercase, $uppercase), ']&#xa;')"/>
-    <xsl:call-template name="admonition-delimiter"/>
+    <xsl:call-template name="block-admonition__attributes"/>
+    <xsl:call-template name="block-admonition__delimiter"/>
     <xsl:apply-templates/><xsl:if test="name()='p'"><xsl:text>&#xa;</xsl:text></xsl:if>
-    <xsl:call-template name="admonition-delimiter"/>
+    <xsl:call-template name="block-admonition__delimiter"/>
   </xsl:template>
 
   <!--
