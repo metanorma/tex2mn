@@ -497,6 +497,31 @@
   </xsl:template>
 
   <!--
+    Reviewer notes
+  -->
+
+  <xsl:template match="ltx:*[@class='block-sidebar']" priority="1">
+    <xsl:call-template name="block-sidebar__attributes"/>
+    <xsl:call-template name="block-sidebar__delimiter"/>
+    <xsl:apply-templates/>
+    <xsl:call-template name="block-sidebar__delimiter"/>
+    <xsl:if test="current()[following-sibling::*]">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="block-sidebar__attributes">
+    <xsl:if test="ltx:rdf[@property='mn:attributes']">
+      <xsl:value-of select="concat('[', ltx:rdf[@property='mn:attributes']/text(), ']&#xa;')"/>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="block-sidebar__delimiter">
+    <!-- TODO: should we handle block nesting? -->
+    <xsl:text>****&#xa;</xsl:text>
+  </xsl:template>
+
+  <!--
     Blocks
   -->
 

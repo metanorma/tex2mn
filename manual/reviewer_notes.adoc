@@ -1,0 +1,39 @@
+= Reviewer notes
+
+[NOTE]
+====
+These features are verified by tests in {repo-blob-url}/test/test_reviewer_notes.rb[test_reviewer_notes.rb].
+====
+
+You can typeset reviewer notes by using the `*reviewernotes*` environment.
+
+By using `*\mn*` at the beginning of the environment you can set the following attributes:
+
+`reviewer` (_mandatory_)::
+Name of the reviewer
+`from` (_mandatory_)::
+Starting target anchor
+`to` (_optional_)::
+Ending target anchor
+`date` (_optional_)::
+Date attribute (optionally including time)
+
+Here is a full example:
+
+[cols="a,a"]
+|===
+|[source,latex]
+\begin{reviewernote}
+  \mn{reviewer="John Doe",date=20180125T0121,from=A,to=B}
+  Lorem ipsum.
+\end{reviewernote}
+|[source,asciidoc]
+----
+[reviewer="John Doe",date=20180125T0121,from=A,to=B]
+****
+Lorem ipsum.
+****
+----
+|===
+
+CAUTION: the `reviewer` and `date` attributes are currently not rendered by LaTeX but only passed to Adoc.

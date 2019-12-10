@@ -35,4 +35,5 @@ include::tables.adoc[leveloffset=+1]
 include::figures.adoc[leveloffset=+1]
 include::footnotes.adoc[leveloffset=+1]
 include::rrp_blocks.adoc[leveloffset=+1]
+include::reviewer_notes.adoc[leveloffset=+1]
 
