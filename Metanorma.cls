@@ -17,6 +17,7 @@
 % TODO: what's the best baseline AMS setup?
 \RequirePackage{amsmath}
 \RequirePackage{subcaption}
+\RequirePackage{enumitem}
 
 \RequirePackage{xparse}
 
@@ -101,5 +102,9 @@
 
 % TODO: handle localities formatting
 \NewDocumentCommand{\mncite}{omo}{\cite[#1]{#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlist{key}{description}{1}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
