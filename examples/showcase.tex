@@ -1,0 +1,206 @@
+\documentclass{metanorma}
+
+\title{Metanorma flavoured \LaTeX\ showcase}
+
+% TODO: put authors in maketitle
+\set{author}{Paolo Brasolin}
+\set{email}{paolo.brasolin@gmail.com}
+
+% \set{doctype}{rfc}
+\set{keyword}{metanorma, latex}
+\set{revdate}{2019-12-11T00:00:00Z}
+\set{organization}{Metanorma}
+\set{uri}{https://www.metanorma.com/}
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Abstract}
+
+This document is a showcase for Metanorma-flavoured \LaTeX\ written by
+\get{author} during its development.
+
+\begin{note}
+  Given its nature, this document contains a lot of filler text.
+\end{note}
+
+\section{Features}
+
+\subsection{Basic formatting}
+
+Inline text formatting like \textit{italic} and \textbf{bold} are available.
+
+You can also use \textsc{small caps} and \textst{strike through} text.
+
+\subsection{Paragraph alignment}
+
+Paragraphs can be aligned however you want.
+
+\subsubsection{Justified (not ragged)}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\subsubsection{Flush left (ragged right)}
+
+\begin{flushleft}
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\end{flushleft}
+
+\subsubsection{Centered (ragged both sides)}
+
+\begin{center}
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\end{center}
+
+\subsubsection{Flush right (ragged left)}
+
+\begin{flushright}
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\end{flushright}
+
+\subsection{References}
+
+\subsubsection{Internal}
+
+Internal references -- a.k.a. cross-references -- allow you to point to another section of the document.
+You should take a look at \ref{sec:references__external} if you're interested in links instead.
+
+\subsubsection{External}\label{sec:references__external}
+
+External references -- a.k.a. hyperlinks -- allow you to point to an external resource.
+You can read more about that on the relevant \href{https://en.wikipedia.org/wiki/Hyperlink}{Wikipedia entry}.
+
+\subsection{Citations}
+
+Handling bibliographies and citations is easy with \LaTeX.
+To learn more about it and other things you should read \mncite[chapter 12]{latexcompanion}[chapter=12].
+
+You will find the bibliography at the end of this document.
+
+\subsection{Quotations}
+
+Ipse dixit:
+
+\begin{quote}
+  \mn{Donald Ervin Knuth,Literate Programming}
+  The language in which we express our ideas has a strong influence on our thought processes.
+\end{quote}
+
+\subsection{Lists}
+
+Lists are a very important structural element in documents. They allow to
+
+\begin{itemize}
+  \item itemize stuff like in this list
+  \item enumerate stuff like this:
+  \begin{enumerate}
+    \item First
+    \item Second
+    \item Last
+  \end{enumerate}
+  \item describe stuff like this:
+  \begin{enumerate}
+    \item[Red] is hot and comforting
+    \item[Green] is fresh and hopeful
+    \item[Blue] is cold and relaxing
+  \end{enumerate}
+\end{itemize}
+
+\subsection{Math}
+
+It is a well known fact that \LaTeX\ killer feature is typesetting math.
+
+Just look at this beauty:
+
+\begin{equation*}
+  \mathop{\sum_{n_1=1}^\infty\cdots\sum_{n_j=1}^\infty}\limits_{(n_1,\dots,n_j)=1} \frac1{n_1^{k_1} \cdots n_j^{k_j}}=\frac{\zeta(k_1)\zeta(k_2)\cdots \zeta(k_n) }{\zeta(k_1+k_2+\cdots+k_n)}
+\end{equation*}
+
+\subsection{Tables}
+
+Tabular data can be easily presented.
+
+\begin{table}[h]\centering
+  \label{tab:example}
+  \caption{This is the caption for the table}
+  \begin{tabular}{c|ccc}
+    $\times$ & 1 & 2 & 3 \\\hline
+    1 & 1 & 2 & 3 \\
+    2 & 2 & 4 & 6 \\
+    3 & 3 & 6 & 9 \\
+  \end{tabular}
+\end{table}
+
+\subsection{Figures}
+
+Figures can be embedded and presented even with complex layouts.
+
+\begin{figure}[h]\centering
+  \label{fig:whole}
+  \caption{A figure with two subfigures}
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{example-image-a}
+    \caption{A subfigure on the left}
+    \label{fig:left}
+  \end{subfigure}
+  \qquad
+  \begin{subfigure}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{example-image-b}
+    \caption{A subfigure on the right}
+    \label{fig:right}
+  \end{subfigure}
+  % \paragraph*{Key}
+  \begin{key}
+    \item[A] The first letter of the latin alphabet
+    \item[B] The second letter of the latin alphabet
+  \end{key}
+\end{figure}
+
+As you can see, figures can also have a key to reference and explain their notation.
+
+% NOTE: these are problematic with IETF
+% \subsection{Footnotes}
+% Footnotes are a simple\footnote{Please don't abuse them.} and effective way to provide extra context.
+
+\subsection{Requirements, recommendations, and permissions}
+
+Requirements, recommendations, and permissions can be typeset using environments with the obvious names.
+
+They can be nested and can contain internal structure composed of specifications, measurement targets, verification (procedures) and (code) imports.
+
+\begin{requirement}
+  A computer is required to edit \LaTeX\ document.
+
+  \begin{specification}
+    The computer needs to be in working order and a low-end machine is sufficient.
+  \end{specification}
+
+  \begin{measurement-target}
+    The computer should be built from post-90s hardware.
+  \end{measurement-target}
+
+  \begin{verification}
+    Ask your system administrator.
+  \end{verification}
+\end{requirement}
+
+\begin{recommendation}
+  A keyboard is recommended to edit \LaTeX\ document.
+\end{recommendation}
+
+\begin{permission}
+  Any text editor is allowed to edit \LaTeX\ document.
+\end{permission}
+
+\begin{thebibliography}{1}
+  \bibitem{latexcompanion} 
+    Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
+    \textit{The \LaTeX\ Companion}. 
+    Addison-Wesley, Reading, Massachusetts, 1993.
+\end{thebibliography}  
+
+\end{document}
