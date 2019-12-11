@@ -22,7 +22,7 @@
 \RequirePackage{xparse}
 
 \NewDocumentCommand{\mn}{m}
-  {\fontencoding{ASCII}\lxRDF[#1]{property=mn:attributes}}
+  {\lxRDF[#1]{property=mn:attributes}}
 
 %% Document attributes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
