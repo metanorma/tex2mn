@@ -377,6 +377,7 @@
     <xsl:call-template name="figure__label"/>
     <xsl:apply-templates select="ltx:caption"/>
     <xsl:apply-templates select="ltx:graphics"/>
+    <xsl:apply-templates select="ltx:verbatim"/> <!-- NOTE: this is temporary -->
     <xsl:call-template name="newline"/>
     <xsl:apply-templates select="ltx:paragraph"/>
   </xsl:template>
@@ -565,6 +566,21 @@
 
   <xsl:template name="block--open__delimiter">
     <xsl:text>--&#xa;</xsl:text>
+  </xsl:template>
+
+  <!--
+    Verbatim
+  -->
+
+  <!-- NOTE: this is temporary, undocumented and we'll end up using lstlistings in the final version -->
+
+  <xsl:template match="ltx:verbatim">
+    <xsl:text>====&#xa;....</xsl:text>
+    <xsl:apply-templates/>
+    <xsl:text>....&#xa;====&#xa;</xsl:text>
+    <xsl:if test="current()[following-sibling::*]">
+      <xsl:call-template name="newline"/>
+    </xsl:if>
   </xsl:template>
 
   <!--
