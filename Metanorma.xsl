@@ -379,7 +379,12 @@
     <xsl:apply-templates select="ltx:graphics"/>
     <xsl:apply-templates select="ltx:verbatim"/> <!-- NOTE: this is temporary -->
     <xsl:call-template name="newline"/>
-    <xsl:apply-templates select="ltx:paragraph"/>
+    <xsl:if test="./ltx:description">
+      <xsl:text>*Key*&#xa;</xsl:text>
+      <xsl:call-template name="newline"/>
+      <xsl:apply-templates select="./ltx:description"/>
+      <xsl:call-template name="newline"/>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="ltx:figure/ltx:graphics">
@@ -391,14 +396,6 @@
   <!-- NOTE: is it correct to assume there's only one ltx:tex inside the caption? -->
   <xsl:template match="ltx:figure/ltx:caption/ltx:text">
     <xsl:value-of select="concat('.', text(), '&#xa;')"/>
-  </xsl:template>
-
-  <!-- NOTE: we're assuming the only paragraph inside an figure will be the key -->
-  <xsl:template match="ltx:figure/ltx:paragraph">
-    <xsl:value-of select="concat('*', ltx:title, '*&#xa;')"/>
-    <xsl:call-template name="newline"/>
-    <xsl:apply-templates select="ltx:para/ltx:description"/>
-    <xsl:call-template name="newline"/>
   </xsl:template>
 
   <!--

@@ -26,7 +26,6 @@ class TestSubfigures < Minitest::Test
           \includegraphics{example.jpg}
           \label{fig:example}
           \caption{This is the caption}
-          \paragraph*{Key}
           \begin{key}
             \item[A] Foo
             \item[B] Bar
