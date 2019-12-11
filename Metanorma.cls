@@ -56,13 +56,25 @@
 
 \RequirePackage[framemethod=TikZ]{mdframed}
 
+\mdfdefinestyle{mnbase}{
+  frametitlerule=true,
+  frametitlefont=\sffamily\bfseries\scshape\small,
+  linecolor=gray,
+}
+
 % Admonitions
 
-\newmdenv[linecolor=blue,frametitle=Note]{note}
-\newmdenv[linecolor=green,frametitle=Tip]{tip}
-\newmdenv[linecolor=yellow,frametitle=Important]{important}
-\newmdenv[linecolor=red,frametitle=Caution]{caution}
-\newmdenv[linecolor=orange,frametitle=Warning]{warning}
+\mdfdefinestyle{note}{linecolor=blue,frametitle=Note}
+\mdfdefinestyle{tip}{linecolor=green,frametitle=Tip}
+\mdfdefinestyle{important}{linecolor=yellow,frametitle=Important}
+\mdfdefinestyle{caution}{linecolor=red,frametitle=Caution}
+\mdfdefinestyle{warning}{linecolor=orange,frametitle=Warning}
+
+\newmdenv[style=mnbase,style=note]{note}
+\newmdenv[style=mnbase,style=tip]{tip}
+\newmdenv[style=mnbase,style=important]{important}
+\newmdenv[style=mnbase,style=caution]{caution}
+\newmdenv[style=mnbase,style=warning]{warning}
 
 % Requirement, recommendation and permission
 
@@ -70,9 +82,9 @@
 \mdfdefinestyle{recommendation}{linecolor=gray,frametitle=Recommendation}
 \mdfdefinestyle{permission}{linecolor=gray,frametitle=Permission}
 
-\NewDocumentEnvironment{requirement}{}{\begin{mdframed}[style=requirement]}{\end{mdframed}}
-\NewDocumentEnvironment{recommendation}{}{\begin{mdframed}[style=recommendation]}{\end{mdframed}}
-\NewDocumentEnvironment{permission}{}{\begin{mdframed}[style=permission]}{\end{mdframed}}
+\newmdenv[style=mnbase,style=requirement]{requirement}
+\newmdenv[style=mnbase,style=recommendation]{recommendation}
+\newmdenv[style=mnbase,style=permission]{permission}
 
 % Specification, measurement target, verification and import
 
@@ -81,10 +93,10 @@
 \mdfdefinestyle{verification}{linecolor=lightgray,frametitle=Verification}
 \mdfdefinestyle{import}{linecolor=lightgray,frametitle=Import}
 
-\NewDocumentEnvironment{specification}{}{\begin{mdframed}[style=specification]}{\end{mdframed}}
-\NewDocumentEnvironment{measurement-target}{}{\begin{mdframed}[style=measurement-target]}{\end{mdframed}}
-\NewDocumentEnvironment{verification}{}{\begin{mdframed}[style=verification]}{\end{mdframed}}
-\NewDocumentEnvironment{import}{}{\begin{mdframed}[style=import]}{\end{mdframed}}
+\newmdenv[style=mnbase,style=specification]{specification}
+\newmdenv[style=mnbase,style=measurement-target]{measurement-target}
+\newmdenv[style=mnbase,style=verification]{verification}
+\newmdenv[style=mnbase,style=import]{import}
 
 %% Terms and definitions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -95,8 +107,8 @@
 \mdfdefinestyle{example}{linecolor=lightgray,frametitle=Example}
 \mdfdefinestyle{source}{linecolor=lightgray,frametitle=Source}
 
-\NewDocumentEnvironment{example}{}{\begin{mdframed}[style=example]}{\end{mdframed}}
-\NewDocumentEnvironment{source}{}{\begin{mdframed}[style=source]}{\end{mdframed}}
+\newmdenv[style=mnbase,style=example]{example}
+\newmdenv[style=mnbase,style=source]{source}
 
 %% Citation macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
