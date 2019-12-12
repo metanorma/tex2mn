@@ -11,7 +11,6 @@
 
 \LoadClass{article}
 
-\RequirePackage{lxRDFa}
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 % TODO: what's the best baseline AMS setup?
@@ -20,6 +19,13 @@
 \RequirePackage{enumitem}
 
 \RequirePackage{xparse}
+
+%% RDF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \RequirePackage{lxRDFa}
+% Let's not introduce another (mostly trivial) dependency, and just embed it:
+\DeclareRobustCommand{\lxRDFa}[2][]{}
+\DeclareRobustCommand{\lxRDF}[2][]{}
 
 \NewDocumentCommand{\mn}{m}
   {\lxRDF[#1]{property=mn:attributes}}
