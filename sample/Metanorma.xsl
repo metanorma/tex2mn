@@ -1,1 +1,0 @@
-../Metanorma.xsl
