@@ -61,6 +61,20 @@ latexmlpost main.xml --destination=main.adoc --stylesheet=Metanorma.xsl --nocros
 
 This will produce the Metanorma AsciiDoc version `main.adoc` of your Metanorma LaTeX document `main.tex`.
 
+== Development
+
+To run a specific test with debug output, you can
+
+```bash
+DEBUG=1 bundle exec ruby -Itest test/test_file.rb --name test_method
+```
+
+To run the whole suite, you can
+
+```bash
+bundle exec rake test
+```
+
 == Credits
 
 This project is developed, maintained and funded by https://www.metanorma.com/docs/getting-started/[Ribose Inc.]
