@@ -42,7 +42,7 @@ class TestBibliography < Minitest::Test
 
   def test_embedded
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
-      This document is an example of thebibliography environment using
+      This document is an example of ``thebibliography`` environment using
       in bibliography management. Three items are cited: __The LaTeX Companion__
       book <<latexcompanion>>, the Einstein journal paper <<einstein>>, and the
       Donald Knuth’s website <<knuthwebsite>>.
@@ -66,7 +66,7 @@ class TestBibliography < Minitest::Test
 
       * [[[knuthwebsite,3]]]
       Knuth: Computers and Typesetting,
-      http://www-cs-faculty.stanford.edu/~uno/abcde.html
+      link:++http://www-cs-faculty.stanford.edu/~uno/abcde.html++[]
 
     OUTPUT
       \documentclass{metanorma}
@@ -94,7 +94,7 @@ class TestBibliography < Minitest::Test
 
           \bibitem{knuthwebsite}
           Knuth: Computers and Typesetting,
-          \\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+          \\\url{http://www-cs-faculty.stanford.edu/~uno/abcde.html}
         \end{thebibliography}
       \end{document}
     INPUT
