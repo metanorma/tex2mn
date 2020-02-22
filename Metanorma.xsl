@@ -178,6 +178,8 @@
   <xsl:template match="ltx:text[@font='typewriter']">``<xsl:apply-templates/>``</xsl:template>
   <xsl:template match="ltx:text[@font='smallcaps']">[smallcap]#<xsl:apply-templates/>#</xsl:template>
   <xsl:template match="ltx:text[@class='strikethrough']">[strike]#<xsl:apply-templates/>#</xsl:template>
+  <xsl:template match="ltx:sup">^<xsl:apply-templates/>^</xsl:template>
+  <xsl:template match="ltx:sub">~<xsl:apply-templates/>~</xsl:template>
 
   <!--
     Paragraphs and their alignment

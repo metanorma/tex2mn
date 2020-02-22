@@ -63,4 +63,28 @@ class TestTextFormatting < Minitest::Test
       \end{document}
     INPUT
   end
+
+  def test_superscript_text
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Superscript ^text^.
+
+    OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        Superscript \textsuperscript{text}.
+      \end{document}
+    INPUT
+  end
+
+  def test_subscript_text
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Subscript ~text~.
+
+    OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        Subscript \textsubscript{text}.
+      \end{document}
+    INPUT
+  end
 end

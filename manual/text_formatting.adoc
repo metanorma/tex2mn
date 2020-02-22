@@ -54,17 +54,25 @@ __Italic__ text.
 ----
 |===
 
-To typeset strikethrough text you can use the `*\textst*` macro:
+You can set strikethrough, superscript and subscript text using respectively `*\textst*`, `\textsuperscript` and `\textsubscript`.
 
 [cols="a,a"]
 |===
 |[source,latex]
 ----
-\textst{Strikethrough} text.
+Strikethrough \textst{text}.
+
+Superscript \textsuperscript{text}.
+
+Subscript \textsubscript{text}.
 ----
 |[source,asciidoc]
 ----
-[strike]#Strikethrough# text.
+Strikethrough [strike]#text#.
+
+Superscript ^text^.
+
+Subscript ~text~.
 ----
 |===
 
