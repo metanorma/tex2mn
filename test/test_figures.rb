@@ -4,7 +4,7 @@ require "minitest/autorun"
 require "helper"
 
 class TestFigures < Minitest::Test
-  def test_picture_only
+  def test_just_picture
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [[fig1]]
       image::example.jpg[]
@@ -19,7 +19,7 @@ class TestFigures < Minitest::Test
     INPUT
   end
 
-  def test_label_without_caption
+  def test_labeled_picture
     # NOTE: the label is ignored if there's no caption
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [[fig1]]
@@ -36,7 +36,7 @@ class TestFigures < Minitest::Test
     INPUT
   end
 
-  def test_caption_without_label
+  def test_captioned_picture
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       [[S0.F1]]
       .This is the caption
@@ -53,16 +53,36 @@ class TestFigures < Minitest::Test
     INPUT
   end
 
-  def test_complete
+  def test_optioned_picture
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
-      [[fig:example]]
-      .This is the caption
+      [[fig1]]
+      [alt=The example picture]
       image::example.jpg[]
 
     OUTPUT
       \documentclass{metanorma}
       \begin{document}
         \begin{figure}
+          \mn{alt=The example picture}
+          \includegraphics{example.jpg}
+        \end{figure}
+      \end{document}
+    INPUT
+  end
+
+
+  def test_complete
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      [[fig:example]]
+      .This is the caption
+      [alt=The example picture]
+      image::example.jpg[]
+
+    OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        \begin{figure}
+          \mn{alt=The example picture}
           \label{fig:example}
           \caption{This is the caption}
           \includegraphics{example.jpg}

@@ -365,6 +365,7 @@
   <xsl:template match="ltx:figure[./ltx:figure]">
     <xsl:call-template name="figure__label"/>
     <xsl:apply-templates select="ltx:caption"/>
+    <xsl:call-template name="figure__attributes"/>
     <xsl:text>====&#xa;</xsl:text>
     <xsl:apply-templates select="ltx:figure"/>
     <xsl:text>====&#xa;</xsl:text>
@@ -376,6 +377,7 @@
   <xsl:template match="ltx:figure[not(./ltx:figure)]">
     <xsl:call-template name="figure__label"/>
     <xsl:apply-templates select="ltx:caption"/>
+    <xsl:call-template name="figure__attributes"/>
     <xsl:apply-templates select="ltx:graphics"/>
     <xsl:apply-templates select="ltx:verbatim"/> <!-- NOTE: this is temporary -->
     <xsl:call-template name="newline"/>
@@ -390,6 +392,12 @@
   <xsl:template match="ltx:figure/ltx:graphics">
     <!-- TODO: we could use the caption as alt text, perhaps? -->
     <xsl:value-of select="concat('image::', @graphic, '[]&#xa;')"/>
+  </xsl:template>
+
+  <xsl:template name="figure__attributes">
+    <xsl:if test="ltx:rdf[@property='mn:attributes']">
+      <xsl:value-of select="concat('[', ltx:rdf[@property='mn:attributes']/text(), ']&#xa;')"/>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="ltx:figure/ltx:caption/ltx:tag"/>
