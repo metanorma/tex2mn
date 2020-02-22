@@ -93,6 +93,12 @@
     <xsl:value-of select="concat('{', @content, '}')"/>
   </xsl:template>
 
+  <xsl:template match="ltx:text[@class='with-mn-attributes']">
+    <xsl:value-of select="concat('[', ltx:rdf[@property='mn:attributes']/text(), ']#')"/>
+    <xsl:apply-templates/>
+    <xsl:text>#</xsl:text>
+  </xsl:template>
+
   <!--
     Sectioning
   -->

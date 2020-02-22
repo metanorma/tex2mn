@@ -45,6 +45,8 @@
 
 \makeatother
 
+\NewDocumentCommand{\att}{om}{#2}
+
 %% General style %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % No indentation on paragraphs.

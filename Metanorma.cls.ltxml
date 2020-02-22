@@ -52,6 +52,9 @@ DefMacro('\set{}{}',
 DefConstructor('\get{}',
   "<ltx:text content='#1'/>");
 
+DefConstructor('\att OptionalUndigested {}',
+  "<ltx:text class='with-mn-attributes'><ltx:rdf about=\".\" property=\"mn:attributes\">#1</ltx:rdf>#2</ltx:text>");
+
 ## Strikethrough ###############################################################
 
 DefConstructor('\textst{}',
