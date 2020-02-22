@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['2.5.5']
+        ruby: ['2.5.7']
         perl: ['5.30']
     steps:
 
@@ -46,7 +46,7 @@ jobs:
         id: cache-gems
         uses: actions/cache@v1
         with:
-          path: ${{ runner.tool_cache }}/Ruby/2.5.5/x64/lib/ruby/gems
+          path: ${{ runner.tool_cache }}/Ruby/2.5.7/x64/lib/ruby/gems
           key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile.lock') }}
 
       - name: Update gems
