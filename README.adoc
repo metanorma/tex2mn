@@ -1,6 +1,6 @@
 :workflows-url: https://github.com/metanorma/tex2mn/workflows
 :actions-url: https://github.com/metanorma/tex2mn/actions
-:badges-branch: master
+:badges-branch: development
 
 = tex2mn
 
