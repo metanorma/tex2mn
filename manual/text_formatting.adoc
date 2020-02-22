@@ -2,7 +2,7 @@
 
 NOTE: These features are verified by tests in {repo-blob-url}/test/test_text_formatting.rb[test_text_formatting.rb].
 
-You can set bold, italic and small caps text using respectively `\textbf`, `\textit` and `\textsc`.
+You can set bold, italic, monospace and small caps text using respectively `\textbf`, `\textit`, `\texttt` and `\textsc`.
 
 [cols="a,a"]
 |===
@@ -12,6 +12,8 @@ You can set bold, italic and small caps text using respectively `\textbf`, `\tex
 
 \textit{Italic} text.
 
+\texttt{Monospace} text.
+
 \textsc{Small caps} text.
 ----
 |[source,asciidoc]
@@ -20,11 +22,13 @@ You can set bold, italic and small caps text using respectively `\textbf`, `\tex
 
 __Italic__ text.
 
+``Monospace`` text.
+
 [smallcap]#Small caps# text.
 ----
 |===
 
-The _switch_ versions of these macros are available too: `\bfseries`, `\itshape` and `\scshape`.
+The _switch_ versions of these macros are available too: `\bfseries`, `\itshape`, `\ttfamily` and `\scshape`.
 
 [cols="a,a"]
 |===
@@ -34,6 +38,8 @@ The _switch_ versions of these macros are available too: `\bfseries`, `\itshape`
 
 {\itshape Italic} text.
 
+{\ttfamily Monospace} text.
+
 {\scshape Small caps} text.
 ----
 |[source,asciidoc]
@@ -41,6 +47,8 @@ The _switch_ versions of these macros are available too: `\bfseries`, `\itshape`
 **Bold** text.
 
 __Italic__ text.
+
+``Monospace`` text.
 
 [smallcap]#Small caps# text.
 ----

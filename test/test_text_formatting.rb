@@ -28,6 +28,18 @@ class TestTextFormatting < Minitest::Test
     INPUT
   end
 
+  def test_monospace_text
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Monospace ``text`` and ``monospace group``.
+
+    OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+        Monospace \texttt{text} and {\ttfamily monospace group}.
+      \end{document}
+    INPUT
+  end
+
   def test_smallcaps_text
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Smallcaps [smallcap]#text# and [smallcap]#smallcaps group#.
