@@ -1,5 +1,5 @@
 %
-% tex2mn 0.3.0 - converts Metanorma documents from LaTeX to AsciiDoc
+% tex2mn 0.4.0 - converts Metanorma documents from LaTeX to AsciiDoc
 %
 % Copyright (C) 2019 Ribose Inc. <open.source@ribose.com>
 % This project is available under the terms of the MIT License.
