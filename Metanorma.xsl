@@ -589,9 +589,9 @@
   <!-- NOTE: this is temporary, undocumented and we'll end up using lstlistings in the final version -->
 
   <xsl:template match="ltx:verbatim">
-    <xsl:text>====&#xa;....</xsl:text>
+    <xsl:text>....</xsl:text>
     <xsl:apply-templates/>
-    <xsl:text>....&#xa;====&#xa;</xsl:text>
+    <xsl:text>....&#xa;</xsl:text>
     <xsl:if test="current()[following-sibling::*]">
       <xsl:call-template name="newline"/>
     </xsl:if>
