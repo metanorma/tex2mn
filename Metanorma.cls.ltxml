@@ -19,6 +19,8 @@ RequirePackage('hyperref');
 RequirePackage('amsmath');
 RequirePackage('subcaption');
 
+RequirePackage('verbatim');
+
 # NOTE: switching to ASCII encoding (inside the enveloping group) preserves quotes.
 # Otherwise, they would be mapped to curly ones by Tex.pool.ltxml fontmaps and ligatures.
 DefMacro('\mn Semiverbatim',

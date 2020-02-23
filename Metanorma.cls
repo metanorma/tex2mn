@@ -18,6 +18,8 @@
 \RequirePackage{subcaption}
 \RequirePackage{enumitem}
 
+\RequirePackage{verbatim}
+
 \RequirePackage{xparse}
 
 %% RDF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
