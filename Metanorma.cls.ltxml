@@ -21,7 +21,7 @@ RequirePackage('subcaption');
 
 # NOTE: switching to ASCII encoding (inside the enveloping group) preserves quotes.
 # Otherwise, they would be mapped to curly ones by Tex.pool.ltxml fontmaps and ligatures.
-DefMacro('\mn{}',
+DefMacro('\mn Semiverbatim',
   '{\fontencoding{ASCII}\lxRDF[#1]{property=mn:attributes}}');
 
 # NOTE: let's avoid \mna until possible
@@ -46,10 +46,10 @@ DefMacro('\mn{}',
 
 ## Document attributes #########################################################
 
-DefMacro('\set{}{}',
+DefMacro('\set Semiverbatim {}',
   '{\fontencoding{ASCII}\lxRDF{property=#1,content=#2}}');
 
-DefConstructor('\get{}',
+DefConstructor('\get Semiverbatim',
   "<ltx:text content='#1'/>");
 
 DefConstructor('\att OptionalUndigested {}',

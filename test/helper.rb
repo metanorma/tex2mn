@@ -35,7 +35,7 @@ def render_file(filename)
 end
 
 def run_latexml(stdin_data)
-  command = "latexml - --preload=Metanorma.cls --nocomments"
+  command = "latexml - --preload=Metanorma.cls --nocomments --strict"
   stdout, stderr, status = Open3.capture3(command, stdin_data: stdin_data)
   return stdout if status.success?
   raise StandardError.new("latexml execution failed; stderr below.\n" + wrap_stderr(stderr))
