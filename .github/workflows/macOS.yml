@@ -21,12 +21,18 @@ jobs:
         with:
           perl-version: ${{ matrix.perl }}
 
+      - name: Symlink libxml to libxml2
+        run: |
+          ln -s "$(xcrun --show-sdk-path)/usr/include/libxml2/libxml/" "$(xcrun --show-sdk-path)/usr/include/libxml"
+
       # NOTE: we need LaTeXML including commit
       # https://github.com/brucemiller/LaTeXML/commit/9a0e7dc5829c1218e409da716d2a50b81472c38e
       # related to issue https://github.com/brucemiller/LaTeXML/issues/1153
       # but that's planned for release on 0.85 (early 2020).
+
       - name: Install LaTeXML
-        run: cpanm --verbose --no-interactive --notest git://github.com/brucemiller/LaTeXML.git@9a0e7dc5
+        run: |
+          cpanm --verbose --no-interactive --notest git://github.com/brucemiller/LaTeXML.git@9a0e7dc5
 
       - name: Setup Ruby ${{ matrix.ruby }}
         uses: actions/setup-ruby@v1
