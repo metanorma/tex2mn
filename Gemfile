@@ -8,5 +8,8 @@ end
 
 group :development do
   gem "asciidoctor", "~> 2.0.10"
+  gem "asciidoctor-pdf", "~> 1.5"
+  gem "byebug", "~> 11.1"
+  gem "rouge", "~> 3.17"
   gem "rubocop", "~> 0.54.0"
 end

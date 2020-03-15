@@ -1,0 +1,10 @@
+extends: default
+# TODO: we should develop a theme coherent with the brand
+literal:
+  font_family: Courier
+code:
+  font_size: 9
+  padding: 6
+table:
+  border_color: FFFFFF
+  border_width: 0

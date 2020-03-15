@@ -1,3 +1,10 @@
+//
+// tex2mn <<<VERSION>>> - converts Metanorma documents from LaTeX to AsciiDoc
+//
+// Copyright (C) 2019-2020 Ribose Inc. <open.source@ribose.com>
+// This project is available under the terms of the MIT License.
+//
+
 = tex2mn manual
 :epoch: 1574615272
 :ctan-pkg-url: https://ctan.org/pkg
