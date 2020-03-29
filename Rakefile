@@ -28,3 +28,5 @@ namespace 'manual' do
     sh 'find manual/*.adoc ! -name index.adoc | entr ruby -i -pe "gsub(/(?<=^:epoch: )\d+$/,Time.now.to_i.to_s)" manual/index.adoc'
   end
 end
+
+task :default => :test
