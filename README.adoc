@@ -36,27 +36,27 @@ sudo cpanm git://github.com/brucemiller/LaTeXML.git@9a0e7dc5
 To setup `tex2mn` itself you just need to copy these files from the repo to your project folder:
 
 ----
-Metanorma.cls
-Metanorma.cls.ltxml
-Metanorma.xsl
+metanorma.cls
+metanorma.cls.ltxml
+metanorma.xsl
 ----
 
 == Usage
 
 === Authoring
 
-Once `Metanorma.cls` is in your project folder, you can use it just like any other LaTeX document class.
+Once `metanorma.cls` is in your project folder, you can use it just like any other LaTeX document class.
 
 WARNING: The class is minimal and its source can be easily studied, however its syntax is still experimental.
 
 === Conversion
 
-Once `Metanorma.cls.ltxml` and `Metanorma.xsl` are in your project folder, you can convert your document as follows:
+Once `metanorma.cls.ltxml` and `metanorma.xsl` are in your project folder, you can convert your document as follows:
 
 [source,bash]
 ----
 latexml main.tex --output=main.xml --nocomments
-latexmlpost main.xml --destination=main.adoc --stylesheet=Metanorma.xsl --nocrossref --nodefaultresources
+latexmlpost main.xml --destination=main.adoc --stylesheet=metanorma.xsl --nocrossref --nodefaultresources
 ----
 
 This will produce the Metanorma AsciiDoc version `main.adoc` of your Metanorma LaTeX document `main.tex`.
