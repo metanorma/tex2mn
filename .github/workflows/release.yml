@@ -1,0 +1,76 @@
+name: release
+
+on:
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+
+jobs:
+  test-ubuntu:
+    name: Test on Ubuntu
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["2.5.8"]
+        perl: ["5.30"]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@master
+
+      - name: Get the tag
+        id: get_tag
+        run: |
+          echo ::set-output name=TAG::${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+
+      - name: Setup Ruby ${{ matrix.ruby }}
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          architecture: "x64"
+
+      - name: Cache gems
+        id: cache-gems
+        uses: actions/cache@v1
+        with:
+          path: ${{ runner.tool_cache }}/Ruby/2.5.8/x64/lib/ruby/gems
+          key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile.lock') }}
+
+      - name: Update gems
+        run: |
+          gem install bundler -v "~> 2"
+          bundle update --bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Build distributable package
+        env:
+          VERSION: ${{ steps.get_tag.outputs.version }}
+        run: |
+          bundle exec rake dist:pkg:zip
+
+      - name: Release on Github
+        uses: docker://antonyurchenko/git-release:v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRAFT_RELEASE: "false"
+          CHANGELOG_FILE: "CHANGELOG.md"
+          ALLOW_EMPTY_CHANGELOG: "false"
+          ALLOW_TAG_PREFIX: "true"
+          RELEASE_NAME: "tex2mn ${{ steps.get_tag.outputs.tag }}"
+        with:
+          args: |
+              dist/metanorma.zip
+
+      - name: Submit to CTAN
+        uses: paolobrasolin/ctan-submit-action@v1
+        with:
+          action: validate
+          # action: upload
+          file_path: dist/metanorma.zip
+          fields: |
+            update: 'true'
+            pkg: metanorma
+            version: ${{ steps.get_tag.outputs.version }}
+            author: Ribose Inc.
+            email: open.source@ribose.com
