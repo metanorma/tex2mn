@@ -110,8 +110,18 @@ namespace :build do
     Dir["#{target_dir}/*.{cls,ltxml,xsl}"].each(&method(:update_meta))
   end
 
+  desc "Build extra files"
+  task :extra do |task|
+    print_task_title(task)
+
+    puts "Copying files..."
+    target_dir = BUILD_TARGET_PATH
+    mkdir_p(target_dir)
+    cp_r(Dir["extra/README.md"], target_dir)
+  end
+
   desc "Build all"
-  task all: %i{manual:flatten manual:compile source}
+  task all: %i{manual:flatten manual:compile source extra}
 end
 
 TDS_MAP = {
@@ -123,7 +133,7 @@ TDS_MAP = {
   "doc/latex/metanorma/" => [
     "metanorma.pdf",
     "metanorma.adoc",
-  # "README", # TODO
+    "README.md",
   ],
 }
 
