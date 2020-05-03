@@ -91,7 +91,7 @@ namespace :build do
         to_file: target_path,
         attributes: {
           "source-highlighter" => "rouge",
-          "pdf-theme" => "metanorma-theme.yml",
+          "pdf-theme" => "extra/metanorma-theme.yml",
         },
       )
     end
