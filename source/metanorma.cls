@@ -6,7 +6,7 @@
 %
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Metanorma}
+\ProvidesClass{metanorma}
    [2019/07/07 Metanorma]
 
 \LoadClass{article}
