@@ -187,6 +187,9 @@
   <xsl:template match="ltx:sup">^<xsl:apply-templates/>^</xsl:template>
   <xsl:template match="ltx:sub">~<xsl:apply-templates/>~</xsl:template>
 
+  <xsl:template match="ltx:emph[@font='italic']">__<xsl:apply-templates/>__</xsl:template>
+  <xsl:template match="ltx:emph//ltx:emph"><xsl:apply-templates/></xsl:template>
+
   <!--
     Paragraphs and their alignment
   -->

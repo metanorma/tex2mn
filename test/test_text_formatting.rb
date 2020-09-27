@@ -28,6 +28,20 @@ class TestTextFormatting < Minitest::Test
     INPUT
   end
 
+  def test_emphasized_text
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Emphasized __text__.
+      __Nested emphasized text__ and __very nested emphasized text__.
+
+    OUTPUT
+      \documentclass{metanorma}
+      \begin{document}
+      Emphasized \emph{text}.
+      \emph{\emph{Nested} emphasized text} and \emph{\emph{\emph{very} nested} emphasized text}.
+      \end{document}
+    INPUT
+  end
+
   def test_monospace_text
     assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
       Monospace ``text`` and ``monospace group``.

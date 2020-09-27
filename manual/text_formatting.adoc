@@ -77,3 +77,21 @@ Subscript ~text~.
 |===
 
 NOTE: Strikethrough text is implemented using the {ctan-pkg-url}/ulem[ulem] package.
+
+The `\emph` macro for emphasized text is supported, but without its normal nesting behaviour: AsciiDoc output is able to represent only the outer level.
+
+[cols="a,a"]
+|===
+|[source,latex]
+----
+Emphasized \emph{text}.
+
+Emphasized \emph{text with \emph{extra} emphasis}.
+----
+|[source,asciidoc]
+----
+Emphasized __text__.
+
+Emphasized __text with extra emphasis__.
+----
+|===
