@@ -47,3 +47,7 @@ You can `*\set*` a multiple authors by enumerating them in the preamble:
 Document authored by {author_1}, {author_2}, and {author_3}.
 ----
 |===
+
+NOTE: Authors set in this way will be shown only in the `AsciiDoc` output.
+This is not a problem if you're targeting `AsciiDoc` output.
+If you want to set the authors when compiling the `LaTeX` files directly you must use the standard `\author` macro, i.e. `\author{John Doe}` for a single author and `\author{Tom Sawyer \and Dick Tracy \and Harry Potter}` for multiple authors.

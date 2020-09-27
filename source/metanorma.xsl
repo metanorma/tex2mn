@@ -19,7 +19,7 @@
   <xsl:strip-space elements="*" />
 
   <!-- NOTE: these are tags which are either matched explicitly or ignored -->
-  <xsl:template match="ltx:tags|ltx:title|ltx:toctitle|ltx:rdf"/>
+  <xsl:template match="ltx:tags|ltx:title|ltx:toctitle|ltx:rdf|ltx:creator"/>
 
   <!-- <xsl:template match="@*|node()">
     <xsl:copy><xsl:apply-templates select="@*|node()"/></xsl:copy>

@@ -37,4 +37,17 @@ class TestDocumentAuthors < Minitest::Test
       \end{document}
     INPUT
   end
+
+  def test_author_macro_is_ignored
+    assert_equal <<~'OUTPUT', render_string(<<~'INPUT')
+      Lorem ipsum.
+
+    OUTPUT
+    \documentclass{metanorma}
+    \author{John Doe}
+    \begin{document}
+      Lorem ipsum.
+    \end{document}
+    INPUT
+  end
 end
